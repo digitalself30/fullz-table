@@ -282,5 +282,15 @@ class FullzController extends Controller
         }
         return redirect(route('fullz.ssn'))->with('success', 'Data has been updated');
     }
-
+    public function update_price(Request $request){
+        $request->validate([
+            "price" =>" required|regex:/^\d+(\.\d{1,2})?$/",
+        ]);
+        foreach ($request->ids AS $id){
+            $price = Fullz::find($id);
+            $price->price = $request->price;
+            $price->save();
+        }
+        return response()->json('success');
+    }
 }

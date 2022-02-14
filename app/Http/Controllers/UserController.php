@@ -81,8 +81,8 @@ class UserController extends Controller
                     return '$'.$data->price;
                 })
                 ->editColumn('action', function($data) {
-                    $btn = '<a class="modal-effect btn btn-primary mr-1" onclick="add_to_cart('.$data->id.')" href="'.route('cart', $data->id).'">Buy Now</a>';
-                    $btn .= '<a class="btn btn-primary add-to-cart" onclick="add_to_cart('.$data->id.')" >Add to cart</a>';
+                    $btn = '<a class="modal-effect btn btn-primary mr-1" onclick="add_to_cart('.$data->id.',\'Buy\')">Buy Now</a>';
+                    $btn .= '<a class="btn btn-primary add-to-cart" onclick="add_to_cart('.$data->id.', \'Cart\')" >Add to cart</a>';
                     return $btn;
                 })
                 ->rawColumns(['first_name','city','state','dob','price','action'])
@@ -145,8 +145,8 @@ class UserController extends Controller
                     return '$'.$data->price;
                 })
                 ->editColumn('action', function($data) {
-                    $btn = '<a class="modal-effect btn btn-primary mr-1" onclick="add_to_cart('.$data->id.')" href="'.route('cart', $data->id).'">Buy Now</a>';
-                    $btn .= '<a class="btn btn-primary add-to-cart" onclick="add_to_cart('.$data->id.')">Add to cart</a>';
+                    $btn = '<a class="modal-effect btn btn-primary mr-1" onclick="add_to_cart('.$data->id.',\'Buy\')">Buy Now</a>';
+                    $btn .= '<a class="btn btn-primary add-to-cart" onclick="add_to_cart('.$data->id.', \'Cart\')" >Add to cart</a>';
                     return $btn;                })
                 ->rawColumns(['first_name','city','state','dob','price','action'])
                 ->make(true);

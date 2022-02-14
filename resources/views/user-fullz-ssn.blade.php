@@ -14,6 +14,15 @@
         th{
             text-transform: inherit !important;
         }
+        #user-table .custom-tr{
+            background-color: #705ec8 !important;
+            color: #fff !important;
+            font-size: 22px !important;
+            font-weight: 900 !important;
+        }
+        #user-table .custom-tr th {
+            color: #fff !important;
+        }
     </style>
 
 @endsection
@@ -130,7 +139,7 @@
                         <div class="table-responsive">
                             <table id="user-table" class="table table-bordered text-nowrap key-buttons">
                                 <thead>
-                                <tr>
+                                <tr class="custom-tr">
                                     <th class="border-bottom-0">First name</th>
                                     <th class="border-bottom-0">Date Of Birth</th>
                                     <th class="border-bottom-0">State</th>
@@ -234,7 +243,7 @@
             });
         });
 
-        function add_to_cart(id) {
+        function add_to_cart(id, type) {
             $.ajax({
                 type: 'GET',
                 url: "{{route('add.to.cart')}}",
@@ -245,6 +254,9 @@
                 success: function (response) {
                     if (response !== '') {
                         $('.cart-item-container').append("<span class=\"badge badge-success side-badge cart-item\">" + response + "</span>")
+                    }
+                    if(type == 'Buy'){
+                        window.location.href = "{{route('cart')}}";
                     }
                 },
                 error: function (data) {

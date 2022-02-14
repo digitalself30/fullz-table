@@ -7,6 +7,9 @@
         th{
             text-transform: inherit !important;
         }
+        .form-control {
+            color: #6b6f80;
+        }
     </style>
 
 @endsection

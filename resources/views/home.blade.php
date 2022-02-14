@@ -1,5 +1,16 @@
 @extends('layouts.master')
 @section('page-header')
+    <style>
+        #user-table .custom-tr{
+            background-color: #705ec8 !important;
+            color: #fff !important;
+            font-size: 22px !important;
+            font-weight: 900 !important;
+        }
+        #user-table .custom-tr th {
+            color: #fff !important;
+        }
+    </style>
     <!--Page header-->
     <div class="page-header">
         <div class="page-leftheader">
@@ -42,7 +53,6 @@
                     <p class=" mb-1 ">This Month</p>
                     <h2 class="mb-1 number-font">${{$this_month_spent}}</h2>
                     <span class="ratio bg-success">100%</span>
-
                 </div>
                 <div id="spark3"></div>
             </div>
@@ -74,7 +84,7 @@
                                 @foreach($activity_logs AS $activity_log)
                                     <li class="mt-0">
                                         <div class="d-flex"><span class="time-data">{{ucfirst($activity_log->log_name)}}</span><span class="ml-auto text-muted fs-11">{{\Carbon\Carbon::parse($activity_log->created_at)->diffForHumans()}}</span></div>
-                                        <p class="text-muted fs-12"><span class="text-info">{{ucfirst($activity_log->causer->name) ?? ""}}</span> {{$activity_log->description}}</p>
+                                        <p class="text-muted fs-12"><span class="text-info">{{ isset($activity_log->causer) ? ucfirst($activity_log->causer->name) : ""}}</span> {{$activity_log->description}}</p>
                                     </li>
                                 @endforeach
                             @endif
@@ -90,9 +100,9 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table card-table table-vcenter text-nowrap">
+                        <table id="user-table" class="table card-table table-vcenter text-nowrap">
                             <thead>
-                            <tr>
+                            <tr class="custom-tr">
                                 <th>ID</th>
                                 <th>Transaction ID</th>
                                 <th>Username</th>

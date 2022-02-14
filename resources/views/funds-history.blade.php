@@ -14,6 +14,15 @@
         th{
             text-transform: inherit !important;
         }
+        #user-table .custom-tr{
+            background-color: #705ec8 !important;
+            color: #fff !important;
+            font-size: 22px !important;
+            font-weight: 900 !important;
+        }
+        #user-table .custom-tr th {
+            color: #fff !important;
+        }
     </style>
 
 @endsection
@@ -40,9 +49,9 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table card-table table-vcenter text-nowrap">
+                        <table id="user-table" class="table card-table table-vcenter text-nowrap">
                             <thead>
-                            <tr>
+                            <tr class="custom-tr">
                                 <th>ID</th>
                                 <th>Transaction ID</th>
                                 <th>Order Number</th>

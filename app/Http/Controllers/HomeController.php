@@ -42,15 +42,14 @@ class HomeController extends Controller
         return view('home', compact('activity_logs','transactions','total_user', 'total_sold_lines','this_month_spent','total_income'));
     }
     public function transactions(){
-        if(Auth::user()->user_type !== 1){
+        if(Auth::user()->user_type != 1){
             return back();
         }
-
         $transactions = Transaction::latest()->paginate(10);
         return view('transactions', compact('transactions'));
     }
     public function sold_lines(){
-        if(Auth::user()->user_type !== 1){
+        if(Auth::user()->user_type != 1){
             return back();
         }
         $orders = Order::with('fullz_table','user')->latest()->paginate(10);

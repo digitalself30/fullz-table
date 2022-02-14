@@ -9,7 +9,7 @@
 
 		<!-- Style css -->
 		<link href="{{URL::asset('assets/css/style.css')}}" rel="stylesheet" />
-		<link href="{{URL::asset('assets/css/dark.css')}}" rel="stylesheet" />
+{{--		<link href="{{URL::asset('assets/css/dark.css')}}" rel="stylesheet" />--}}
 		<link href="{{URL::asset('assets/css/skin-modes.css')}}" rel="stylesheet" />
 
 		<!-- Animate css -->

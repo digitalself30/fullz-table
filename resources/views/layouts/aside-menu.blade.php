@@ -1,16 +1,15 @@
 				<aside class="app-sidebar">
 					<div class="app-sidebar__logo">
-						<a class="header-brand" href="{{url('/' . $page='index')}}">
-							<img src="{{URL::asset('assets/images/brand/logo.png')}}" class="header-brand-img desktop-lgo" alt="Admintro logo">
-							Fullz Table
-							<img src="{{URL::asset('assets/images/brand/favicon.png')}}" class="header-brand-img mobile-logo" alt="Admintro logo">
-							<img src="{{URL::asset('assets/images/brand/favicon1.png')}}" class="header-brand-img darkmobile-logo" alt="Admintro logo">
+						<a class="header-brand" href="{{route('home')}}">
+							<img src="{{URL::asset('assets/images/brand/logo.png')}}" class="header-brand-img desktop-lgo" alt="logo">
+							<img src="{{URL::asset('assets/images/brand/favicon.png')}}" class="header-brand-img mobile-logo" alt="logo">
+							<img src="{{URL::asset('assets/images/brand/favicon1.png')}}" class="header-brand-img darkmobile-logo" alt="logo">
 						</a>
 					</div>
 					<div class="app-sidebar__user">
 						<div class="dropdown user-pro-body text-center">
 							<div class="user-pic">
-								<img src="{{URL::asset('assets/images/users/2.jpg')}}" alt="user-img" class="avatar-xl rounded-circle mb-1">
+								<img src="{{URL::asset('assets/images/users/profile2.png')}}" alt="user-img" class="avatar-xl rounded-circle mb-1">
 							</div>
 							<div class="user-info">
 								<h5 class=" mb-1">{{Auth::user()->name}} <i class="ion-checkmark-circled  text-success fs-12"></i></h5>

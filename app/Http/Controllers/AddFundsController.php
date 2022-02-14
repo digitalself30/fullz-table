@@ -16,7 +16,6 @@ class AddFundsController extends Controller
     public function funds_history(){
         if(Auth::user()->user_type == 1){
             $funds = Fund::with('user')->latest()->where('user_id', Auth::id())->paginate(10);
-
         }
         else{
             $funds = Fund::latest()->where('user_id', Auth::id())->paginate(10);

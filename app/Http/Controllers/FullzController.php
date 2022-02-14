@@ -19,16 +19,45 @@ class FullzController extends Controller
         $this->middleware('auth');
     }
     public function fullz_ssn(Request $request){
-
+        // Admin
         if(Auth::user()->user_type != 1){
-            return view('401');
+            return back();
         }
+
         if ($request->ajax()) {
 
-            $data = Fullz::where('status', '=', 1)->where('type', 1)->latest()->get();
+            $data = Fullz::where('status', '=', 1)->where('type', 1)->latest();
+
+            if($request->price){
+                if($request->price == 'Lowest'){
+                    $price_order = 'ASC';
+                }
+                else{
+                    $price_order = 'DESC';
+                }
+                $data->orderBy('price', $price_order);
+            }
+            if($request->dob){
+                if($request->dob == 'Elder'){
+                    $dob_order = 'ASC';
+                }
+                else{
+                    $dob_order = 'DESC';
+                }
+                $data->orderBy('dob', $dob_order);
+            }
+            if($request->state){
+                $data->where('state', $request->state);
+            }
+
+            $data->get();
 
             return DataTables::of($data)
                 ->addIndexColumn()
+
+                ->editColumn('checkbox', function($data) {
+                    return "<input type=\"checkbox\" value='".$data->id."' name='check_box' class=\"checkbox data-check\">";
+                })
                 ->editColumn('first_name', function($data) {
                     return $data->first_name;
                 })
@@ -61,27 +90,53 @@ class FullzController extends Controller
                     return $data->status == 1 ? "Active" : "In-Active";
                 })
                 ->editColumn('action', function($data) {
-                    $btn = '<a href="'.route('fullz.edit', $data->id).'"><i class="fe fe-edit-2"></i></a>';
-                    $btn .= '<a href="'.route('fullz.destroy', $data->id).'"><i class="fe fe-trash-2"></i></a>';
-                    return $btn;
+                    return '<a href="'.route('fullz.destroy', $data->id).'"><i class="fe fe-trash-2"></i></a>';
                 })
-                ->rawColumns(['first_name','last_name','street','city','state','zip','ssn','dob','price','status','action'])
+                ->rawColumns(['checkbox','first_name','last_name','street','city','state','zip','ssn','dob','price','status','action'])
                 ->make(true);
         }
         return view('fullz-ssn');
     }
 
     public function fullz_ssn_dl(Request $request){
-
+        // Admin
         if(Auth::user()->user_type != 1){
-            return view('401');
+            return back();
         }
+
         if ($request->ajax()) {
 
-            $data = Fullz::where('status', '=', 1)->where('type', 2)->latest()->get();
+            $data = Fullz::where('status', '=', 1)->where('type', 2)->latest();
+            if($request->price){
+                if($request->price == 'Lowest'){
+                    $price_order = 'ASC';
+                }
+                else{
+                    $price_order = 'DESC';
+                }
+                $data->orderBy('price', $price_order);
+            }
+            if($request->dob){
+                if($request->dob == 'Elder'){
+                    $dob_order = 'ASC';
+                }
+                else{
+                    $dob_order = 'DESC';
+                }
+                $data->orderBy('dob', $dob_order);
+            }
+            if($request->state){
+                $data->where('state', $request->state);
+            }
 
+            $data->get();
             return DataTables::of($data)
+
                 ->addIndexColumn()
+
+                ->editColumn('checkbox', function($data) {
+                    return "<input type=\"checkbox\" value='".$data->id."' name='check_box' class=\"checkbox data-check\">";
+                })
                 ->editColumn('first_name', function($data) {
                     return $data->first_name;
                 })
@@ -126,17 +181,19 @@ class FullzController extends Controller
                     return $data->status == 1 ? "Active" : "In-Active";
                 })
                 ->editColumn('action', function($data) {
-                    $btn = '<a href="'.route('fullz.edit', $data->id).'"><i class="fe fe-edit-2"></i></a>';
-                    $btn .= '<a href="'.route('fullz.edit', $data->id).'"><i class="fe fe-trash-2"></i></a>';
-                    return $btn;
+                    return '<a href="'.route('fullz.edit', $data->id).'"><i class="fe fe-trash-2"></i></a>';
                 })
-                ->rawColumns(['first_name','last_name','date_of_birth','street','state','city','zip','price','ssn','dl','dl_issue','dl_expiry','status','action'])
+                ->rawColumns(['checkbox','first_name','last_name','date_of_birth','street','state','city','zip','price','ssn','dl','dl_issue','dl_expiry','status','action'])
                 ->make(true);
         }
         return view('fullz-ssn-dl');
     }
 
     public function store(Request $request){
+        // Admin
+        if(Auth::user()->user_type != 1){
+            return back();
+        }
 
         $fullz_add = new Fullz;
         $fullz_add->first_name = $request->first_name;
@@ -164,6 +221,10 @@ class FullzController extends Controller
     }
 
     public function upload_csv(Request $request){
+        // Admin
+        if(Auth::user()->user_type != 1){
+            return back();
+        }
         if($request->type == 1){
             Excel::import(new FullzSSNImport, $request->file);
             return redirect(route('fullz.ssn'))->with('success', 'Data has been updated');
@@ -172,7 +233,54 @@ class FullzController extends Controller
             Excel::import(new FullzSSNDLImport, $request->file);
             return redirect(route('fullz.ssn.dl'))->with('success', 'Data has been updated');
         }
+    }
 
+    public function edit_list($ids, $type){
+        // Admin
+        if(Auth::user()->user_type != 1){
+            return back();
+        }
+
+        $str_arr = explode (",", $ids);
+        $fulz_ssn = Fullz::whereIn('id', $str_arr)->get();
+        if($type == 'ssn'){
+            return view('ssn-edit', compact('fulz_ssn'));
+        }
+        else if($type == 'ssn+dl'){
+            return view('ssn-dl-edit', compact('fulz_ssn'));
+        }
+
+    }
+    public function update_ssn_table(Request $request){
+        // Admin
+        if(Auth::user()->user_type != 1){
+            return back();
+        }
+        foreach ($request->ids AS $n => $id){
+
+            $update = Fullz::where('id' , $id)->first();
+            $update->first_name = $request->first_name[$n];
+            $update->last_name = $request->last_name[$n];
+            $update->street = $request->street[$n];
+            $update->city = $request->city[$n];
+            $update->state = $request->state[$n];
+            $update->zip = $request->zip[$n];
+            $update->ssn = $request->ssn[$n];
+            $update->dob = Carbon::parse($request->dob[$n])->format('Y-m-d');
+            $update->price = $request->price[$n];
+
+            if($request->type !== 'ssn'){
+                $update->dl = $request->dl[$n];
+                $update->dl_state  = $request->dl_state[$n];
+                $update->dl_issue  = Carbon::parse($request->dl_issue[$n])->format('Y-m-d');
+                $update->dl_expiry = Carbon::parse($request->dl_expiry[$n])->format('Y-m-d');
+            }
+            $update->save();
+        }
+        if($request->type !== 'ssn'){
+            return redirect(route('fullz.ssn.dl'))->with('success', 'Data has been updated');
+        }
+        return redirect(route('fullz.ssn'))->with('success', 'Data has been updated');
     }
 
 }

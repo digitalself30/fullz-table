@@ -53,19 +53,6 @@
                                                         </span>
                                                     @enderror
                                             </div>
-                                                <div class="input-group mb-4">
-                                                    <div class="input-group-prepend">
-                                                        <div class="input-group-text">
-                                                            <i class="fe fe-mail"></i>
-                                                        </div>
-                                                    </div>
-                                                    <input  type="text" placeholder="phone" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
-                                                    @error('phone')
-                                                    <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
                                             <div class="input-group mb-4">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">

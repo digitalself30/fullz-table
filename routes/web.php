@@ -41,6 +41,8 @@ Route::middleware(['auth'])->group(function(){
     Route::POST('/fullzn/update', [FullzController::class, 'updated'])->name('fullz.update');
     Route::GET('/fullzn/destroy/{id?}', [FullzController::class, 'destroy'])->name('fullz.destroy');
     Route::POST('/upload/csv', [FullzController::class, 'upload_csv'])->name('upload.csv');
+    Route::GET('/edit/list/{id?}/{type?}', [FullzController::class, 'edit_list'])->name('edit.list');
+    Route::POST('/update/ssn/table', [FullzController::class, 'update_ssn_table'])->name('update.ssn.table');
 
     /// Users
     Route::GET('/user/dashboard', [UserController::class, 'user_dashboard'])->name('user.dashboard');

@@ -29,9 +29,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->user_type == 2 ){
-            return  redirect(route('user.dashboard'));
+        if(Auth::user()->user_type != 1){
+            return redirect(route('user.dashboard'));
         }
+
         $total_user = User::where('user_type', 2)->count();
         $total_sold_lines = Order::count();
         $this_month_spent = Order::whereMonth('created_at', Carbon::now('m'))->sum('amount');
@@ -41,15 +42,16 @@ class HomeController extends Controller
         return view('home', compact('activity_logs','transactions','total_user', 'total_sold_lines','this_month_spent','total_income'));
     }
     public function transactions(){
-        if(Auth::user()->user_type == 2 ){
-            return  redirect(route('user.dashboard'));
+        if(Auth::user()->user_type !== 1){
+            return back();
         }
+
         $transactions = Transaction::latest()->paginate(10);
         return view('transactions', compact('transactions'));
     }
     public function sold_lines(){
-        if(Auth::user()->user_type == 2 ){
-            return  redirect(route('user.dashboard'));
+        if(Auth::user()->user_type !== 1){
+            return back();
         }
         $orders = Order::with('fullz_table','user')->latest()->paginate(10);
         return view('sold-lines', compact('orders'));

@@ -6,6 +6,7 @@ use App\Http\Controllers\FullzController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\AddFundsController;
+use App\Http\Controllers\AdminLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,10 @@ Route::GET('/', function () {
 });
 
 Auth::routes();
+
+Route::GET('/admin-login', [AdminLoginController::class, 'admin_login'])->name('admin.login');
+Route::POST('/admin-login-store', [AdminLoginController::class, 'admin_login_store'])->name('admin.login.store');
+
 
 Route::middleware(['auth'])->group(function(){
     Route::GET('/home', [HomeController::class, 'index'])->name('home');
@@ -46,7 +51,7 @@ Route::middleware(['auth'])->group(function(){
     Route::GET('/update/price', [FullzController::class, 'update_price'])->name('update.price');
 
     /// Users
-    Route::GET('/user/dashboard', [UserController::class, 'user_dashboard'])->name('user.dashboard');
+//    Route::GET('/user/dashboard', [UserController::class, 'user_dashboard'])->name('user.dashboard');
     Route::GET('/fullz/ssn', [UserController::class, 'fullz_ssn'])->name('user.fullz.ssn');
     Route::GET('/fullz/ssn-dl', [UserController::class, 'ullz_ssn_dl'])->name('user.fullz.ssn.dl');
     Route::GET('/profile', [UserController::class, 'profile'])->name('user.profile');

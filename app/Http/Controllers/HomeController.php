@@ -30,7 +30,7 @@ class HomeController extends Controller
     public function index()
     {
         if(Auth::user()->user_type != 1){
-            return redirect(route('user.dashboard'));
+            return redirect(route('user.fullz.ssn'));
         }
 
         $total_user = User::where('user_type', 2)->count();

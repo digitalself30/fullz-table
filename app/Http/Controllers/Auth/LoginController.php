@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -45,4 +47,25 @@ class LoginController extends Controller
         }
         return '/fullz/ssn';
     }
+    protected function authenticated(Request $request, $user)
+    {
+        if($user->user_type == 1){
+
+            $this->guard()->logout();
+
+            $request->session()->invalidate();
+
+            $request->session()->regenerateToken();
+
+            if ($response = $this->loggedOut($request)) {
+                return $response;
+            }
+
+            return $request->wantsJson()
+                ? new JsonResponse([], 204)
+                : redirect('/');
+        }
+        return redirect('/fullz/ssn')->withSuccess('You have Successfully loggedin');
+    }
+
 }

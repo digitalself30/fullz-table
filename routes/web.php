@@ -33,6 +33,7 @@ Route::middleware(['auth'])->group(function(){
     Route::GET('/home', [HomeController::class, 'index'])->name('home');
     Route::GET('/transactions', [HomeController::class, 'transactions'])->name('transactions');
     Route::GET('/sold-lines', [HomeController::class, 'sold_lines'])->name('sold.lines');
+    Route::GET('/business/sold/lines', [HomeController::class, 'business_sold_lines'])->name('business.sold.lines');
 
     //Settings
     Route::GET('/settings', [SettingsController::class, 'settings'])->name('settings');
@@ -50,6 +51,8 @@ Route::middleware(['auth'])->group(function(){
     Route::POST('/update/ssn/table', [FullzController::class, 'update_ssn_table'])->name('update.ssn.table');
     Route::GET('/update/price', [FullzController::class, 'update_price'])->name('update.price');
     Route::GET('/business/pros', [FullzController::class, 'business_pros'])->name('business.pros');
+    Route::POST('/business/pros/store', [FullzController::class, 'business_pros_store'])->name('business.pros.store');
+    Route::GET('/business/pros/delete/{id?}', [FullzController::class, 'business_pros_delete'])->name('business.pros.delete');
 
     /// Users
 //    Route::GET('/user/dashboard', [UserController::class, 'user_dashboard'])->name('user.dashboard');
@@ -57,6 +60,7 @@ Route::middleware(['auth'])->group(function(){
     Route::GET('/fullz/ssn-dl', [UserController::class, 'ullz_ssn_dl'])->name('user.fullz.ssn.dl');
     Route::GET('/profile', [UserController::class, 'profile'])->name('user.profile');
     Route::GET('/profile/edit/{id?}', [UserController::class, 'edit'])->name('user.edit');
+    Route::GET('/user/delete/{id?}', [UserController::class, 'delete'])->name('user.delete');
     Route::POST('/profile/update', [UserController::class, 'update'])->name('user.update');
     Route::GET('/add_to_cart', [UserController::class, 'add_to_cart'])->name('add.to.cart');
     Route::GET('/buy_now', [UserController::class, 'buy_now'])->name('buy.now');

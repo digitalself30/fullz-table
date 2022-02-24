@@ -52,8 +52,15 @@ class HomeController extends Controller
         if(Auth::user()->user_type != 1){
             return back();
         }
-        $orders = Order::with('fullz_table','user')->latest()->paginate(10);
+        $orders = Order::with('fullz_table','user')->latest()->where('type','fullz')->paginate(10);
         return view('sold-lines', compact('orders'));
+    }
+    public function business_sold_lines(){
+        if(Auth::user()->user_type != 1){
+            return back();
+        }
+        $orders = Order::with('business_pros','user')->latest()->where('type','business')->paginate(10);
+        return view('business-sold-lines', compact('orders'));
     }
 
 }

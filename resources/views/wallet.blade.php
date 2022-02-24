@@ -60,7 +60,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="form-label">Update Balance</label>
-                                    <input type="text" class="form-control" required name="update_balance" placeholder="Update Balance" >
+                                    <input type="text" class="form-control" required name="update_balance" placeholder="0.00" >
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -72,8 +72,7 @@
                         </div>
                     </div>
                     <div class="card-footer text-right">
-                        <button type="submit" class="btn  btn-primary">Updated</button>
-                        <a href="#" class="btn btn-danger">Cancel</a>
+                        <button type="submit" class="btn  btn-primary">Update</button>
                     </div>
                 </form>
             </div>

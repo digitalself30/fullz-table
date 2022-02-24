@@ -27,6 +27,10 @@ class Order extends Model
         return $this->hasOne(Fullz::class, 'id', 'fullz_id');
     }
     public function user(){
-        return $this->hasOne(User::class, 'id', 'user_id');
+        return $this->hasOne(User::class, 'id', 'user_id')->where('type', 'fullz');
     }
+    public function business_pros(){
+        return $this->hasOne(BusinessPro::class, 'id', 'fullz_id')->where('type', 'business');
+    }
+
 }

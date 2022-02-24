@@ -26,12 +26,12 @@ class AdminLoginController extends Controller
 
                return redirect()->intended('home')
 
-                   ->withSuccess('You have Successfully loggedin');
+                   ->withSuccess('You have Successfully logged in');
 
            }
-           return redirect("admin-login")->withSuccess('Oppes! You have entered invalid credentials');
+           return redirect("admin-login")->withSuccess('Oops! You have entered invalid credentials');
        }
-        return redirect("admin-login")->withSuccess('Oppes! You have entered invalid credentials');
+        return redirect("admin-login")->withSuccess('Oops! You have entered invalid credentials');
 
     }
 }

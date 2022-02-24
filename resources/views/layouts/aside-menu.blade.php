@@ -56,7 +56,7 @@
 							<ul class="slide-menu ">
 								<li><a href="{{route('transactions')}}" class="slide-item">Transactions</a></li>
 								<li><a href="{{route('sold.lines')}}" class="slide-item">Sold Lines</a></li>
-
+								<li><a href="{{route('business.sold.lines')}}" class="slide-item">Business Sold Lines</a></li>
 							</ul>
 						</li>
                         <li class="slide">

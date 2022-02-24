@@ -57,37 +57,10 @@
                                     <input type="email" class="form-control" value="{{$user->email}}" placeholder="Email" readonly>
                                 </div>
                             </div>
-
-                            <div class="col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label">Phone Number (Eg. +12124567890)</label>
-                                    <input type="text" class="form-control" name="phone" value="{{$user->phone}}" placeholder="Phone Number">
-                                </div>
-                            </div>
-
-                            @if(Auth::user()->user_type == 1)
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="form-label">Password</label>
-                                        <input type="text" id="temp_password" class="form-control" readonly value="{{Crypt::decrypt($user->temp_password)}}">
-                                    </div>
-                                </div>
-                                @else
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="form-label">Password</label>
-                                        <input type="text" id="password" name="password" class="form-control"  value="">
-                                    </div>
-                                </div>
-                            @endif
-
-
                         </div>
-
                     </div>
                     <div class="card-footer text-right">
                         <button type="submit" class="btn  btn-primary">Updated</button>
-                        <a href="#" class="btn btn-danger">Cancel</a>
                     </div>
                 </form>
             </div>

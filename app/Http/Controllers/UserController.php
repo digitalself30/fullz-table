@@ -166,6 +166,7 @@ class UserController extends Controller
         return view('user-profile');
     }
     public function edit($id){
+
         $user = User::find($id);
         return view('user-edit', compact('user'));
     }
@@ -268,13 +269,17 @@ class UserController extends Controller
                 })
                 ->editColumn('action', function($data) {
                     $btn = '<a class="btn btn-primary mr-1" href="'.route('wallet', Crypt::encrypt($data->id)).'">Add Funds</a>';
-                    $btn .= '<a class="btn btn-primary">Edit</a>';
+                    $btn .= '<a href="'.route('user.delete', $data->id).'" class="btn btn-danger">Delete</a>';
                     return $btn;
                 })
                 ->rawColumns(['status','current_balance','action'])
                 ->make(true);
         }
         return view('users');
+    }
+    public function delete($id){
+        User::find($id)->delete();
+        return back()->with('success', 'You account has been deleted');
     }
     public function business_pros(Request $request){
 

@@ -76,17 +76,18 @@ class AddFundsController extends Controller
                 $update_funds->notes = "Balance Added via BTC";
                 $update_funds->save();
 
-                //Transaction
+                Wallet::where('user_id', $update_funds->user_id)
+                    ->update([
+                        'balance' => DB::raw('balance +'. $update_funds->source_amount)
+                    ]);
 
-                $get_wallet_amount = Transaction::latest()->where('user_id', $update_funds->user_id)->first();
-                $wallet = $get_wallet_amount->balance ?? 0;
+                //Transaction
                 $transaction = new Transaction;
                 $transaction->transaction_no = $row->transaction_id;
                 $transaction->user_id = $update_funds->user_id;
                 $transaction->type = 'Credit';
                 $transaction->source = "BTC";
                 $transaction->amount = $update_funds->source_amount;
-                $transaction->balance = $wallet + $update_funds->source_amount;
                 $transaction->status = 'Completed';
                 $transaction->save();
             }
@@ -128,18 +129,15 @@ class AddFundsController extends Controller
         return view('wallet', compact('wallet'));
     }
     public function wallet_update(Request $request, $id){
+
         if(Auth::user()->user_type == 2){
             return back()->with('error', 'You are not authorize');
         }
+
         $this->validate($request,[
             'update_balance' => 'required',
             'notes'  => 'required',
         ]);
-
-        Wallet::where('user_id', $id)
-            ->update([
-                'balance' => DB::raw('balance +'. $request->update_balance)
-            ]);
 
         $funds = new Fund();
         $funds->user_id = $id;
@@ -150,9 +148,20 @@ class AddFundsController extends Controller
         $funds->amount = $request->update_balance;
         $funds->currency = 'USD';
         $funds->source_currency = 'USD';
-        $funds->status = 'Completed';
+        $funds->status = 'Pending';
         $funds->notes = $request->notes;
         $funds->save();
+
+        $wallet_status = Wallet::where('user_id', $id)
+            ->update([
+                'balance' => DB::raw('balance +'. $request->update_balance)
+            ]);
+
+        if($wallet_status){
+            $update_status = Fund::find($funds->id);
+            $update_status->status = 'Completed';
+            $update_status->save();
+        }
 
         //Transaction
         $transaction = new Transaction;
@@ -161,7 +170,6 @@ class AddFundsController extends Controller
         $transaction->type = 'Credit';
         $transaction->source = "USD";
         $transaction->amount = $funds->source_amount;
-        $transaction->balance = 0;
         $transaction->status = 'Completed';
         $transaction->save();
 

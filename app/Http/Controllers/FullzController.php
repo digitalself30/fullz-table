@@ -329,16 +329,65 @@ class FullzController extends Controller
                     return '$'.$data->price;
                 })
                 ->editColumn('file_path', function($data) {
-                    return '<li class="icons-list-item" style="line-height: initial; height: initial; margin: initial;"><svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg></li>';
+                    return '<a href="'.asset('storage/business-pros/'.$data->file_path).'" download><li class="icons-list-item" style="line-height: initial; height: initial; margin: initial;"><svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg></li></a>';
 
                 })
                 ->editColumn('action', function($data) {
-                    return '<li class="icons-list-item" style="line-height: initial; height: initial; margin: initial;"><svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M8 9h8v10H8z" opacity=".3"></path><path d="M15.5 4l-1-1h-5l-1 1H5v2h14V4zM6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9z"></path></svg></li>';
+                    return '<a href="'.route('business.pros.delete', $data->id).'"><li class="icons-list-item" style="line-height: initial; height: initial; margin: initial;"><svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M8 9h8v10H8z" opacity=".3"></path><path d="M15.5 4l-1-1h-5l-1 1H5v2h14V4zM6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9z"></path></svg></li></a>';
                 })
                 ->rawColumns(['file_path','action'])
                 ->make(true);
         }
-
         return view('business-pros');
+    }
+    public function business_pros_store(Request $request){
+        $this->validate($request,[
+            'company_name' => 'required',
+            'ein'  => 'required',
+            'creation_date'  => 'required',
+            'owner'  => 'required',
+            'state'  => 'required',
+            'city'  => 'required',
+            'article_of_organization'  => 'required',
+            'annual_report'  => 'required',
+            'price'  => 'required',
+        ]);
+
+        // file handle upload
+        if($request->hasFile('zip_file')){
+            // Get filename with the extension
+            $filenameWithExt = $request->file('zip_file')->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just ext
+            $extension = $request->file('zip_file')->getClientOriginalExtension();
+            // Filename to store
+            $fileNameToStore= $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = $request->file('zip_file')->storeAs('public/business-pros', $fileNameToStore);
+        } else {
+            $name  = str_replace(' ','_', $request->company_name);
+            $fileNameToStore = $name.'.zip';
+        }
+        // create business pros
+        $business = new businessPro();
+        $business->company_name = $request->company_name;
+        $business->ein  = $request->ein;
+        $business->creation_date  = $request->creation_date;
+        $business->owner  = $request->owner;
+        $business->state  = $request->state;
+        $business->city  = $request->city;
+        $business->article_of_organization  = $request->article_of_organization;
+        $business->annual_report  = $request->annual_report;
+        $business->price  = $request->price;
+        $business->file_path = $fileNameToStore;
+        $business->save();
+
+        return back()->with('success', 'Data has been updated');
+    }
+
+    public function business_pros_delete($id){
+        businessPro::find($id)->delete();
+        return back()->with('success', 'Data has been deleted');
     }
 }

@@ -36,6 +36,11 @@
                 <li class="breadcrumb-item active" aria-current="page"><a href="#">Business Pros</a></li>
             </ol>
         </div>
+        <div class="page-rightheader">
+            <div class="btn btn-list">
+                <a class="modal-effect btn btn-primary" data-effect="effect-flip-horizontal" data-toggle="modal" href="#modaldemo99">Add Business Pros</a>
+            </div>
+        </div>
     </div>
     <!--End Page header-->
 @endsection
@@ -82,6 +87,166 @@
     </div><!-- end app-content-->
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="modaldemo99" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Business Pros</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form id="myForm" action="{{route('business.pros.store')}}" enctype="multipart/form-data" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Add Business Pros</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="">
+                                        <div class="" style="display: flex;justify-content: space-between;">
+                                            <div class="form-group col-md-6">
+                                                <label for="exampleInputEmail1" class="form-label">Company Name</label>
+                                                <input type="text" class="form-control" id="first_name" name="company_name" placeholder="Enter Company Name">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="exampleInputEmail1" class="form-label">EIN</label>
+                                                <select name="ein" class="form-control" id="">
+                                                    <option value="Yes">Yes</option>
+                                                    <option value="No">No</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="" style="display: flex;justify-content: space-between;">
+                                            <div class="form-group col-md-6">
+                                                <label for="exampleInputPassword1" class="form-label">Creation date</label>
+                                                <input type="date" class="form-control" id="creation_date" name="creation_date" placeholder="Creation date">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="exampleInputPassword1" class="form-label">Owner</label>
+                                                <input type="text" class="form-control" id="owner" name="owner" placeholder="Owner">
+                                            </div>
+                                        </div>
+
+                                        <div class="" style="display: flex;justify-content: space-between;">
+                                            <div class="form-group col-md-6">
+                                                <label for="exampleInputPassword1" class="form-label">State</label>
+                                                <select class="users form-control select2 custom-select state" name="state">
+                                                    <option value=""></option>
+                                                    <option value="AL">AL</option>
+                                                    <option value="AK">AK</option>
+                                                    <option value="AS">AS</option>
+                                                    <option value="AZ">AZ</option>
+                                                    <option value="AR">AR</option>
+                                                    <option value="CA">CA</option>
+                                                    <option value="CO">CO</option>
+                                                    <option value="CT">CT</option>
+                                                    <option value="DE">DE</option>
+                                                    <option value="DC">DC</option>
+                                                    <option value="FL">FL</option>
+                                                    <option value="GA">GA</option>
+                                                    <option value="GU">GU</option>
+                                                    <option value="HI">HI</option>
+                                                    <option value="ID">ID</option>
+                                                    <option value="IL">IL</option>
+                                                    <option value="IN">IN</option>
+                                                    <option value="IA">IA</option>
+                                                    <option value="KS">KS</option>
+                                                    <option value="KY">KY</option>
+                                                    <option value="LA">LA</option>
+                                                    <option value="ME">ME</option>
+                                                    <option value="MD">MD</option>
+                                                    <option value="MA">MA</option>
+                                                    <option value="MI">MI</option>
+                                                    <option value="MN">MN</option>
+                                                    <option value="MS">MS</option>
+                                                    <option value="MO">MO</option>
+                                                    <option value="MT">MT</option>
+                                                    <option value="NE">NE</option>
+                                                    <option value="NV">NV</option>
+                                                    <option value="NH">NH</option>
+                                                    <option value="NJ">NJ</option>
+                                                    <option value="NM">NM</option>
+                                                    <option value="NY">NY</option>
+                                                    <option value="NC">NC</option>
+                                                    <option value="ND">ND</option>
+                                                    <option value="MP">MP</option>
+                                                    <option value="OH">OH</option>
+                                                    <option value="OK">OK</option>
+                                                    <option value="OR">OR</option>
+                                                    <option value="PA">PA</option>
+                                                    <option value="PR">PR</option>
+                                                    <option value="RI">RI</option>
+                                                    <option value="SC">SC</option>
+                                                    <option value="SD">SD</option>
+                                                    <option value="TN">TN</option>
+                                                    <option value="TX">TX</option>
+                                                    <option value="UT">UT</option>
+                                                    <option value="VT">VT</option>
+                                                    <option value="VA">VA</option>
+                                                    <option value="VI">VI</option>
+                                                    <option value="WA">WA</option>
+                                                    <option value="WV">WV</option>
+                                                    <option value="WI">WI</option>
+                                                    <option value="WY">WY</option>
+                                                </select>
+
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="exampleInputPassword1" class="form-label">City</label>
+                                                <input type="text" class="form-control" id="city" name="city" placeholder="City">
+                                            </div>
+                                        </div>
+                                        <div class="" style="display: flex;justify-content: space-between;">
+                                            <div class="form-group col-md-6">
+                                                <label for="exampleInputPassword1" class="form-label">Article of Organization</label>
+                                                <select name="article_of_organization" class="form-control" id="">
+                                                    <option value="Yes">Yes</option>
+                                                    <option value="No">No</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="exampleInputPassword1" class="form-label">Annual Report</label>
+                                                <select name="annual_report" class="form-control" id="">
+                                                    <option value="Yes">Yes</option>
+                                                    <option value="No">No</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                        <div class="" style="display: flex;justify-content: space-between;">
+                                            <div class="form-group col-md-6">
+                                                <label for="exampleInputPassword1" class="form-label">Price</label>
+                                                <div class="input-group" style="display: contents">
+                                                     <span class="input-group-append">
+													    <button class="btn btn-primary" type="button">$</button>
+                                                        <input style="border-radius:0px " type="text" class="form-control" name="price" id="price" placeholder="Enter price">
+												    </span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="exampleInputPassword1" class="form-label">Zip File</label>
+                                                <input type="file" class="form-control" id="zip_file" name="zip_file">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+
 @endsection
 
 @section('js')
@@ -108,6 +273,10 @@
 @push('scripts')
     <script>
         $(function () {
+            $('.state').select2({
+                placeholder:"Select State",
+                width: '100%',
+            });
 
 
             var table = $('#user-table').DataTable({

@@ -1,8 +1,8 @@
 		<!-- Title -->
-		<title>Fullz Table - Admin Panel</title>
+		<title>Fullz Store - Admin Panel</title>
 
 		<!--Favicon -->
-		<link rel="icon" href="{{URL::asset('assets/images/brand/favicon.ico')}}" type="image/x-icon"/>
+		<link rel="icon" href="{{URL::asset('assets/images/img/favicon.png')}}" type="image/x-icon"/>
 
 		<!--Bootstrap css -->
 		<link href="{{URL::asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">

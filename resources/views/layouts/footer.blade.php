@@ -3,7 +3,7 @@
 				<div class="container">
 					<div class="row align-items-center flex-row-reverse">
 						<div class="col-md-12 col-sm-12 text-center">
-							Copyright © 2022 <a href="{{url('/' . $page='#')}}">Fullz Table</a>. Designed by <a href="http://devstudio.pk/">DevStudio</a> All rights reserved.
+							Copyright © 2022 <a href="{{url('/' . $page='#')}}">Fullz Store</a>. All rights reserved.
 						</div>
 					</div>
 				</div>

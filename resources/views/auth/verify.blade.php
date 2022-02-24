@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    {!! RecaptchaV3::initJs() !!}
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

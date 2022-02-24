@@ -49,6 +49,7 @@ Route::middleware(['auth'])->group(function(){
     Route::GET('/edit/list/{id?}/{type?}', [FullzController::class, 'edit_list'])->name('edit.list');
     Route::POST('/update/ssn/table', [FullzController::class, 'update_ssn_table'])->name('update.ssn.table');
     Route::GET('/update/price', [FullzController::class, 'update_price'])->name('update.price');
+    Route::GET('/business/pros', [FullzController::class, 'business_pros'])->name('business.pros');
 
     /// Users
 //    Route::GET('/user/dashboard', [UserController::class, 'user_dashboard'])->name('user.dashboard');
@@ -64,12 +65,15 @@ Route::middleware(['auth'])->group(function(){
     Route::GET('cart/item/remove{id?}', [UserController::class, 'cart_item_remove'])->name('cart.item.remove');
 
     Route::GET('/user/order/details', [UserController::class, 'order_details'])->name('order.details');
+    Route::GET('/users', [UserController::class, 'users'])->name('users');
 
     // Add Funds
     Route::GET('/add-funds', [AddFundsController::class, 'add_funds'])->name('add.funds');
     Route::POST('/funds/store', [AddFundsController::class, 'funds_store'])->name('funds.store');
     Route::GET('/payment/success', [AddFundsController::class, 'payment_success'])->name('payment.success');
     Route::GET('/user/funds/history', [AddFundsController::class, 'funds_history'])->name('funds.history');
+    Route::GET('/wallet/{id?}', [AddFundsController::class, 'wallet'])->name('wallet');
+    Route::POST('wallet_update/{id}', [AddFundsController::class, 'wallet_update'])->name('wallet.update');
 
 });
 

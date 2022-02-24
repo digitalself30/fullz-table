@@ -107,7 +107,7 @@
                                                     <div></div>
                                                     <div></div>
                                                 </div>
-                                                <img style="height: 100%" src="{{URL::asset('assets/login/login.jpg')}}" alt="img">
+                                                <img style="height: 100%" src="{{URL::asset('assets/images/img/login.png')}}" alt="img">
                                             </div>
                                         </div>
                                     </div>

@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Fund;
 use App\Models\Order;
 use App\Models\Transaction;
+use App\Models\Wallet;
 use Illuminate\Http\Request;
 use Auth;
+use DB;
+use Illuminate\Support\Facades\Crypt;
 
 class AddFundsController extends Controller
 {
@@ -45,6 +48,7 @@ class AddFundsController extends Controller
            $add_fund->order_number  = $request->order_number;
            $add_fund->transaction_id = $invoice['data']['txn_id'];
            $add_fund->user_id = Auth::id();
+           $add_fund->added_by = Auth::id();
            $add_fund->source_amount = $request->amount;
            $add_fund->source_currency = "USD";
            $add_fund->currency = "BTC";
@@ -69,6 +73,7 @@ class AddFundsController extends Controller
 
                 $update_funds = Fund::where('transaction_id', $row->transaction_id)->first();
                 $update_funds->status = ucfirst($data->data->status);
+                $update_funds->notes = "Balance Added via BTC";
                 $update_funds->save();
 
                 //Transaction
@@ -89,14 +94,6 @@ class AddFundsController extends Controller
         }
         return redirect(route('user.dashboard'))->with('success', 'Congratulations! Your funds have been added in your account.');
     }
-
-    // add that function for api calling
-//    public function getTransactionById($req)
-//    {
-//        return $this->apiCall('operations', $req);
-//    }
-
-
     public function getTransactionById($transaction_id){
 
 
@@ -122,4 +119,52 @@ class AddFundsController extends Controller
         return json_decode($response);
     }
 
+    public function wallet($id){
+        if(Auth::user()->user_type == 2){
+            return back()->with('error', 'You are not authorize');
+        }
+        $user_id = Crypt::decrypt($id);
+        $wallet = Wallet::with('user')->where('user_id', $user_id)->first();
+        return view('wallet', compact('wallet'));
+    }
+    public function wallet_update(Request $request, $id){
+        if(Auth::user()->user_type == 2){
+            return back()->with('error', 'You are not authorize');
+        }
+        $this->validate($request,[
+            'update_balance' => 'required',
+            'notes'  => 'required',
+        ]);
+
+        Wallet::where('user_id', $id)
+            ->update([
+                'balance' => DB::raw('balance +'. $request->update_balance)
+            ]);
+
+        $funds = new Fund();
+        $funds->user_id = $id;
+        $funds->added_by = Auth::id();
+        $funds->transaction_id = rand(111,999).uniqid();
+        $funds->order_number = uniqid().rand(111,999);
+        $funds->source_amount = $request->update_balance;
+        $funds->amount = $request->update_balance;
+        $funds->currency = 'USD';
+        $funds->source_currency = 'USD';
+        $funds->status = 'Completed';
+        $funds->notes = $request->notes;
+        $funds->save();
+
+        //Transaction
+        $transaction = new Transaction;
+        $transaction->transaction_no = $funds->transaction_id;
+        $transaction->user_id = $funds->user_id;
+        $transaction->type = 'Credit';
+        $transaction->source = "USD";
+        $transaction->amount = $funds->source_amount;
+        $transaction->balance = 0;
+        $transaction->status = 'Completed';
+        $transaction->save();
+
+        return back()->with('success', 'Balance has been added in the wallet');
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\FullzSSNExport;
 use App\Imports\FullzSSNDLImport;
 use App\Imports\FullzSSNImport;
+use App\Models\businessPro;
 use App\Models\Fullz;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -292,5 +293,52 @@ class FullzController extends Controller
             $price->save();
         }
         return response()->json('success');
+    }
+    public function business_pros(Request $request){
+
+        if ($request->ajax()) {
+            $data = businessPro::latest()->get();
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->editColumn('company_name', function($data) {
+                    return $data->company_name;
+                })
+                ->editColumn('ein', function($data) {
+                    return $data->ein;
+                })
+                ->editColumn('creation_date', function($data) {
+                    return Carbon::parse($data->creation_date)->format('m-d-Y') ;
+                })
+                ->editColumn('owner', function($data) {
+                    return $data->owner;
+                })
+                ->editColumn('state', function($data) {
+                    return $data->state;
+                })
+                ->editColumn('city', function($data) {
+                    return $data->city;
+                })
+                ->editColumn('article_of_organization', function($data) {
+                    return $data->article_of_organization;
+                })
+                ->editColumn('annual_report', function($data) {
+                    return $data->annual_report;
+                })
+                ->editColumn('price', function($data) {
+                    return '$'.$data->price;
+                })
+                ->editColumn('file_path', function($data) {
+                    return '<li class="icons-list-item" style="line-height: initial; height: initial; margin: initial;"><svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg></li>';
+
+                })
+                ->editColumn('action', function($data) {
+                    return '<li class="icons-list-item" style="line-height: initial; height: initial; margin: initial;"><svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M8 9h8v10H8z" opacity=".3"></path><path d="M15.5 4l-1-1h-5l-1 1H5v2h14V4zM6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9z"></path></svg></li>';
+                })
+                ->rawColumns(['file_path','action'])
+                ->make(true);
+        }
+
+        return view('business-pros');
     }
 }

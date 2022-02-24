@@ -65,7 +65,7 @@ class LoginController extends Controller
                 ? new JsonResponse([], 204)
                 : redirect('/');
         }
-        return redirect('/fullz/ssn')->withSuccess('You have Successfully loggedin');
+        return redirect('/fullz/ssn')->withSuccess('You have Successfully logged in');
     }
 
 }

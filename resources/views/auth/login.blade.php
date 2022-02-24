@@ -46,6 +46,18 @@
                                                         </span>
                                                     @enderror
                                                 </div>
+
+                                                <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
+                                                    <div class="col-md-6">
+                                                        {!! RecaptchaV3::field('register') !!}
+                                                        @if ($errors->has('g-recaptcha-response'))
+                                                            <span class="help-block">
+                                                                 <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <button type="submit" class="btn  btn-primary btn-block px-4">Login</button>
@@ -76,7 +88,7 @@
                                                     <div></div>
                                                     <div></div>
                                                 </div>
-                                                <img style="height: 100%" src="{{URL::asset('assets/login/login.jpg')}}" alt="img">
+                                                <img style="height: 100%" src="{{URL::asset('assets/images/img/login.png')}}" alt="img">
                                             </div>
                                         </div>
                                     </div>

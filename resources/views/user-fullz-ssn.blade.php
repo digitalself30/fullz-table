@@ -38,8 +38,7 @@
         </div>
         <div class="page-rightheader">
             <div class="btn btn-list">
-                <a class="btn btn-primary" href="{{route('user.fullz.ssn.dl')}}">SSN + DL</a>
-                <a class="btn btn-primary" href="{{route('add.funds')}}">Add Funds</a>
+                <a class="btn btn-primary" href="{{route('user.fullz.ssn.dl')}}">Fullz SSN + DL</a>
             </div>
         </div>
 
@@ -84,7 +83,7 @@
                                <option value="CA">CA</option>
                                <option value="CO">CO</option>
                                <option value="CT">CT</option>
-                               <option value="DE"></option>
+                               <option value="DE">DE</option>
                                <option value="DC">DC</option>
                                <option value="FL">FL</option>
                                <option value="GA">GA</option>
@@ -139,6 +138,7 @@
                         <div class="table-responsive">
                             <table id="user-table" class="table table-bordered text-nowrap key-buttons">
                                 <thead>
+
                                 <tr class="custom-tr">
                                     <th class="border-bottom-0">First name</th>
                                     <th class="border-bottom-0">Date Of Birth</th>
@@ -229,7 +229,7 @@
                     {data: 'city', name: 'city'},
                     {data: 'dl', name: 'dl'},
                     {data: 'price', name: 'price'},
-                    {data: 'action', name: 'action'},
+                    {data: 'action', name: 'action', width:'10%'},
                 ]
             });
             $(".price").change(function(){

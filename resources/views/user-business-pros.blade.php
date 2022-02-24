@@ -6,6 +6,10 @@
     <link href="{{URL::asset('assets/plugins/datatable/responsive.bootstrap4.min.css')}}" rel="stylesheet" />
     <!-- Slect2 css -->
     <link href="{{URL::asset('assets/plugins/select2/select2.min.css')}}" rel="stylesheet" />
+    <!--- INTERNAL Sweetalert css-->
+    <link href="{{URL::asset('assets/plugins/sweet-alert/jquery.sweet-modal.min.css')}}" rel="stylesheet" />
+    <link href="{{URL::asset('assets/plugins/sweet-alert/sweetalert.css')}}" rel="stylesheet" />
+
     <style type="text/css">
         th{
             text-transform: inherit !important;
@@ -26,17 +30,18 @@
     <!--Page header-->
     <div class="page-header">
         <div class="page-leftheader">
-            <h4 class="page-title mb-0">Fullz SSN + DL</h4>
+            <h4 class="page-title mb-0"></h4>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fe fe-layout mr-2 fs-14"></i>Dashboard</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="#">Fullz SSN + DL</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="#">Fullz SSN</a></li>
             </ol>
         </div>
         <div class="page-rightheader">
             <div class="btn btn-list">
-                <a class="btn btn-primary" href="{{route('user.fullz.ssn')}}">Fullz SSN</a>
+                <a class="btn btn-primary" href="{{route('user.fullz.ssn.dl')}}">Fullz SSN + DL</a>
             </div>
         </div>
+
     </div>
     <!--End Page header-->
 @endsection
@@ -46,7 +51,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">Fullz SSN + DL</div>
+                    <div class="card-title">Fullz SSN</div>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -130,31 +135,10 @@
                         </div>
                     </div>
                     <div class="">
-                        <div class="row mt-4">
-                            <div class="col-md-4"></div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label class="custom-switch">
-                                        <span class="custom-switch-description mr-2">DL Issue Date</span>
-                                        <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input">
-                                        <span class="custom-switch-indicator custom-switch-indicator-xl"></span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label class="custom-switch">
-                                        <span class="custom-switch-description mr-2">DL Expiry Date</span>
-                                        <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input">
-                                        <span class="custom-switch-indicator custom-switch-indicator-xl"></span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-md-4"></div>
-                        </div>
                         <div class="table-responsive">
                             <table id="user-table" class="table table-bordered text-nowrap key-buttons">
                                 <thead>
+
                                 <tr class="custom-tr">
                                     <th class="border-bottom-0">First name</th>
                                     <th class="border-bottom-0">Date Of Birth</th>
@@ -201,11 +185,12 @@
 
     <!-- INTERNAL Select2 js -->
     <script src="{{URL::asset('assets/plugins/select2/select2.full.min.js')}}"></script>
+
 @endsection
 
 @push('scripts')
     <script>
-        $(function() {
+        $(function () {
             $('.price').select2({
                 placeholder:"Select Lowest/Highest",
                 width: '100%',
@@ -219,11 +204,11 @@
                 width: '100%',
             });
 
-            var table=  $('#user-table').DataTable({
+            var table = $('#user-table').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: "{{route('user.fullz.ssn.dl')}}",
+                    url: "{{route('user.fullz.ssn')}}",
                     data: function (d) {
                         d.price = $('.price').val();
                         d.dob = $('.dob').val();
@@ -231,19 +216,19 @@
                     }
                 },
                 responsive: false,
-                "lengthMenu": [ [10,25,50,500,1000, -1], [10,25,50,500,1000, "All"] ],
+                "lengthMenu": [[10, 25, 50, 500, 1000, -1], [10, 25, 50, 500, 1000, "All"]],
                 dom: 'lfrtip',
                 ordering: true,
                 buttons: [
-                    'copy', 'excel','csv', 'pdf'
+                    'copy', 'excel', 'csv', 'pdf'
                 ],
                 columns: [
-                    { data: 'first_name', name: 'first_name' },
-                    { data: 'dob', name: 'dob' },
-                    { data: 'state', name: 'state' },
-                    { data: 'city', name: 'city' },
-                    { data: 'dl', name: 'dl' },
-                    { data: 'price', name: 'price' },
+                    {data: 'first_name', name: 'first_name'},
+                    {data: 'dob', name: 'dob'},
+                    {data: 'state', name: 'state'},
+                    {data: 'city', name: 'city'},
+                    {data: 'dl', name: 'dl'},
+                    {data: 'price', name: 'price'},
                     {data: 'action', name: 'action', width:'10%'},
                 ]
             });
@@ -256,15 +241,15 @@
             $(".state").change(function(){
                 table.draw();
             });
-
         });
+
         function add_to_cart(id, type) {
             $.ajax({
                 type: 'GET',
                 url: "{{route('add.to.cart')}}",
                 data: {
-                    id : id,
-                    type:"ssn+dl",
+                    id: id,
+                    type: "ssn",
                 },
                 success: function (response) {
                     if (response !== '') {
@@ -280,6 +265,9 @@
             });
         }
 
+
     </script>
 @endpush
+
+
 

@@ -9,6 +9,7 @@ use App\Models\Transaction;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Spatie\Activitylog\Models\Activity;
 use Yajra\DataTables\DataTables;
 use Auth;
@@ -237,6 +238,86 @@ class UserController extends Controller
         }
         $user->save();
         return back()->with('success', 'You account has been updated');
+    }
+    public function users(Request $request){
+        if ($request->ajax()) {
+            $data = User::where('user_type', 2)->latest()->get();
 
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->editColumn('name', function($data) {
+                    return $data->name;
+                })
+                ->editColumn('email', function($data) {
+                    return $data->email;
+                })
+                ->editColumn('created_at', function($data) {
+                    return Carbon::parse($data->created_at)->diffForHumans();
+                })
+                ->editColumn('status', function($data) {
+                    return $data->status == 1 ? "<span class='text-success'>Active</span>":"<span class='text-danger'>In-Active</span>";
+                })
+                ->editColumn('current_balance', function($data) {
+                    if(isset($data->wallet)){
+                        $balance = $data->wallet->balance;
+                    }
+                    else{
+                        $balance = 0.00;
+                    }
+                    return '$'.$balance;
+                })
+                ->editColumn('action', function($data) {
+                    $btn = '<a class="btn btn-primary mr-1" href="'.route('wallet', Crypt::encrypt($data->id)).'">Add Funds</a>';
+                    $btn .= '<a class="btn btn-primary">Edit</a>';
+                    return $btn;
+                })
+                ->rawColumns(['status','current_balance','action'])
+                ->make(true);
+        }
+        return view('users');
+    }
+    public function business_pros(Request $request){
+
+        if ($request->ajax()) {
+            $data = Fullz::select('id','first_name','dob','state','city','price')
+                ->where('status', 1)
+                ->where('type', 1)
+                ->whereNotIn('id', function($query)  {
+                    $query->select('fullz_id')->from((new Order())->getTable())
+                        ->where('user_id', Auth::id());
+                });
+
+            $data->get();
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->editColumn('first_name', function($data) {
+                    return $data->first_name;
+                })
+                ->editColumn('dob', function($data) {
+                    return Carbon::parse($data->dob)->format('m-d-Y') ;
+                })
+                ->editColumn('state', function($data) {
+                    return $data->state;
+                })
+                ->editColumn('city', function($data) {
+                    return $data->city;
+                })
+                ->editColumn('dl', function($data) {
+                    return "NO";
+                })
+                ->editColumn('price', function($data) {
+                    return '$'.$data->price;
+                })
+                ->editColumn('action', function($data) {
+                    $btn = '<a class="modal-effect btn btn-primary mr-1" onclick="add_to_cart('.$data->id.',\'Buy\')">Buy Now</a>';
+                    $btn .= '<a class="btn btn-primary add-to-cart" onclick="add_to_cart('.$data->id.', \'Cart\')" >Add to cart</a>';
+                    return $btn;
+                })
+                ->rawColumns(['first_name','city','state','dob','price','action'])
+                ->make(true);
+        }
+
+        return view('user-business-pros');
     }
 }

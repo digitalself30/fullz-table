@@ -57,9 +57,6 @@
                                                     @endif
                                                 </div>
                                             </form>
-                                            <div class="text-center pt-4">
-                                                <div class="font-weight-normal fs-16">You Don't have an account <a class="btn-link font-weight-normal" href="{{route('register')}}">Register Here</a></div>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="card d-md-down-none page-content mt-0">
@@ -76,7 +73,7 @@
                                                 <div></div>
                                                 <div></div>
                                             </div>
-                                            <img style="height: 100%" src="{{URL::asset('assets/login/login.jpg')}}" alt="img">
+                                            <img style="height: 100%" src="{{URL::asset('assets/images/img/login.png')}}" alt="img">
                                         </div>
                                     </div>
                                 </div>

@@ -45,9 +45,7 @@
                                                             <button type="submit" class="btn btn-primary btn-block px-4"><i class="fe fe-send"></i> Send</button>
                                                         </div>
                                                     </div>
-                                                    <div class="text-center pt-4">
-                                                        <div class="font-weight-normal fs-16">Forget it <a class="btn-link font-weight-normal" href="#">Send me back</a></div>
-                                                    </div>
+
                                                 </form>
                                             </div>
                                         </div>
@@ -61,7 +59,7 @@
                                                     <div></div>
                                                     <div></div>
                                                 </div>
-                                                <img style="height: 100%" src="{{URL::asset('assets/login/login.jpg')}}" alt="img">
+                                                <img style="height: 100%" src="{{URL::asset('assets/images/img/login.png')}}" alt="img">
                                             </div>
                                         </div>
                                     </div>

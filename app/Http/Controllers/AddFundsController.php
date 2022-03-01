@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Fund;
 use App\Models\Order;
+use App\Models\Setting;
 use App\Models\Transaction;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
@@ -61,8 +62,8 @@ class AddFundsController extends Controller
         }
     }
     public function payment_success(){
-
-        $secretKey = 'v8fPBULSbPbBIYUzMQrmV4-FT_Ofr91umRge081-YX6cg5yso4cjAlTZak8RMtJ8';
+        $setting = Setting::first();
+        $secretKey = $setting->api_key;
         $plisio = new \Plisio\ClientAPI($secretKey);
 
         $transactions = Fund::latest()->where('status', 'Pending')->get();

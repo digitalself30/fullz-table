@@ -41,7 +41,7 @@
                             <div class="">
                                 <div class="" style="display: flex;justify-content: space-between;">
                                     <div class="form-group col-md-6">
-                                        <label for="exampleInputEmail1" class="form-label">Enter Amount</label>
+                                        <label for="exampleInputEmail1" class="form-label">Select Amount</label>
                                         <div class="d-flex">
                                             <div class="input-group wd-150">
                                                 <div class="input-group-prepend">
@@ -50,7 +50,6 @@
                                                     </div><!-- input-group-text -->
                                                 </div><!-- input-group-prepend -->
                                                 <select class="form-control" name="amount">
-                                                    <option value="2">$2</option>
                                                     <option value="5">$5</option>
                                                     <option value="10">$10</option>
                                                     <option value="20">$20</option>
@@ -84,7 +83,9 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Proceed</button>
+                            <button type="submit" style="background-color: #ffffff; border: none">
+                                <img src="{{asset('assets/images/img/btc.png')}}" style="width: 200px; border-radius: 5px" alt="">
+                            </button>
                         </div>
                     </form>
                 </div>

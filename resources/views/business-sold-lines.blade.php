@@ -53,7 +53,7 @@
                             <thead>
                             <tr class="custom-tr">
                                 <th>ID</th>
-                                <th>User</th>
+                                <th>Username</th>
                                 <th>Company Name</th>
                                 <th>EIN</th>
                                 <th>Creation date</th>
@@ -71,7 +71,6 @@
                                 <tr>
                                     <th scope="row">{{++$i}}</th>
                                     <th scope="row">{{$order->user->name}}</th>
-                                    <td>{{$order->business_pros->type == 1 ? "SSN": "SSN + DL"}}</td>
                                     <td>{{$order->business_pros->company_name}}</td>
                                     <td>{{$order->business_pros->ein}}</td>
                                     <td>{{\Carbon\Carbon::parse($order->business_pros->creation_date)->format('m-d-Y')}}</td>
@@ -85,7 +84,7 @@
                                 @php $total += $order->business_pros->price @endphp
                             @endforeach
                             <tr>
-                                <td colspan="15">Total</td>
+                                <td colspan="10">Total</td>
                                 <td >{{$total}}</td>
                             </tr>
                             </tbody>

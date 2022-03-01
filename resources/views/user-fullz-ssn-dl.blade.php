@@ -136,7 +136,7 @@
                                 <div class="form-group">
                                     <label class="custom-switch">
                                         <span class="custom-switch-description mr-2">DL Issue Date</span>
-                                        <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input">
+                                        <input type="checkbox" id="dl_issue_date" value="1" name="custom-switch-checkbox" class="custom-switch-input">
                                         <span class="custom-switch-indicator custom-switch-indicator-xl"></span>
                                     </label>
                                 </div>
@@ -145,7 +145,7 @@
                                 <div class="form-group">
                                     <label class="custom-switch">
                                         <span class="custom-switch-description mr-2">DL Expiry Date</span>
-                                        <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input">
+                                        <input type="checkbox" id="dl_expiry_date" value="1" name="custom-switch-checkbox" class="custom-switch-input">
                                         <span class="custom-switch-indicator custom-switch-indicator-xl"></span>
                                     </label>
                                 </div>
@@ -160,7 +160,8 @@
                                     <th class="border-bottom-0">Date Of Birth</th>
                                     <th class="border-bottom-0">State</th>
                                     <th class="border-bottom-0">City</th>
-                                    <th class="border-bottom-0">DL</th>
+                                    <th class="border-bottom-0">SSN</th>
+                                    <th class="border-bottom-0">SSN + DL</th>
                                     <th class="border-bottom-0">Price</th>
                                     <th class="border-bottom-0">Action</th>
                                 </tr>
@@ -218,16 +219,33 @@
                 placeholder:"Select State",
                 width: '100%',
             });
-
+            var dl_issue_date;
+            var dl_expiry_date;
             var table=  $('#user-table').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: {
                     url: "{{route('user.fullz.ssn.dl')}}",
                     data: function (d) {
+                        if ($('#dl_issue_date').is(":checked")) {
+                             dl_issue_date = 1;
+                        }
+                        else{
+                            dl_issue_date = 0;
+                        }
+
+                        if ($('#dl_expiry_date').is(":checked")) {
+                            dl_expiry_date = 1;
+                        }
+                        else{
+                            dl_expiry_date = 0;
+                        }
                         d.price = $('.price').val();
                         d.dob = $('.dob').val();
                         d.state =  $('.state').val();
+                        d.dl_issue_date  =  dl_issue_date;
+                        d.dl_expiry_date = dl_expiry_date;
+
                     }
                 },
                 responsive: false,
@@ -242,7 +260,8 @@
                     { data: 'dob', name: 'dob' },
                     { data: 'state', name: 'state' },
                     { data: 'city', name: 'city' },
-                    { data: 'dl', name: 'dl' },
+                    {data: 'ssn', name: 'ssn'},
+                    {data: 'ssn_dl', name: 'ssn_dl'},
                     { data: 'price', name: 'price' },
                     {data: 'action', name: 'action', width:'10%'},
                 ]
@@ -256,6 +275,14 @@
             $(".state").change(function(){
                 table.draw();
             });
+            $("#dl_issue_date").change(function(){
+                table.draw();
+            });
+            $("#dl_expiry_date").change(function(){
+                table.draw();
+            });
+
+
 
         });
         function add_to_cart(id, type) {

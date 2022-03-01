@@ -28,10 +28,7 @@
                         <table class="table table-bordered table-hover text-nowrap">
                             <tr class=" ">
                                 <th class="text-center " style="width: 1%"></th>
-                                <th class="border-bottom-0">First name</th>
-                                <th class="border-bottom-0">Date Of Birth</th>
-                                <th class="border-bottom-0">State</th>
-                                <th class="border-bottom-0">City</th>
+                                <th class="border-bottom-0">Item Type</th>
                                 <th class="border-bottom-0">Price</th>
                                 <th class="border-bottom-0">Action</th>
                             </tr>
@@ -39,37 +36,50 @@
                             @php $i =0 @endphp
 
                             @foreach(Cart::content() AS  $item)
-                                @php $table = \App\Models\Fullz::find($item->id); @endphp
-
+                                @php
+                                    if($item->name == 3){
+                                        $table = \App\Models\BusinessPro::find($item->id);
+                                    }
+                                    else{
+                                        $table = \App\Models\Fullz::find($item->id);
+                                    }
+                                @endphp
                                 <tr>
                                     <td class="text-left">{{++$i}}</td>
-                                    <td class="text-left">{{$table->first_name}}</td>
-                                    <td class="text-left">{{\Carbon\Carbon::parse($table->dob)->format('m-d-Y')}}</td>
-                                    <td class="text-left">{{$table->state}}</td>
-                                    <td class="text-left">{{$table->city}}</td>
+                                    <td class="text-left">
+                                        @if($item->name == 1)
+                                            SSN
+                                        @elseif($item->name == 2)
+                                            SSN + DL
+                                        @else
+                                            Business Pros
+                                        @endif
+
+                                    </td>
                                     <td class="text-left">{{$table->price}}</td>
                                     <td class="text-left"><a href="{{route('cart.item.remove', $item->rowId)}}"><i class="fa fa-trash" style="font-size: 20px"></i></a></td>
                                 </tr>
+
                                 @endforeach
 
 
                             <tr>
-                                <td colspan="6" class="font-weight-semibold text-right">Subtotal</td>
+                                <td colspan="3" class="font-weight-semibold text-right">Subtotal</td>
                                 <td class="text-right">${{Cart::subtotal()}}</td>
                             </tr>
                             <tr>
-                                <td colspan="6" class="font-weight-semibold text-right">Wallet Amount</td>
+                                <td colspan=3" class="font-weight-semibold text-right">Wallet Amount</td>
                                 <td class="text-right">${{$wallet_balance ?? 0.00}}</td>
                             </tr>
                             <tr>
-                                <td colspan="6" class="font-weight-bold text-uppercase text-right h4 mb-0">Current Balance</td>
+                                <td colspan="3" class="font-weight-bold text-uppercase text-right h4 mb-0">Current Balance</td>
                                 <td class="font-weight-bold text-right h4 mb-0">${{$wallet_balance  - Cart::subtotal()}}</td>
                             </tr>
                             @if($wallet_balance - Cart::subtotal() < 0)
                                 <div class="alert alert-danger">You dont have sufficient funds!</div>
                             @endif
                             <tr>
-                                <td colspan="7" class="text-right">
+                                <td colspan="4" class="text-right">
                                     @if($wallet_balance - Cart::subtotal() > 0 && Cart::count() > 0)
                                         <a href="{{route('buy.now')}}" class="btn btn-primary"><i class="si si-wallet"></i> Pay Now</a>
                                     @endif

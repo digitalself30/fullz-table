@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BusinessPro;
 use App\Models\Fullz;
-use App\Models\Fund;
 use App\Models\Order;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Models\Wallet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -15,6 +16,7 @@ use Yajra\DataTables\DataTables;
 use Auth;
 use Cart;
 use Hash;
+use DB;
 
 class UserController extends Controller
 {
@@ -75,7 +77,10 @@ class UserController extends Controller
                 ->editColumn('city', function($data) {
                     return $data->city;
                 })
-                ->editColumn('dl', function($data) {
+                ->editColumn('ssn', function($data) {
+                    return "YES";
+                })
+                ->editColumn('ssn_dl', function($data) {
                     return "NO";
                 })
                 ->editColumn('price', function($data) {
@@ -123,6 +128,12 @@ class UserController extends Controller
             if($request->state){
                 $data->where('state', $request->state);
             }
+            if($request->dl_issue_date){
+                $data->whereNOtNull('dl_issue');
+            }
+            if($request->dl_expiry_date){
+                $data->whereNOtNull('dl_expiry');
+            }
             $data->get();
 
             return DataTables::of($data)
@@ -139,8 +150,11 @@ class UserController extends Controller
                 ->editColumn('city', function($data) {
                     return $data->city;
                 })
-                ->editColumn('dl', function($data) {
+                ->editColumn('ssn_dl', function($data) {
                     return "YES";
+                })
+                ->editColumn('ssn', function($data) {
+                    return "NO";
                 })
                 ->editColumn('price', function($data) {
                     return '$'.$data->price;
@@ -148,7 +162,8 @@ class UserController extends Controller
                 ->editColumn('action', function($data) {
                     $btn = '<a class="modal-effect btn btn-primary mr-1" onclick="add_to_cart('.$data->id.',\'Buy\')">Buy Now</a>';
                     $btn .= '<a class="btn btn-primary add-to-cart" onclick="add_to_cart('.$data->id.', \'Cart\')" >Add to cart</a>';
-                    return $btn;                })
+                    return $btn;
+                })
                 ->rawColumns(['first_name','city','state','dob','price','action'])
                 ->make(true);
         }
@@ -156,12 +171,10 @@ class UserController extends Controller
 
         return view('user-fullz-ssn-dl', compact('wallet'));
     }
-
     public function order_details(){
         $orders = Order::with('fullz_table')->where('user_id', Auth::id())->latest()->paginate(10);
         return view('order-details', compact('orders'));
     }
-
     public function profile(){
         return view('user-profile');
     }
@@ -175,6 +188,9 @@ class UserController extends Controller
         if($request->type == "ssn"){
            $type = 1;
         }
+        else if($request->type == "business"){
+            $type = 3;
+        }
         else{
             $type = 2;
         }
@@ -184,7 +200,12 @@ class UserController extends Controller
                 return response()->json('');
             }
         }
-        $data = Fullz::where('id', $request->id)->where('type',$type)->first();
+        if($request->type == "business"){
+            $data = BusinessPro::where('id', $request->id)->first();
+        }
+        else{
+            $data = Fullz::where('id', $request->id)->where('type',$type)->first();
+        }
 
         $option =[];
         Cart::add($data->id, $type, 1, $data->price, $option)->associate('App\Models\Fullz');
@@ -194,40 +215,51 @@ class UserController extends Controller
     public function buy_now(){
 
         foreach (Cart::content() AS $item){
+            if($item->name == 1){
+                $type = 'fullz';
+            }
+            else if($item->name == 2){
+                $type = 'fullz';
+            }
+            else{
+                $type = 'business';
+            }
             $order = new Order;
             $order->fullz_id = $item->id;
+            $order->type = $type;
             $order->user_id = Auth::id();
             $order->amount = $item->price;
             $order->save();
         }
-        $wallet = Transaction::where('user_id', Auth::id())->latest()->first();
-
         $transaction = new Transaction;
         $transaction->transaction_no =rand(1111,9999).rand(2222,9999);
         $transaction->user_id = Auth::id();
         $transaction->type = 'Debit';
         $transaction->source = 'Funds';
         $transaction->amount = Cart::subtotal();
-        $transaction->balance = $wallet->balance - Cart::subtotal();
         $transaction->status = 'Completed';
         $transaction->save();
+        if($transaction->status == 'Completed'){
+            Wallet::where('user_id', Auth::id())
+                ->update([
+                    'balance' => DB::raw('balance -'. Cart::subtotal())
+                ]);
+        }
         Cart::destroy();
         return redirect(route('order.details'))->with('success', 'You have bought successfully');
     }
-
     public function cart_empty(){
         Cart::destroy();
         return back()->with('success', 'Cart has been empty');
     }
     public function cart(){
-        $wallet = Transaction::where('user_id', Auth::id())->latest()->first();
+        $wallet = Wallet::where('user_id', Auth::id())->first();
         return view('cart', compact('wallet'));
     }
     public function cart_item_remove($id){
         Cart::remove($id);
         return back()->with('success', 'Cart Item has been removed');
     }
-
     public function update(Request $request){
 
         $user = User::find(Auth::id());
@@ -281,26 +313,31 @@ class UserController extends Controller
         User::find($id)->delete();
         return back()->with('success', 'You account has been deleted');
     }
-    public function business_pros(Request $request){
+    public function user_business_pros(Request $request){
 
         if ($request->ajax()) {
-            $data = Fullz::select('id','first_name','dob','state','city','price')
-                ->where('status', 1)
-                ->where('type', 1)
+            $data = BusinessPro::select('id','company_name','ein','creation_date','owner','state','city','article_of_organization','annual_report','price')
                 ->whereNotIn('id', function($query)  {
                     $query->select('fullz_id')->from((new Order())->getTable())
-                        ->where('user_id', Auth::id());
+                        ->where('user_id', Auth::id())
+                        ->where('type', 'business');
                 });
 
-            $data->get();
+            $data->latest()->get();
 
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->editColumn('first_name', function($data) {
-                    return $data->first_name;
+                ->editColumn('company_name', function($data) {
+                    return $data->company_name;
                 })
-                ->editColumn('dob', function($data) {
-                    return Carbon::parse($data->dob)->format('m-d-Y') ;
+                ->editColumn('ein', function($data) {
+                    return $data->ein;
+                })
+                ->editColumn('creation_date', function($data) {
+                    return Carbon::parse($data->creation_date)->format('m-d-Y') ;
+                })
+                ->editColumn('owner', function($data) {
+                    return $data->owner;
                 })
                 ->editColumn('state', function($data) {
                     return $data->state;
@@ -308,8 +345,11 @@ class UserController extends Controller
                 ->editColumn('city', function($data) {
                     return $data->city;
                 })
-                ->editColumn('dl', function($data) {
-                    return "NO";
+                ->editColumn('article_of_organization', function($data) {
+                    return $data->article_of_organization;
+                })
+                ->editColumn('annual_report', function($data) {
+                    return $data->annual_report;
                 })
                 ->editColumn('price', function($data) {
                     return '$'.$data->price;
@@ -319,7 +359,7 @@ class UserController extends Controller
                     $btn .= '<a class="btn btn-primary add-to-cart" onclick="add_to_cart('.$data->id.', \'Cart\')" >Add to cart</a>';
                     return $btn;
                 })
-                ->rawColumns(['first_name','city','state','dob','price','action'])
+                ->rawColumns(['price','action'])
                 ->make(true);
         }
 

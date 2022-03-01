@@ -144,7 +144,8 @@
                                     <th class="border-bottom-0">Date Of Birth</th>
                                     <th class="border-bottom-0">State</th>
                                     <th class="border-bottom-0">City</th>
-                                    <th class="border-bottom-0">DL</th>
+                                    <th class="border-bottom-0">SSN</th>
+                                    <th class="border-bottom-0">SSN + DL</th>
                                     <th class="border-bottom-0">Price</th>
                                     <th class="border-bottom-0">Action</th>
                                 </tr>
@@ -227,7 +228,8 @@
                     {data: 'dob', name: 'dob'},
                     {data: 'state', name: 'state'},
                     {data: 'city', name: 'city'},
-                    {data: 'dl', name: 'dl'},
+                    {data: 'ssn', name: 'ssn'},
+                    {data: 'ssn_dl', name: 'ssn_dl'},
                     {data: 'price', name: 'price'},
                     {data: 'action', name: 'action', width:'10%'},
                 ]

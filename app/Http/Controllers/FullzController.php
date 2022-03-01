@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\FullzSSNExport;
 use App\Imports\FullzSSNDLImport;
 use App\Imports\FullzSSNImport;
-use App\Models\businessPro;
+use App\Models\BusinessPro;
 use App\Models\Fullz;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -297,7 +297,7 @@ class FullzController extends Controller
     public function business_pros(Request $request){
 
         if ($request->ajax()) {
-            $data = businessPro::latest()->get();
+            $data = BusinessPro::latest()->get();
 
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -370,7 +370,7 @@ class FullzController extends Controller
             $fileNameToStore = $name.'.zip';
         }
         // create business pros
-        $business = new businessPro();
+        $business = new BusinessPro();
         $business->company_name = $request->company_name;
         $business->ein  = $request->ein;
         $business->creation_date  = $request->creation_date;
@@ -387,7 +387,7 @@ class FullzController extends Controller
     }
 
     public function business_pros_delete($id){
-        businessPro::find($id)->delete();
+        BusinessPro::find($id)->delete();
         return back()->with('success', 'Data has been deleted');
     }
 }

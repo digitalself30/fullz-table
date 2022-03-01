@@ -26,7 +26,7 @@
                             <h4 class="pro-user-username text-dark mb-1 font-weight-bold">{{Auth::user()->name}}</h4>
                             <h6 class="pro-user-desc text-muted">{{Auth::user()->email}}</h6>
                         @endif
-                        <a href="{{route('user.edit', Auth::id())}}" class="btn btn-primary  mt-3"><i class="fa fa-pencil"></i> Edit Profile</a>
+{{--                        <a href="{{route('user.edit', Auth::id())}}" class="btn btn-primary  mt-3"><i class="fa fa-pencil"></i> Edit Profile</a>--}}
 
                     </div>
                 </div>
@@ -55,9 +55,9 @@
                             </tr>
                             <tr>
                                 <td class="py-2 px-0">
-                                    <span class="font-weight-semibold w-50">Phone Number </span>
+                                    <span class="font-weight-semibold w-50">Created At </span>
                                 </td>
-                                <td class="py-2 px-0">{{Auth::user()->phone}}</td>
+                                <td class="py-2 px-0">{{\Carbon\Carbon::parse(Auth::user()->created_at)->diffForHumans()}}</td>
                             </tr>
                             </tbody>
                         </table>

@@ -37,6 +37,7 @@ Route::middleware(['auth'])->group(function(){
 
     //Settings
     Route::GET('/settings', [SettingsController::class, 'settings'])->name('settings');
+    Route::POST('/setting/store', [SettingsController::class, 'setting_store'])->name('setting.store');
 
 
     //Fullz SSN
@@ -67,6 +68,7 @@ Route::middleware(['auth'])->group(function(){
     Route::GET('cart_empty', [UserController::class, 'cart_empty'])->name('cart.empty');
     Route::GET('cart/{id?}', [UserController::class, 'cart'])->name('cart');
     Route::GET('cart/item/remove{id?}', [UserController::class, 'cart_item_remove'])->name('cart.item.remove');
+    Route::GET('business-pros', [UserController::class, 'user_business_pros'])->name('user.business.pros');
 
     Route::GET('/user/order/details', [UserController::class, 'order_details'])->name('order.details');
     Route::GET('/users', [UserController::class, 'users'])->name('users');

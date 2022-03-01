@@ -13,10 +13,13 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-align-left header-icon mt-1"><line x1="17" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="17" y1="18" x2="3" y2="18"></line></svg>
                 </a>
             </div>
-            <div class="dropdown">
-                <a href="https://t.me/lostcorvus"  target="_blank"  class="nav-link icon full-screen-link p-0" style="color: #0079c2 !important;">
-                    Contact
-                    <svg style="padding: 0px; border: 0px" xmlns="http://www.w3.org/2000/svg" class="header-icon" width="42" height="42" viewBox="0 0 42 42"><path fill="#29b6f6" d="M24 4A20 20 0 1 0 24 44A20 20 0 1 0 24 4Z"></path><path fill="#fff" d="M33.95,15l-3.746,19.126c0,0-0.161,0.874-1.245,0.874c-0.576,0-0.873-0.274-0.873-0.274l-8.114-6.733 l-3.97-2.001l-5.095-1.355c0,0-0.907-0.262-0.907-1.012c0-0.625,0.933-0.923,0.933-0.923l21.316-8.468 c-0.001-0.001,0.651-0.235,1.126-0.234C33.667,14,34,14.125,34,14.5C34,14.75,33.95,15,33.95,15z"></path><path fill="#b0bec5" d="M23,30.505l-3.426,3.374c0,0-0.149,0.115-0.348,0.12c-0.069,0.002-0.143-0.009-0.219-0.043 l0.964-5.965L23,30.505z"></path><path fill="#cfd8dc" d="M29.897,18.196c-0.169-0.22-0.481-0.26-0.701-0.093L16,26c0,0,2.106,5.892,2.427,6.912 c0.322,1.021,0.58,1.045,0.58,1.045l0.964-5.965l9.832-9.096C30.023,18.729,30.064,18.416,29.897,18.196z"></path></svg>
+            @php
+              $setting = \App\Models\Setting::first();
+            @endphp
+            <div class="dropdown header-message" style="margin-top: 7px; margin-right: 5px">
+                <a href="{{$setting->telegram_link}}"  target="_blank" class="btn btn-primary" href="{{route('add.funds')}}">
+                    Contact us
+                    <svg style="padding: 0px; border: 0px" xmlns="http://www.w3.org/2000/svg" class="header-icon" width="45" height="45" viewBox="0 0 45 45"><path fill="#29b6f6" d="M24 4A20 20 0 1 0 24 44A20 20 0 1 0 24 4Z"></path><path fill="#fff" d="M33.95,15l-3.746,19.126c0,0-0.161,0.874-1.245,0.874c-0.576,0-0.873-0.274-0.873-0.274l-8.114-6.733 l-3.97-2.001l-5.095-1.355c0,0-0.907-0.262-0.907-1.012c0-0.625,0.933-0.923,0.933-0.923l21.316-8.468 c-0.001-0.001,0.651-0.235,1.126-0.234C33.667,14,34,14.125,34,14.5C34,14.75,33.95,15,33.95,15z"></path><path fill="#b0bec5" d="M23,30.505l-3.426,3.374c0,0-0.149,0.115-0.348,0.12c-0.069,0.002-0.143-0.009-0.219-0.043 l0.964-5.965L23,30.505z"></path><path fill="#cfd8dc" d="M29.897,18.196c-0.169-0.22-0.481-0.26-0.701-0.093L16,26c0,0,2.106,5.892,2.427,6.912 c0.322,1.021,0.58,1.045,0.58,1.045l0.964-5.965l9.832-9.096C30.023,18.729,30.064,18.416,29.897,18.196z"></path></svg>
                 </a>
             </div>
             <div class="d-flex order-lg-2 ml-auto">
@@ -33,7 +36,7 @@
                         </a>
                     </div>
                     @php
-                        $wb = \App\Models\Transaction::latest()->where('user_id', Auth::id())->first();
+                        $wb = \App\Models\Wallet::latest()->where('user_id', Auth::id())->first();
                     @endphp
                     <div class="dropdown header-message" style="margin-top: 7px">
                         <a class="btn btn-success">

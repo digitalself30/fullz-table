@@ -30,13 +30,12 @@
     <!--Page header-->
     <div class="page-header">
         <div class="page-leftheader">
-            <h4 class="page-title mb-0"></h4>
+            <h4 class="page-title mb-0">Business Sold Lines</h4>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fe fe-layout mr-2 fs-14"></i>Dashboard</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="#">Business Pros</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="#">Sold Lines</a></li>
             </ol>
         </div>
-
     </div>
     <!--End Page header-->
 @endsection
@@ -46,31 +45,55 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">Business Pros</div>
+                    <div class="card-title">Business Sold Lines</div>
                 </div>
                 <div class="card-body">
-                    <div class="">
-                        <div class="table-responsive">
-                            <table id="user-table" class="table table-bordered text-nowrap key-buttons">
-                                <thead>
-                                <tr class="custom-tr">
-                                    <th class="border-bottom-0">Company Name</th>
-                                    <th class="border-bottom-0">EIN</th>
-                                    <th class="border-bottom-0">Creation Date</th>
-                                    <th class="border-bottom-0">Owner</th>
-                                    <th class="border-bottom-0">State</th>
-                                    <th class="border-bottom-0">City</th>
-                                    <th class="border-bottom-0">Article</th>
-                                    <th class="border-bottom-0">Annual Report</th>
-                                    <th class="border-bottom-0">Price</th>
-                                    <th class="border-bottom-0">Action</th>
+                    <div class="table-responsive">
+                        <table id="user-table" class="table card-table table-vcenter text-nowrap">
+                            <thead>
+                            <tr class="custom-tr">
+                                <th>ID</th>
+                                <th>Username</th>
+                                <th>Company Name</th>
+                                <th>EIN</th>
+                                <th>Creation date</th>
+                                <th>Owner</th>
+                                <th>State</th>
+                                <th>City</th>
+                                <th>Article of Organization</th>
+                                <th>Annual Report</th>
+                                <th>Price</th>
+                                <th>Download</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @php $total =0 @endphp
+                            @foreach($orders AS $i=> $order)
+                                <tr>
+                                    <th scope="row">{{++$i}}</th>
+                                    <th scope="row">{{$order->user->name}}</th>
+                                    <td>{{$order->business_pros->company_name}}</td>
+                                    <td>{{$order->business_pros->ein}}</td>
+                                    <td>{{\Carbon\Carbon::parse($order->business_pros->creation_date)->format('m-d-Y')}}</td>
+                                    <td>{{$order->business_pros->owner}}</td>
+                                    <td>{{$order->business_pros->state}}</td>
+                                    <td>{{$order->business_pros->city}}</td>
+                                    <td>{{$order->business_pros->article_of_organization}}</td>
+                                    <td>{{$order->business_pros->annual_report}}</td>
+                                    <td>{{$order->business_pros->price}}</td>
+                                    <td style="text-align: center; font-size: 22px"><a href="{{route('download.business.pros', $order->id)}}"><i class="fa fa-cloud-download"></i></a></td>
                                 </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
+                                @php $total += $order->business_pros->price @endphp
+                            @endforeach
+                            <tr>
+                                <td colspan="10">Total</td>
+                                <td>{{$total}}</td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
+                    {{ $orders->links( "pagination::bootstrap-4") }}
                 </div>
             </div>
             <!--/div-->
@@ -102,62 +125,10 @@
 
     <!-- INTERNAL Select2 js -->
     <script src="{{URL::asset('assets/plugins/select2/select2.full.min.js')}}"></script>
-
 @endsection
 
 @push('scripts')
     <script>
-        $(function () {
-            var table = $('#user-table').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: {
-                    url: "{{route('user.business.pros')}}",
-                },
-                responsive: false,
-                "lengthMenu": [[10, 25, 50, 500, 1000, -1], [10, 25, 50, 500, 1000, "All"]],
-                dom: 'lfrtip',
-                ordering: true,
-                buttons: [
-                    'copy', 'excel', 'csv', 'pdf'
-                ],
-                columns: [
-                    {data: 'company_name', name: 'company_name'},
-                    {data: 'ein', name: 'ein'},
-                    {data: 'creation_date', name: 'creation_date'},
-                    {data: 'owner', name: 'owner'},
-                    {data: 'state', name: 'state'},
-                    {data: 'city', name: 'city'},
-                    {data: 'article_of_organization', name: 'article_of_organization'},
-                    {data: 'annual_report', name: 'annual_report'},
-                    {data: 'price', name: 'price'},
-                    {data: 'action', name: 'action', width:'10%'},
-                ]
-            });
-        });
-
-        function add_to_cart(id, type) {
-            $.ajax({
-                type: 'GET',
-                url: "{{route('add.to.cart')}}",
-                data: {
-                    id: id,
-                    type: "business",
-                },
-                success: function (response) {
-                    if (response !== '') {
-                        $('.cart-item-container').append("<span class=\"badge badge-success side-badge cart-item\">" + response + "</span>")
-                    }
-                    if(type == 'Buy'){
-                        window.location.href = "{{route('cart')}}";
-                    }
-                },
-                error: function (data) {
-                    console.log('error');
-                }
-            });
-        }
-
 
     </script>
 @endpush

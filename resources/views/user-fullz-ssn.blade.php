@@ -145,7 +145,7 @@
                                     <th class="border-bottom-0">State</th>
                                     <th class="border-bottom-0">City</th>
                                     <th class="border-bottom-0">SSN</th>
-                                    <th class="border-bottom-0">SSN + DL</th>
+                                    <th class="border-bottom-0">DL</th>
                                     <th class="border-bottom-0">Price</th>
                                     <th class="border-bottom-0">Action</th>
                                 </tr>

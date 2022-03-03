@@ -161,7 +161,9 @@
                                     <th class="border-bottom-0">State</th>
                                     <th class="border-bottom-0">City</th>
                                     <th class="border-bottom-0">SSN</th>
-                                    <th class="border-bottom-0">SSN + DL</th>
+                                    <th class="border-bottom-0">DL</th>
+                                    <th class="border-bottom-0">DL Issue</th>
+                                    <th class="border-bottom-0">DL Expiry</th>
                                     <th class="border-bottom-0">Price</th>
                                     <th class="border-bottom-0">Action</th>
                                 </tr>
@@ -245,7 +247,6 @@
                         d.state =  $('.state').val();
                         d.dl_issue_date  =  dl_issue_date;
                         d.dl_expiry_date = dl_expiry_date;
-
                     }
                 },
                 responsive: false,
@@ -262,6 +263,8 @@
                     { data: 'city', name: 'city' },
                     {data: 'ssn', name: 'ssn'},
                     {data: 'ssn_dl', name: 'ssn_dl'},
+                    { data: 'dl_issue', name: 'dl_issue' },
+                    { data: 'dl_expiry', name: 'dl_expiry' },
                     { data: 'price', name: 'price' },
                     {data: 'action', name: 'action', width:'10%'},
                 ]
@@ -281,9 +284,6 @@
             $("#dl_expiry_date").change(function(){
                 table.draw();
             });
-
-
-
         });
         function add_to_cart(id, type) {
             $.ajax({

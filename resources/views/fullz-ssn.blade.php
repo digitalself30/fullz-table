@@ -100,7 +100,7 @@
                                 <option value="CA">CA</option>
                                 <option value="CO">CO</option>
                                 <option value="CT">CT</option>
-                                <option value="DE"></option>
+                                <option value="DE">DE</option>
                                 <option value="DC">DC</option>
                                 <option value="FL">FL</option>
                                 <option value="GA">GA</option>

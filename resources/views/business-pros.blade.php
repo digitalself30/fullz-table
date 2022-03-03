@@ -39,6 +39,7 @@
         <div class="page-rightheader">
             <div class="btn btn-list">
                 <a class="modal-effect btn btn-primary" data-effect="effect-flip-horizontal" data-toggle="modal" href="#modaldemo99">Add Business Pros</a>
+                <a class="modal-effect btn btn-primary" data-effect="effect-flip-horizontal" data-toggle="modal" href="#modaldemo11">Upload via CSV/Excel</a>
             </div>
         </div>
     </div>
@@ -240,6 +241,43 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="modaldemo11" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Upload CSV/Excel</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="{{route('upload.csv')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="type" value="3">
+                    <div class="modal-body">
+                        <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="">
+                                        <div class="form-group col-md-12">
+                                            <label for="exampleInputPassword1" class="form-label">Upload CSV/Excel</label>
+                                            <input type="file" name="file" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary submit-form">Submit</button>
                     </div>
                 </form>
             </div>

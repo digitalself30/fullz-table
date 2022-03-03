@@ -9,6 +9,7 @@ use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Wallet;
 use Carbon\Carbon;
+use http\Client\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Spatie\Activitylog\Models\Activity;
@@ -154,7 +155,13 @@ class UserController extends Controller
                     return "YES";
                 })
                 ->editColumn('ssn', function($data) {
-                    return "NO";
+                    return "YES";
+                })
+                ->editColumn('dl_issue', function($data) {
+                    return Carbon::parse($data->dl_issue)->format('m-d-Y') ;
+                })
+                ->editColumn('dl_expiry', function($data) {
+                    return Carbon::parse($data->dl_expiry)->format('m-d-Y') ;
                 })
                 ->editColumn('price', function($data) {
                     return '$'.$data->price;
@@ -364,5 +371,27 @@ class UserController extends Controller
         }
 
         return view('user-business-pros');
+    }
+
+    public function order_business_pros(){
+        $orders = Order::with('business_pros','user')
+            ->where('user_id',Auth::id())
+            ->where('type','business')
+            ->latest()
+            ->paginate(10);
+        return view('user-order-business-pros', compact('orders'));
+    }
+    public function download_business_pros($id){
+
+        $data = Order::with('business_pros', 'user')->where('id', $id)
+            ->where('user_id', Auth::id())
+            ->where('type', "business")
+            ->first();
+
+        $file= public_path(). "/storage/business-pros/" . $data->business_pros->file_path;
+        if($data->business_pros->file_path){
+            return \Response::download($file, 'business-pros.zip');
+        }
+        return back()->with('error', 'File not found');
     }
 }

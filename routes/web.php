@@ -71,6 +71,8 @@ Route::middleware(['auth'])->group(function(){
     Route::GET('business-pros', [UserController::class, 'user_business_pros'])->name('user.business.pros');
 
     Route::GET('/user/order/details', [UserController::class, 'order_details'])->name('order.details');
+    Route::GET('/user/order/business-pros', [UserController::class, 'order_business_pros'])->name('order.business.pros');
+    Route::GET('/download/business/pros/{id?}', [UserController::class, 'download_business_pros'])->name('download.business.pros');
     Route::GET('/users', [UserController::class, 'users'])->name('users');
 
     // Add Funds

@@ -15,6 +15,7 @@ class SettingsController extends Controller
         $setting = Setting::first();
         $setting->api_key = $request->api_key;
         $setting->telegram_link = $request->telegram_link;
+        $setting->telegram_group_link = $request->telegram_group_link;
         $setting->save();
 
         return back()->with('success', 'Settings has been updated successfully');

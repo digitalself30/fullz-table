@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\FullzSSNExport;
+use App\Imports\BusinessProsImport;
 use App\Imports\FullzSSNDLImport;
 use App\Imports\FullzSSNImport;
 use App\Models\BusinessPro;
@@ -230,9 +231,13 @@ class FullzController extends Controller
             Excel::import(new FullzSSNImport, $request->file);
             return redirect(route('fullz.ssn'))->with('success', 'Data has been updated');
         }
-        else{
+        else if($request->type == 2){
             Excel::import(new FullzSSNDLImport, $request->file);
             return redirect(route('fullz.ssn.dl'))->with('success', 'Data has been updated');
+        }
+        else{
+            Excel::import(new BusinessProsImport(), $request->file);
+            return redirect(route('business.pros'))->with('success', 'Data has been updated');
         }
     }
 

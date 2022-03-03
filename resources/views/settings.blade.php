@@ -45,6 +45,12 @@
                                     <input type="text" id="telegram_link" name="telegram_link" value="{{$setting->telegram_link}}" class="form-control" placeholder="Telegram Link" >
                                 </div>
                             </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Telegram Group Link</label>
+                                    <input type="text" id="telegram_group_link" name="telegram_group_link" value="{{$setting->telegram_group_link}}" class="form-control" placeholder="Telegram Group Link" >
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer text-right">

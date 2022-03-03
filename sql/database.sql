@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 20, 2022 at 02:55 AM
+-- Generation Time: Mar 03, 2022 at 04:52 AM
 -- Server version: 8.0.28
 -- PHP Version: 7.3.33
 
@@ -349,7 +349,92 @@ INSERT INTO `activity_log` (`id`, `log_name`, `description`, `subject_type`, `ev
 (300, 'Fullz', 'The fullz table has been updated', 'App\\Models\\Fullz', 'updated', 2, 'App\\Models\\User', 1, '{\"old\": {\"price\": \"9.00\", \"updated_at\": \"2022-02-14T21:16:51.000000Z\"}, \"attributes\": {\"price\": \"2.00\", \"updated_at\": \"2022-02-14T21:17:19.000000Z\"}}', NULL, '2022-02-15 02:17:19', '2022-02-15 02:17:19'),
 (301, 'order', 'The order has been created', 'App\\Models\\Order', 'created', 11, 'App\\Models\\User', 3, '{\"attributes\": {\"id\": 11, \"amount\": \"2.00\", \"user_id\": \"3\", \"fullz_id\": \"5\", \"created_at\": \"2022-02-16T16:50:25.000000Z\", \"updated_at\": \"2022-02-16T16:50:25.000000Z\"}}', NULL, '2022-02-16 21:50:25', '2022-02-16 21:50:25'),
 (302, 'funds', 'The funds has been created', 'App\\Models\\Fund', 'created', 14, 'App\\Models\\User', 3, '{\"attributes\": {\"id\": 14, \"fee\": null, \"amount\": null, \"status\": \"Pending\", \"user_id\": \"3\", \"currency\": \"BTC\", \"created_at\": \"2022-02-16T16:51:09.000000Z\", \"updated_at\": \"2022-02-16T16:51:09.000000Z\", \"invoice_sum\": \"\", \"invoice_url\": null, \"source_rate\": null, \"order_number\": \"620d2b76d347f418\", \"source_amount\": \"2.00\", \"transaction_id\": \"620d2b7d17e93e7cbd72baa6\", \"source_currency\": \"USD\", \"invoice_total_sum\": null, \"invoice_commission\": null}}', NULL, '2022-02-16 21:51:09', '2022-02-16 21:51:09'),
-(303, 'funds', 'The funds has been created', 'App\\Models\\Fund', 'created', 15, 'App\\Models\\User', 3, '{\"attributes\": {\"id\": 15, \"fee\": null, \"amount\": null, \"status\": \"Pending\", \"user_id\": \"3\", \"currency\": \"BTC\", \"created_at\": \"2022-02-18T00:38:07.000000Z\", \"updated_at\": \"2022-02-18T00:38:07.000000Z\", \"invoice_sum\": \"\", \"invoice_url\": null, \"source_rate\": null, \"order_number\": \"620eea5c90539690\", \"source_amount\": \"20.00\", \"transaction_id\": \"620eea6f1f86eb31127dabc7\", \"source_currency\": \"USD\", \"invoice_total_sum\": null, \"invoice_commission\": null}}', NULL, '2022-02-18 05:38:07', '2022-02-18 05:38:07');
+(303, 'funds', 'The funds has been created', 'App\\Models\\Fund', 'created', 15, 'App\\Models\\User', 3, '{\"attributes\": {\"id\": 15, \"fee\": null, \"amount\": null, \"status\": \"Pending\", \"user_id\": \"3\", \"currency\": \"BTC\", \"created_at\": \"2022-02-18T00:38:07.000000Z\", \"updated_at\": \"2022-02-18T00:38:07.000000Z\", \"invoice_sum\": \"\", \"invoice_url\": null, \"source_rate\": null, \"order_number\": \"620eea5c90539690\", \"source_amount\": \"20.00\", \"transaction_id\": \"620eea6f1f86eb31127dabc7\", \"source_currency\": \"USD\", \"invoice_total_sum\": null, \"invoice_commission\": null}}', NULL, '2022-02-18 05:38:07', '2022-02-18 05:38:07'),
+(304, 'User', 'The user has been updated', 'App\\Models\\User', 'updated', 2, NULL, NULL, '{\"old\": {\"password\": \"$2y$10$uE1UsGOhNfLzVhuUUACry.i5z1hPcQM6g1XKjXyuQ4UVbyyqj.4am\", \"updated_at\": \"2022-02-12T14:45:43.000000Z\", \"remember_token\": null}, \"attributes\": {\"password\": \"$2y$10$/2xImsWIU88k/N7waFGrfuZkMk./AWd8Bj6ltPV3HU8ndGi4K0zxK\", \"updated_at\": \"2022-02-24T10:22:37.000000Z\", \"remember_token\": \"M8MwPY6gge0QHri3xzobKdn3BfSEs0lzWz5lUX4xzxRCInHajX8AHWo3xFr4\"}}', NULL, '2022-02-24 15:22:37', '2022-02-24 15:22:37'),
+(305, 'User', 'The user has been updated', 'App\\Models\\User', 'updated', 2, 'App\\Models\\User', 2, '{\"old\": {\"remember_token\": \"M8MwPY6gge0QHri3xzobKdn3BfSEs0lzWz5lUX4xzxRCInHajX8AHWo3xFr4\"}, \"attributes\": {\"remember_token\": \"27IF8SdQVT4JF1XTMdphVlau2kH2JkoNxc6u5yrT5hKZP35lL9KCjhrj6sqg\"}}', NULL, '2022-02-24 15:22:45', '2022-02-24 15:22:45'),
+(306, 'User', 'The user has been updated', 'App\\Models\\User', 'updated', 2, 'App\\Models\\User', 2, '{\"old\": {\"remember_token\": \"27IF8SdQVT4JF1XTMdphVlau2kH2JkoNxc6u5yrT5hKZP35lL9KCjhrj6sqg\"}, \"attributes\": {\"remember_token\": \"tNJYt3K1xUjd7bcZOR4QewNnb5FE46piuIqsKpX2HLUkiVtgaWlqVsNq5gub\"}}', NULL, '2022-02-24 15:29:24', '2022-02-24 15:29:24'),
+(307, 'User', 'The user has been updated', 'App\\Models\\User', 'updated', 2, 'App\\Models\\User', 2, '{\"old\": {\"remember_token\": \"tNJYt3K1xUjd7bcZOR4QewNnb5FE46piuIqsKpX2HLUkiVtgaWlqVsNq5gub\"}, \"attributes\": {\"remember_token\": \"gvwQB5OPiy82P5EzHhAzxmq8KTdKl7sqdOtAJaGu1cD31uXt47RXMOe39BQb\"}}', NULL, '2022-02-24 15:31:32', '2022-02-24 15:31:32'),
+(308, 'funds', 'The funds has been created', 'App\\Models\\Fund', 'created', 16, 'App\\Models\\User', 1, '{\"attributes\": {\"id\": 16, \"fee\": null, \"notes\": \"test\", \"amount\": \"12\", \"status\": \"Completed\", \"user_id\": \"3\", \"currency\": \"USD\", \"created_at\": \"2022-02-24T14:04:30.000000Z\", \"updated_at\": \"2022-02-24T14:04:30.000000Z\", \"invoice_sum\": \"\", \"invoice_url\": null, \"source_rate\": null, \"order_number\": \"6217906e68785679\", \"source_amount\": \"12.00\", \"transaction_id\": \"7626217906e6877a\", \"source_currency\": \"USD\", \"invoice_total_sum\": null, \"invoice_commission\": null}}', NULL, '2022-02-24 19:04:30', '2022-02-24 19:04:30'),
+(309, 'funds', 'The funds has been created', 'App\\Models\\Fund', 'created', 17, 'App\\Models\\User', 1, '{\"attributes\": {\"id\": 17, \"fee\": null, \"notes\": \"test\", \"amount\": \"12\", \"status\": \"Completed\", \"user_id\": \"3\", \"currency\": \"USD\", \"created_at\": \"2022-02-24T14:04:42.000000Z\", \"updated_at\": \"2022-02-24T14:04:42.000000Z\", \"invoice_sum\": \"\", \"invoice_url\": null, \"source_rate\": null, \"order_number\": \"6217907a00c05164\", \"source_amount\": \"12.00\", \"transaction_id\": \"7376217907a00bf7\", \"source_currency\": \"USD\", \"invoice_total_sum\": null, \"invoice_commission\": null}}', NULL, '2022-02-24 19:04:42', '2022-02-24 19:04:42'),
+(310, 'funds', 'The funds has been created', 'App\\Models\\Fund', 'created', 18, 'App\\Models\\User', 1, '{\"attributes\": {\"id\": 18, \"fee\": null, \"notes\": \"test\", \"amount\": \"-8\", \"status\": \"Completed\", \"user_id\": \"3\", \"currency\": \"USD\", \"created_at\": \"2022-02-24T14:05:01.000000Z\", \"updated_at\": \"2022-02-24T14:05:01.000000Z\", \"invoice_sum\": \"\", \"invoice_url\": null, \"source_rate\": null, \"order_number\": \"6217908d2a54e210\", \"source_amount\": \"-8.00\", \"transaction_id\": \"5996217908d2a542\", \"source_currency\": \"USD\", \"invoice_total_sum\": null, \"invoice_commission\": null}}', NULL, '2022-02-24 19:05:01', '2022-02-24 19:05:01'),
+(311, 'User', 'The user has been updated', 'App\\Models\\User', 'updated', 2, 'App\\Models\\User', 2, '{\"old\": {\"remember_token\": \"gvwQB5OPiy82P5EzHhAzxmq8KTdKl7sqdOtAJaGu1cD31uXt47RXMOe39BQb\"}, \"attributes\": {\"remember_token\": \"kVcq4RxIyPrwxiDNKjeiWyUbUMIFxfs93NGgWG067U1rHDrC9v53YO9t6eKU\"}}', NULL, '2022-02-24 19:11:20', '2022-02-24 19:11:20'),
+(312, 'User', 'The user has been updated', 'App\\Models\\User', 'updated', 2, 'App\\Models\\User', 2, '{\"old\": {\"remember_token\": \"kVcq4RxIyPrwxiDNKjeiWyUbUMIFxfs93NGgWG067U1rHDrC9v53YO9t6eKU\"}, \"attributes\": {\"remember_token\": \"Mf8P1P7n0LC4HDx6xGMUeWGOQLqlL7HwboJaPHeIShZLySyX12kdd9rBpDrt\"}}', NULL, '2022-02-24 19:11:40', '2022-02-24 19:11:40'),
+(313, 'funds', 'The funds has been created', 'App\\Models\\Fund', 'created', 19, 'App\\Models\\User', 1, '{\"attributes\": {\"id\": 19, \"fee\": null, \"notes\": \"added  by admin\", \"amount\": \"1\", \"status\": \"Completed\", \"user_id\": \"3\", \"added_by\": null, \"currency\": \"USD\", \"created_at\": \"2022-02-24T14:12:22.000000Z\", \"updated_at\": \"2022-02-24T14:12:22.000000Z\", \"invoice_sum\": \"\", \"invoice_url\": null, \"source_rate\": null, \"order_number\": \"62179246705ef722\", \"source_amount\": \"1.00\", \"transaction_id\": \"58162179246705e5\", \"source_currency\": \"USD\", \"invoice_total_sum\": null, \"invoice_commission\": null}}', NULL, '2022-02-24 19:12:22', '2022-02-24 19:12:22'),
+(314, 'funds', 'The funds has been created', 'App\\Models\\Fund', 'created', 20, 'App\\Models\\User', 1, '{\"attributes\": {\"id\": 20, \"fee\": null, \"notes\": \"added  by admin\", \"amount\": \"10\", \"status\": \"Completed\", \"user_id\": \"5\", \"added_by\": \"1\", \"currency\": \"USD\", \"created_at\": \"2022-02-24T14:23:20.000000Z\", \"updated_at\": \"2022-02-24T14:23:20.000000Z\", \"invoice_sum\": \"\", \"invoice_url\": null, \"source_rate\": null, \"order_number\": \"621794d81bd09973\", \"source_amount\": \"10.00\", \"transaction_id\": \"696621794d81bcff\", \"source_currency\": \"USD\", \"invoice_total_sum\": null, \"invoice_commission\": null}}', NULL, '2022-02-24 19:23:20', '2022-02-24 19:23:20'),
+(315, 'funds', 'The funds has been created', 'App\\Models\\Fund', 'created', 21, 'App\\Models\\User', 1, '{\"attributes\": {\"id\": 21, \"fee\": null, \"notes\": \"added  by admin\", \"amount\": \"12\", \"status\": \"Pending\", \"user_id\": \"2\", \"added_by\": \"1\", \"currency\": \"USD\", \"created_at\": \"2022-02-24T20:46:21.000000Z\", \"updated_at\": \"2022-02-24T20:46:21.000000Z\", \"invoice_sum\": \"\", \"invoice_url\": null, \"source_rate\": null, \"order_number\": \"6217ee9da6ef0346\", \"source_amount\": \"12.00\", \"transaction_id\": \"6846217ee9da6ee6\", \"source_currency\": \"USD\", \"invoice_total_sum\": null, \"invoice_commission\": null}}', NULL, '2022-02-25 01:46:21', '2022-02-25 01:46:21'),
+(316, 'funds', 'The funds has been updated', 'App\\Models\\Fund', 'updated', 21, 'App\\Models\\User', 1, '{\"old\": {\"status\": \"Pending\"}, \"attributes\": {\"status\": \"Completed\"}}', NULL, '2022-02-25 01:46:21', '2022-02-25 01:46:21'),
+(317, 'User', 'The user has been deleted', 'App\\Models\\User', 'deleted', 4, 'App\\Models\\User', 1, '{\"old\": {\"id\": 4, \"name\": \"karl\", \"email\": \"karl@gmail.com\", \"phone\": null, \"status\": \"1\", \"password\": \"$2y$10$OxIQrpSFtm3UUdpOIoKMj.5TY.Y6st.eDz/WbFgw3NvRNId/MAOGG\", \"user_type\": \"2\", \"created_at\": \"2022-02-14T13:09:52.000000Z\", \"deleted_at\": null, \"updated_at\": \"2022-02-14T13:09:52.000000Z\", \"remember_token\": null, \"email_verified_at\": null}}', NULL, '2022-02-25 02:51:34', '2022-02-25 02:51:34'),
+(318, 'User', 'The user has been updated', 'App\\Models\\User', 'updated', 2, 'App\\Models\\User', 2, '{\"old\": {\"remember_token\": \"Mf8P1P7n0LC4HDx6xGMUeWGOQLqlL7HwboJaPHeIShZLySyX12kdd9rBpDrt\"}, \"attributes\": {\"remember_token\": \"7lAUidg5AZUbLN34wspC4njtq97cN9Fz2OX1DMQcRUT5tqHDwe7DAl7SWVzg\"}}', NULL, '2022-02-26 04:07:46', '2022-02-26 04:07:46'),
+(319, 'order', 'The order has been created', 'App\\Models\\Order', 'created', 12, 'App\\Models\\User', 3, '{\"attributes\": {\"id\": 12, \"type\": \"business\", \"amount\": \"34.00\", \"user_id\": \"3\", \"fullz_id\": \"3\", \"created_at\": \"2022-02-25T23:19:47.000000Z\", \"updated_at\": \"2022-02-25T23:19:47.000000Z\"}}', NULL, '2022-02-26 04:19:47', '2022-02-26 04:19:47'),
+(320, 'funds', 'The funds has been created', 'App\\Models\\Fund', 'created', 22, 'App\\Models\\User', 3, '{\"attributes\": {\"id\": 22, \"fee\": null, \"notes\": null, \"amount\": null, \"status\": \"Pending\", \"user_id\": \"3\", \"added_by\": \"3\", \"currency\": \"BTC\", \"created_at\": \"2022-02-25T23:29:34.000000Z\", \"updated_at\": \"2022-02-25T23:29:34.000000Z\", \"invoice_sum\": \"\", \"invoice_url\": null, \"source_rate\": null, \"order_number\": \"62196649c1000117\", \"source_amount\": \"5.00\", \"transaction_id\": \"6219665d6bd95500d55accef\", \"source_currency\": \"USD\", \"invoice_total_sum\": null, \"invoice_commission\": null}}', NULL, '2022-02-26 04:29:34', '2022-02-26 04:29:34'),
+(321, 'funds', 'The funds has been created', 'App\\Models\\Fund', 'created', 23, 'App\\Models\\User', 3, '{\"attributes\": {\"id\": 23, \"fee\": null, \"notes\": null, \"amount\": null, \"status\": \"Pending\", \"user_id\": \"3\", \"added_by\": \"3\", \"currency\": \"BTC\", \"created_at\": \"2022-02-25T23:38:42.000000Z\", \"updated_at\": \"2022-02-25T23:38:42.000000Z\", \"invoice_sum\": \"\", \"invoice_url\": null, \"source_rate\": null, \"order_number\": \"62196649c1000117\", \"source_amount\": \"5.00\", \"transaction_id\": \"62196882d6df535d23468fb0\", \"source_currency\": \"USD\", \"invoice_total_sum\": null, \"invoice_commission\": null}}', NULL, '2022-02-26 04:38:42', '2022-02-26 04:38:42'),
+(322, 'funds', 'The funds has been created', 'App\\Models\\Fund', 'created', 24, 'App\\Models\\User', 1, '{\"attributes\": {\"id\": 24, \"fee\": null, \"notes\": \"funds updated\", \"amount\": \"100\", \"status\": \"Pending\", \"user_id\": \"2\", \"added_by\": \"1\", \"currency\": \"USD\", \"created_at\": \"2022-02-26T00:53:31.000000Z\", \"updated_at\": \"2022-02-26T00:53:31.000000Z\", \"invoice_sum\": \"\", \"invoice_url\": null, \"source_rate\": null, \"order_number\": \"62197a0b5af66367\", \"source_amount\": \"100.00\", \"transaction_id\": \"72462197a0b5af5d\", \"source_currency\": \"USD\", \"invoice_total_sum\": null, \"invoice_commission\": null}}', NULL, '2022-02-26 05:53:31', '2022-02-26 05:53:31'),
+(323, 'funds', 'The funds has been updated', 'App\\Models\\Fund', 'updated', 24, 'App\\Models\\User', 1, '{\"old\": {\"status\": \"Pending\"}, \"attributes\": {\"status\": \"Completed\"}}', NULL, '2022-02-26 05:53:31', '2022-02-26 05:53:31'),
+(324, 'order', 'The order has been created', 'App\\Models\\Order', 'created', 13, 'App\\Models\\User', 2, '{\"attributes\": {\"id\": 13, \"type\": \"fullz\", \"amount\": \"5.00\", \"user_id\": \"2\", \"fullz_id\": \"64\", \"created_at\": \"2022-02-26T02:02:28.000000Z\", \"updated_at\": \"2022-02-26T02:02:28.000000Z\"}}', NULL, '2022-02-26 07:02:28', '2022-02-26 07:02:28'),
+(325, 'order', 'The order has been created', 'App\\Models\\Order', 'created', 14, 'App\\Models\\User', 2, '{\"attributes\": {\"id\": 14, \"type\": \"fullz\", \"amount\": \"5.00\", \"user_id\": \"2\", \"fullz_id\": \"63\", \"created_at\": \"2022-02-26T02:02:28.000000Z\", \"updated_at\": \"2022-02-26T02:02:28.000000Z\"}}', NULL, '2022-02-26 07:02:28', '2022-02-26 07:02:28'),
+(326, 'order', 'The order has been created', 'App\\Models\\Order', 'created', 15, 'App\\Models\\User', 2, '{\"attributes\": {\"id\": 15, \"type\": \"fullz\", \"amount\": \"5.00\", \"user_id\": \"2\", \"fullz_id\": \"61\", \"created_at\": \"2022-02-26T02:02:28.000000Z\", \"updated_at\": \"2022-02-26T02:02:28.000000Z\"}}', NULL, '2022-02-26 07:02:28', '2022-02-26 07:02:28'),
+(327, 'order', 'The order has been created', 'App\\Models\\Order', 'created', 16, 'App\\Models\\User', 2, '{\"attributes\": {\"id\": 16, \"type\": \"fullz\", \"amount\": \"5.00\", \"user_id\": \"2\", \"fullz_id\": \"62\", \"created_at\": \"2022-02-26T02:02:28.000000Z\", \"updated_at\": \"2022-02-26T02:02:28.000000Z\"}}', NULL, '2022-02-26 07:02:28', '2022-02-26 07:02:28'),
+(328, 'order', 'The order has been created', 'App\\Models\\Order', 'created', 17, 'App\\Models\\User', 2, '{\"attributes\": {\"id\": 17, \"type\": \"business\", \"amount\": \"34.00\", \"user_id\": \"2\", \"fullz_id\": \"3\", \"created_at\": \"2022-02-26T02:02:57.000000Z\", \"updated_at\": \"2022-02-26T02:02:57.000000Z\"}}', NULL, '2022-02-26 07:02:57', '2022-02-26 07:02:57'),
+(329, 'order', 'The order has been created', 'App\\Models\\Order', 'created', 18, 'App\\Models\\User', 2, '{\"attributes\": {\"id\": 18, \"type\": \"fullz\", \"amount\": \"53.00\", \"user_id\": \"2\", \"fullz_id\": \"34\", \"created_at\": \"2022-02-26T02:03:24.000000Z\", \"updated_at\": \"2022-02-26T02:03:24.000000Z\"}}', NULL, '2022-02-26 07:03:24', '2022-02-26 07:03:24'),
+(330, 'funds', 'The funds has been created', 'App\\Models\\Fund', 'created', 25, 'App\\Models\\User', 2, '{\"attributes\": {\"id\": 25, \"fee\": null, \"notes\": null, \"amount\": null, \"status\": \"Pending\", \"user_id\": \"2\", \"added_by\": \"2\", \"currency\": \"BTC\", \"created_at\": \"2022-02-26T11:17:28.000000Z\", \"updated_at\": \"2022-02-26T11:17:28.000000Z\", \"invoice_sum\": \"\", \"invoice_url\": null, \"source_rate\": null, \"order_number\": \"621a0c4369c48128\", \"source_amount\": \"2.00\", \"transaction_id\": \"621a0c489b8fa916426c11aa\", \"source_currency\": \"USD\", \"invoice_total_sum\": null, \"invoice_commission\": null}}', NULL, '2022-02-26 16:17:28', '2022-02-26 16:17:28');
+INSERT INTO `activity_log` (`id`, `log_name`, `description`, `subject_type`, `event`, `subject_id`, `causer_type`, `causer_id`, `properties`, `batch_uuid`, `created_at`, `updated_at`) VALUES
+(331, 'funds', 'The funds has been created', 'App\\Models\\Fund', 'created', 26, 'App\\Models\\User', 2, '{\"attributes\": {\"id\": 26, \"fee\": null, \"notes\": null, \"amount\": null, \"status\": \"Pending\", \"user_id\": \"2\", \"added_by\": \"2\", \"currency\": \"BTC\", \"created_at\": \"2022-02-26T11:17:28.000000Z\", \"updated_at\": \"2022-02-26T11:17:28.000000Z\", \"invoice_sum\": \"\", \"invoice_url\": null, \"source_rate\": null, \"order_number\": \"621a0c4369c48128\", \"source_amount\": \"2.00\", \"transaction_id\": \"621a0c48132ba43d686ef27d\", \"source_currency\": \"USD\", \"invoice_total_sum\": null, \"invoice_commission\": null}}', NULL, '2022-02-26 16:17:28', '2022-02-26 16:17:28'),
+(332, 'User', 'The user has been updated', 'App\\Models\\User', 'updated', 2, 'App\\Models\\User', 2, '{\"old\": {\"remember_token\": \"7lAUidg5AZUbLN34wspC4njtq97cN9Fz2OX1DMQcRUT5tqHDwe7DAl7SWVzg\"}, \"attributes\": {\"remember_token\": \"GoV2janhHfEfrJRmk8nnC5sqfmUGeOsSzEC2cMEJ2hd8vhUkqd9Q7TnwOGfR\"}}', NULL, '2022-02-27 01:45:07', '2022-02-27 01:45:07'),
+(333, 'funds', 'The funds has been created', 'App\\Models\\Fund', 'created', 27, 'App\\Models\\User', 2, '{\"attributes\": {\"id\": 27, \"fee\": null, \"notes\": null, \"amount\": null, \"status\": \"Pending\", \"user_id\": \"2\", \"added_by\": \"2\", \"currency\": \"BTC\", \"created_at\": \"2022-02-26T21:17:02.000000Z\", \"updated_at\": \"2022-02-26T21:17:02.000000Z\", \"invoice_sum\": \"\", \"invoice_url\": null, \"source_rate\": null, \"order_number\": \"621a98c805315572\", \"source_amount\": \"5.00\", \"transaction_id\": \"621a98ce132ba43d686ef2ae\", \"source_currency\": \"USD\", \"invoice_total_sum\": null, \"invoice_commission\": null}}', NULL, '2022-02-27 02:17:02', '2022-02-27 02:17:02'),
+(334, 'funds', 'The funds has been created', 'App\\Models\\Fund', 'created', 28, 'App\\Models\\User', 2, '{\"attributes\": {\"id\": 28, \"fee\": null, \"notes\": null, \"amount\": null, \"status\": \"Pending\", \"user_id\": \"2\", \"added_by\": \"2\", \"currency\": \"BTC\", \"created_at\": \"2022-02-26T21:22:10.000000Z\", \"updated_at\": \"2022-02-26T21:22:10.000000Z\", \"invoice_sum\": \"\", \"invoice_url\": null, \"source_rate\": null, \"order_number\": \"621a99fe499f3965\", \"source_amount\": \"5.00\", \"transaction_id\": \"621a9a02ad5d4352150fc818\", \"source_currency\": \"USD\", \"invoice_total_sum\": null, \"invoice_commission\": null}}', NULL, '2022-02-27 02:22:10', '2022-02-27 02:22:10'),
+(335, 'order', 'The order has been created', 'App\\Models\\Order', 'created', 19, 'App\\Models\\User', 2, '{\"attributes\": {\"id\": 19, \"type\": \"fullz\", \"amount\": \"2.00\", \"user_id\": \"2\", \"fullz_id\": \"6\", \"created_at\": \"2022-02-26T21:22:46.000000Z\", \"updated_at\": \"2022-02-26T21:22:46.000000Z\"}}', NULL, '2022-02-27 02:22:46', '2022-02-27 02:22:46'),
+(336, 'order', 'The order has been created', 'App\\Models\\Order', 'created', 20, 'App\\Models\\User', 2, '{\"attributes\": {\"id\": 20, \"type\": \"fullz\", \"amount\": \"13.00\", \"user_id\": \"2\", \"fullz_id\": \"32\", \"created_at\": \"2022-02-26T21:29:09.000000Z\", \"updated_at\": \"2022-02-26T21:29:09.000000Z\"}}', NULL, '2022-02-27 02:29:09', '2022-02-27 02:29:09'),
+(337, 'order', 'The order has been created', 'App\\Models\\Order', 'created', 21, 'App\\Models\\User', 2, '{\"attributes\": {\"id\": 21, \"type\": \"fullz\", \"amount\": \"11.00\", \"user_id\": \"2\", \"fullz_id\": \"31\", \"created_at\": \"2022-02-26T21:29:27.000000Z\", \"updated_at\": \"2022-02-26T21:29:27.000000Z\"}}', NULL, '2022-02-27 02:29:27', '2022-02-27 02:29:27'),
+(338, 'User', 'The user has been updated', 'App\\Models\\User', 'updated', 2, 'App\\Models\\User', 2, '{\"old\": {\"remember_token\": \"GoV2janhHfEfrJRmk8nnC5sqfmUGeOsSzEC2cMEJ2hd8vhUkqd9Q7TnwOGfR\"}, \"attributes\": {\"remember_token\": \"bUNliprYYI2NRZ9tFPPvvGtmFfcwUaJEk7I3ckjdMZPLS0XdsQvY62LnXtcC\"}}', NULL, '2022-02-27 02:44:49', '2022-02-27 02:44:49'),
+(339, 'funds', 'The funds has been created', 'App\\Models\\Fund', 'created', 29, 'App\\Models\\User', 2, '{\"attributes\": {\"id\": 29, \"fee\": null, \"notes\": null, \"amount\": null, \"status\": \"Pending\", \"user_id\": \"2\", \"added_by\": \"2\", \"currency\": \"BTC\", \"created_at\": \"2022-02-26T22:07:12.000000Z\", \"updated_at\": \"2022-02-26T22:07:12.000000Z\", \"invoice_sum\": \"\", \"invoice_url\": null, \"source_rate\": null, \"order_number\": \"621aa48b30c04685\", \"source_amount\": \"5.00\", \"transaction_id\": \"621aa490b0d5501f0769237a\", \"source_currency\": \"USD\", \"invoice_total_sum\": null, \"invoice_commission\": null}}', NULL, '2022-02-27 03:07:12', '2022-02-27 03:07:12'),
+(340, 'order', 'The order has been created', 'App\\Models\\Order', 'created', 22, 'App\\Models\\User', 2, '{\"attributes\": {\"id\": 22, \"type\": \"fullz\", \"amount\": \"34.00\", \"user_id\": \"2\", \"fullz_id\": \"33\", \"created_at\": \"2022-02-26T22:08:01.000000Z\", \"updated_at\": \"2022-02-26T22:08:01.000000Z\"}}', NULL, '2022-02-27 03:08:01', '2022-02-27 03:08:01'),
+(341, 'order', 'The order has been created', 'App\\Models\\Order', 'created', 23, 'App\\Models\\User', 2, '{\"attributes\": {\"id\": 23, \"type\": \"fullz\", \"amount\": \"23.00\", \"user_id\": \"2\", \"fullz_id\": \"36\", \"created_at\": \"2022-02-26T22:08:18.000000Z\", \"updated_at\": \"2022-02-26T22:08:18.000000Z\"}}', NULL, '2022-02-27 03:08:18', '2022-02-27 03:08:18'),
+(342, 'order', 'The order has been created', 'App\\Models\\Order', 'created', 24, 'App\\Models\\User', 2, '{\"attributes\": {\"id\": 24, \"type\": \"fullz\", \"amount\": \"2.00\", \"user_id\": \"2\", \"fullz_id\": \"2\", \"created_at\": \"2022-02-26T22:08:20.000000Z\", \"updated_at\": \"2022-02-26T22:08:20.000000Z\"}}', NULL, '2022-02-27 03:08:20', '2022-02-27 03:08:20'),
+(343, 'User', 'The user has been updated', 'App\\Models\\User', 'updated', 2, 'App\\Models\\User', 2, '{\"old\": {\"remember_token\": \"bUNliprYYI2NRZ9tFPPvvGtmFfcwUaJEk7I3ckjdMZPLS0XdsQvY62LnXtcC\"}, \"attributes\": {\"remember_token\": \"Ip4arvqD4N9IGVP85s868KSRbCZ40RvbaSZWqf6AiWvLtJpasEplkmzHvgUt\"}}', NULL, '2022-02-27 03:08:42', '2022-02-27 03:08:42'),
+(344, 'funds', 'The funds has been created', 'App\\Models\\Fund', 'created', 30, 'App\\Models\\User', 1, '{\"attributes\": {\"id\": 30, \"fee\": null, \"notes\": \"funds updated\", \"amount\": \"1000\", \"status\": \"Pending\", \"user_id\": \"2\", \"added_by\": \"1\", \"currency\": \"USD\", \"created_at\": \"2022-02-26T22:10:20.000000Z\", \"updated_at\": \"2022-02-26T22:10:20.000000Z\", \"invoice_sum\": \"\", \"invoice_url\": null, \"source_rate\": null, \"order_number\": \"621aa54cc2e83686\", \"source_amount\": \"1000.00\", \"transaction_id\": \"892621aa54cc2e79\", \"source_currency\": \"USD\", \"invoice_total_sum\": null, \"invoice_commission\": null}}', NULL, '2022-02-27 03:10:20', '2022-02-27 03:10:20'),
+(345, 'funds', 'The funds has been updated', 'App\\Models\\Fund', 'updated', 30, 'App\\Models\\User', 1, '{\"old\": {\"status\": \"Pending\"}, \"attributes\": {\"status\": \"Completed\"}}', NULL, '2022-02-27 03:10:20', '2022-02-27 03:10:20'),
+(346, 'order', 'The order has been created', 'App\\Models\\Order', 'created', 25, 'App\\Models\\User', 2, '{\"attributes\": {\"id\": 25, \"type\": \"business\", \"amount\": \"190.00\", \"user_id\": \"2\", \"fullz_id\": \"2\", \"created_at\": \"2022-02-26T22:10:48.000000Z\", \"updated_at\": \"2022-02-26T22:10:48.000000Z\"}}', NULL, '2022-02-27 03:10:48', '2022-02-27 03:10:48'),
+(347, 'funds', 'The funds has been created', 'App\\Models\\Fund', 'created', 31, 'App\\Models\\User', 2, '{\"attributes\": {\"id\": 31, \"fee\": null, \"notes\": null, \"amount\": null, \"status\": \"Pending\", \"user_id\": \"2\", \"added_by\": \"2\", \"currency\": \"BTC\", \"created_at\": \"2022-02-26T22:18:08.000000Z\", \"updated_at\": \"2022-02-26T22:18:08.000000Z\", \"invoice_sum\": \"\", \"invoice_url\": null, \"source_rate\": null, \"order_number\": \"621aa71a98ac4706\", \"source_amount\": \"5.00\", \"transaction_id\": \"621aa720f27d3e63ba010d3f\", \"source_currency\": \"USD\", \"invoice_total_sum\": null, \"invoice_commission\": null}}', NULL, '2022-02-27 03:18:08', '2022-02-27 03:18:08'),
+(348, 'User', 'The user has been updated', 'App\\Models\\User', 'updated', 2, 'App\\Models\\User', 2, '{\"old\": {\"remember_token\": \"Ip4arvqD4N9IGVP85s868KSRbCZ40RvbaSZWqf6AiWvLtJpasEplkmzHvgUt\"}, \"attributes\": {\"remember_token\": \"WpuECawBnYiTBl3mU5NK7LqmhYUFkeSkf63DMoTrdMHd9Nz96YkcecabYOSA\"}}', NULL, '2022-02-27 13:13:08', '2022-02-27 13:13:08'),
+(349, 'funds', 'The funds has been created', 'App\\Models\\Fund', 'created', 32, 'App\\Models\\User', 2, '{\"attributes\": {\"id\": 32, \"fee\": null, \"notes\": null, \"amount\": null, \"status\": \"Pending\", \"user_id\": \"2\", \"added_by\": \"2\", \"currency\": \"BTC\", \"created_at\": \"2022-02-27T15:21:04.000000Z\", \"updated_at\": \"2022-02-27T15:21:04.000000Z\", \"invoice_sum\": \"\", \"invoice_url\": null, \"source_rate\": null, \"order_number\": \"621b96cc40df8689\", \"source_amount\": \"20.00\", \"transaction_id\": \"621b96e0cf62523fcb0bd0f8\", \"source_currency\": \"USD\", \"invoice_total_sum\": null, \"invoice_commission\": null}}', NULL, '2022-02-27 20:21:04', '2022-02-27 20:21:04'),
+(350, 'User', 'The user has been updated', 'App\\Models\\User', 'updated', 2, 'App\\Models\\User', 2, '{\"old\": {\"remember_token\": \"WpuECawBnYiTBl3mU5NK7LqmhYUFkeSkf63DMoTrdMHd9Nz96YkcecabYOSA\"}, \"attributes\": {\"remember_token\": \"FLfCPKflAjSRxrCsKXzaWwxGTEQZ7JNjIY1XjuTyzHfaSKX6gC00h8Ukyz64\"}}', NULL, '2022-03-01 15:20:18', '2022-03-01 15:20:18'),
+(351, 'funds', 'The funds has been created', 'App\\Models\\Fund', 'created', 33, 'App\\Models\\User', 1, '{\"attributes\": {\"id\": 33, \"fee\": null, \"notes\": \"funds updated\", \"amount\": \"200\", \"status\": \"Pending\", \"user_id\": \"3\", \"added_by\": \"1\", \"currency\": \"USD\", \"created_at\": \"2022-03-01T10:21:39.000000Z\", \"updated_at\": \"2022-03-01T10:21:39.000000Z\", \"invoice_sum\": \"\", \"invoice_url\": null, \"source_rate\": null, \"order_number\": \"621df3b393fb6690\", \"source_amount\": \"200.00\", \"transaction_id\": \"116621df3b393fad\", \"source_currency\": \"USD\", \"invoice_total_sum\": null, \"invoice_commission\": null}}', NULL, '2022-03-01 15:21:39', '2022-03-01 15:21:39'),
+(352, 'funds', 'The funds has been updated', 'App\\Models\\Fund', 'updated', 33, 'App\\Models\\User', 1, '{\"old\": {\"status\": \"Pending\"}, \"attributes\": {\"status\": \"Completed\"}}', NULL, '2022-03-01 15:21:39', '2022-03-01 15:21:39'),
+(353, 'order', 'The order has been created', 'App\\Models\\Order', 'created', 26, 'App\\Models\\User', 3, '{\"attributes\": {\"id\": 26, \"type\": \"business\", \"amount\": \"190.00\", \"user_id\": \"3\", \"fullz_id\": \"2\", \"created_at\": \"2022-03-01T10:21:56.000000Z\", \"updated_at\": \"2022-03-01T10:21:56.000000Z\"}}', NULL, '2022-03-01 15:21:56', '2022-03-01 15:21:56'),
+(354, 'User', 'The user has been updated', 'App\\Models\\User', 'updated', 2, 'App\\Models\\User', 2, '{\"old\": {\"remember_token\": \"FLfCPKflAjSRxrCsKXzaWwxGTEQZ7JNjIY1XjuTyzHfaSKX6gC00h8Ukyz64\"}, \"attributes\": {\"remember_token\": \"zGOCxOpeJoar0Ro2FFZwQNmGUvqnkWgQxxHFJtu8U0X2bRIcO9yLF7SXGwY3\"}}', NULL, '2022-03-01 15:48:41', '2022-03-01 15:48:41'),
+(355, 'User', 'The user has been updated', 'App\\Models\\User', 'updated', 2, 'App\\Models\\User', 2, '{\"old\": {\"remember_token\": \"zGOCxOpeJoar0Ro2FFZwQNmGUvqnkWgQxxHFJtu8U0X2bRIcO9yLF7SXGwY3\"}, \"attributes\": {\"remember_token\": \"kjXf60CorGLBOpdL2J0HCXnOyLhrEsEVLcwu33YB4ZtKqZ10PygOR2zl76O9\"}}', NULL, '2022-03-02 00:28:35', '2022-03-02 00:28:35'),
+(356, 'order', 'The order has been created', 'App\\Models\\Order', 'created', 27, 'App\\Models\\User', 2, '{\"attributes\": {\"id\": 27, \"type\": \"business\", \"amount\": \"5.00\", \"user_id\": \"2\", \"fullz_id\": \"1\", \"created_at\": \"2022-03-01T20:20:14.000000Z\", \"updated_at\": \"2022-03-01T20:20:14.000000Z\"}}', NULL, '2022-03-02 01:20:14', '2022-03-02 01:20:14');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `business_pros`
+--
+
+CREATE TABLE `business_pros` (
+  `id` bigint UNSIGNED NOT NULL,
+  `company_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ein` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `creation_date` date DEFAULT NULL,
+  `owner` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `state` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `article_of_organization` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `annual_report` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `price` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `file_path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `business_pros`
+--
+
+INSERT INTO `business_pros` (`id`, `company_name`, `ein`, `creation_date`, `owner`, `state`, `city`, `article_of_organization`, `annual_report`, `price`, `file_path`, `created_at`, `updated_at`) VALUES
+(1, '00 GRANITE LLC', 'YES', '1970-01-01', 'GOODWIN, JAMES W', 'FL', 'Jacksonville', 'YES', 'YES', '5', '5.zip', '2022-03-02 01:14:30', '2022-03-02 01:14:30'),
+(2, '001K LLC', 'YES', '1970-01-01', 'BREDBERG, OLE', 'KS', 'New York', 'YES', 'YES', '2', '2.zip', '2022-03-02 01:14:30', '2022-03-02 01:14:30'),
+(3, '007 NOW LLC', 'YES', '1970-01-01', 'OLYNYK, JEFFREY', 'FL', 'Orlando', 'YES', 'YES', '3', '3.zip', '2022-03-02 01:14:30', '2022-03-02 01:14:30');
 
 -- --------------------------------------------------------
 
@@ -473,7 +558,7 @@ INSERT INTO `fullzs` (`id`, `first_name`, `last_name`, `street`, `city`, `state`
 (45, 'jerome', 'burton', '3971 HWY36N', 'Brenham', 'TX', '77833', '463633852', '1980-11-17', '1003617', 'TX', '2019-11-17', '2025-11-17', 16.00, '1', '2', '2022-02-11 06:56:17', '2022-02-11 06:56:17'),
 (46, 'mowhib', 'khearalla', '5429 WILBARGER ST # 25', 'Fort Worth', 'TX', '76119', '638862414', '1980-11-17', '1003904', 'TX', '2019-11-17', '2025-11-17', 17.00, '1', '2', '2022-02-11 06:56:17', '2022-02-11 06:56:17'),
 (47, 'melissa', 'sharpe', '301 W LAS COLINAS BLVD 338', 'Irving', 'TX', '75039', '462495994', '1980-11-17', '10041099', 'TX', '2019-11-17', '2025-11-17', 18.00, '1', '2', '2022-02-11 06:56:17', '2022-02-11 06:56:17'),
-(48, 'jessica', 'martinez', '1311 WILD ROSE LN', 'Laredo', 'TX', '78041', '459751793', '1980-11-17', '1004113', 'TX', '2019-11-17', '2025-11-17', 19.00, '1', '2', '2022-02-11 06:56:17', '2022-02-11 06:56:17'),
+(48, 'jessica', 'martinez', '1311 WILD ROSE LN', 'Laredo', 'TX', '78041', '459751793', '1980-11-17', '1004113', 'TX', NULL, '2025-11-17', 19.00, '1', '2', '2022-02-11 06:56:17', '2022-02-11 06:56:17'),
 (49, 'dalila', 'ortega', '5434 SHERRY DR', 'San Antonio', 'TX', '78242', '638862414', '1980-11-17', '10043696', 'TX', '2019-11-17', '2025-11-17', 20.00, '1', '2', '2022-02-11 06:56:17', '2022-02-11 06:56:17'),
 (50, 'tina', 'haynes', '200 CR 3530', 'Woodville', 'TX', '75979', '462495994', '1980-11-17', '10049318', 'TX', '2019-11-17', '2025-11-17', 21.00, '1', '2', '2022-02-11 06:56:17', '2022-02-11 06:56:17'),
 (51, 'patrice', 'scott', '800 N 123 BYPASS 28', 'Seguin', 'TX', '78155', '459751793', '1980-11-17', '1005168', 'TX', '2019-11-17', '2025-11-17', 22.00, '1', '2', '2022-02-11 06:56:17', '2022-02-11 06:56:17'),
@@ -523,6 +608,7 @@ INSERT INTO `fullzs` (`id`, `first_name`, `last_name`, `street`, `city`, `state`
 CREATE TABLE `funds` (
   `id` bigint UNSIGNED NOT NULL,
   `user_id` int NOT NULL,
+  `added_by` int DEFAULT NULL,
   `transaction_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `order_number` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `invoice_url` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
@@ -535,6 +621,7 @@ CREATE TABLE `funds` (
   `invoice_total_sum` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `invoice_commission` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fee` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `notes` text COLLATE utf8mb4_unicode_ci,
   `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -544,21 +631,39 @@ CREATE TABLE `funds` (
 -- Dumping data for table `funds`
 --
 
-INSERT INTO `funds` (`id`, `user_id`, `transaction_id`, `order_number`, `invoice_url`, `source_amount`, `amount`, `currency`, `source_currency`, `source_rate`, `invoice_sum`, `invoice_total_sum`, `invoice_commission`, `fee`, `status`, `created_at`, `updated_at`) VALUES
-(1, 2, '45655645634532443546', '6207b34a10141933', NULL, 100.00, '100.00', 'BTC', 'USD', '0.00008525', '0.00364490', '0.00370040', '0.00005550', NULL, 'Completed', '2022-02-09 19:58:21', '2022-02-09 19:58:21'),
-(3, 2, '6207c5f1fa14bb23225c37ad', '6207c5e577407805', NULL, 1.00, '0.00020266', 'BTC', 'USD', '0.00002339', '0.00025773', '0.00020266', '0.00000000', '0.00005507', 'Completed', '2022-02-12 19:36:36', '2022-02-13 00:12:01'),
-(4, 2, '6207c6328e8f927a9d64e1a1', '6207c5e577407805', NULL, 3.00, '0.00020266', 'BTC', 'USD', '0.00002339', '0.00025773', '0.00020266', '0.00000000', '0.00005507', 'Completed', '2022-02-12 19:37:39', '2022-02-13 00:12:00'),
-(5, 3, '6207d53d62480e385e39b4e3', '6207d535464ae182', NULL, 5.00, '0.00020266', 'BTC', 'USD', '0.00002339', '0.00025773', '0.00020266', '0.00000000', '0.00005507', 'Completed', '2022-02-12 20:41:49', '2022-02-13 00:11:59'),
-(6, 3, '6207d8a62328506df602189d', '6207d8953ccc1989', NULL, 5.00, '0.00020266', 'BTC', 'USD', '0.00002339', '0.00025773', '0.00020266', '0.00000000', '0.00005507', 'Completed', '2022-02-12 20:56:31', '2022-02-13 00:11:58'),
-(7, 3, '6207e2a96e49de383a734cd8', '6207e2a346c00544', NULL, 2.00, '0.00020266', 'BTC', 'USD', '0.00002339', '0.00025773', '0.00020266', '0.00000000', '0.00005507', 'Completed', '2022-02-12 21:39:06', '2022-02-13 00:11:57'),
-(8, 3, '6207e7d9816fee4cc26c1c8a', '6207e7d1e32a7746', NULL, 2.00, '0.00020266', 'BTC', 'USD', '0.00002339', '0.00025773', '0.00020266', '0.00000000', '0.00005507', 'Completed', '2022-02-12 22:01:28', '2022-02-13 00:11:57'),
-(9, 2, '6207eb4c0f6a5021960a4594', '6207eb43e690d608', NULL, 2.00, '0.00020266', 'BTC', 'USD', '0.00002339', '0.00025773', '0.00020266', '0.00000000', '0.00005507', 'Completed', '2022-02-12 22:15:57', '2022-02-13 00:11:56'),
-(10, 3, '6207ec45816fee4cc26c1c8e', '6207ec40792ec410', NULL, 2.00, '0.00020266', 'BTC', 'USD', '0.00002339', '0.00025773', '0.00020266', '0.00000000', '0.00005507', 'Completed', '2022-02-12 22:20:06', '2022-02-13 00:11:55'),
-(11, 3, '620810fddb845c39a40fc99b', '620810f780638994', NULL, 2.00, NULL, 'BTC', NULL, NULL, '', NULL, NULL, NULL, 'Completed', '2022-02-13 00:56:50', '2022-02-13 02:06:40'),
-(12, 3, '6208235e0fc9fb1a882535a7', '6208235975d20147', NULL, 2.00, NULL, 'BTC', 'USD', NULL, '', NULL, NULL, NULL, 'Completed', '2022-02-13 02:15:12', '2022-02-13 02:23:22'),
-(13, 4, '620a54e07cf6893e95753fa4', '620a54db4bec6199', NULL, 20.00, NULL, 'BTC', 'USD', NULL, '', NULL, NULL, NULL, 'Pending', '2022-02-14 18:10:56', '2022-02-14 18:10:56'),
-(14, 3, '620d2b7d17e93e7cbd72baa6', '620d2b76d347f418', NULL, 2.00, NULL, 'BTC', 'USD', NULL, '', NULL, NULL, NULL, 'Pending', '2022-02-16 21:51:09', '2022-02-16 21:51:09'),
-(15, 3, '620eea6f1f86eb31127dabc7', '620eea5c90539690', NULL, 20.00, NULL, 'BTC', 'USD', NULL, '', NULL, NULL, NULL, 'Pending', '2022-02-18 05:38:07', '2022-02-18 05:38:07');
+INSERT INTO `funds` (`id`, `user_id`, `added_by`, `transaction_id`, `order_number`, `invoice_url`, `source_amount`, `amount`, `currency`, `source_currency`, `source_rate`, `invoice_sum`, `invoice_total_sum`, `invoice_commission`, `fee`, `notes`, `status`, `created_at`, `updated_at`) VALUES
+(1, 2, NULL, '45655645634532443546', '6207b34a10141933', NULL, 100.00, '100.00', 'BTC', 'USD', '0.00008525', '0.00364490', '0.00370040', '0.00005550', NULL, NULL, 'Completed', '2022-02-09 19:58:21', '2022-02-09 19:58:21'),
+(3, 2, NULL, '6207c5f1fa14bb23225c37ad', '6207c5e577407805', NULL, 1.00, '0.00020266', 'BTC', 'USD', '0.00002339', '0.00025773', '0.00020266', '0.00000000', '0.00005507', NULL, 'Completed', '2022-02-12 19:36:36', '2022-02-13 00:12:01'),
+(4, 2, NULL, '6207c6328e8f927a9d64e1a1', '6207c5e577407805', NULL, 3.00, '0.00020266', 'BTC', 'USD', '0.00002339', '0.00025773', '0.00020266', '0.00000000', '0.00005507', NULL, 'Completed', '2022-02-12 19:37:39', '2022-02-13 00:12:00'),
+(5, 3, NULL, '6207d53d62480e385e39b4e3', '6207d535464ae182', NULL, 5.00, '0.00020266', 'BTC', 'USD', '0.00002339', '0.00025773', '0.00020266', '0.00000000', '0.00005507', NULL, 'Completed', '2022-02-12 20:41:49', '2022-02-13 00:11:59'),
+(6, 3, NULL, '6207d8a62328506df602189d', '6207d8953ccc1989', NULL, 5.00, '0.00020266', 'BTC', 'USD', '0.00002339', '0.00025773', '0.00020266', '0.00000000', '0.00005507', NULL, 'Completed', '2022-02-12 20:56:31', '2022-02-13 00:11:58'),
+(7, 3, NULL, '6207e2a96e49de383a734cd8', '6207e2a346c00544', NULL, 2.00, '0.00020266', 'BTC', 'USD', '0.00002339', '0.00025773', '0.00020266', '0.00000000', '0.00005507', NULL, 'Completed', '2022-02-12 21:39:06', '2022-02-13 00:11:57'),
+(8, 3, NULL, '6207e7d9816fee4cc26c1c8a', '6207e7d1e32a7746', NULL, 2.00, '0.00020266', 'BTC', 'USD', '0.00002339', '0.00025773', '0.00020266', '0.00000000', '0.00005507', NULL, 'Completed', '2022-02-12 22:01:28', '2022-02-13 00:11:57'),
+(9, 2, NULL, '6207eb4c0f6a5021960a4594', '6207eb43e690d608', NULL, 2.00, '0.00020266', 'BTC', 'USD', '0.00002339', '0.00025773', '0.00020266', '0.00000000', '0.00005507', NULL, 'Completed', '2022-02-12 22:15:57', '2022-02-13 00:11:56'),
+(10, 3, NULL, '6207ec45816fee4cc26c1c8e', '6207ec40792ec410', NULL, 2.00, '0.00020266', 'BTC', 'USD', '0.00002339', '0.00025773', '0.00020266', '0.00000000', '0.00005507', NULL, 'Completed', '2022-02-12 22:20:06', '2022-02-13 00:11:55'),
+(11, 3, NULL, '620810fddb845c39a40fc99b', '620810f780638994', NULL, 2.00, NULL, 'BTC', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Completed', '2022-02-13 00:56:50', '2022-02-13 02:06:40'),
+(12, 3, NULL, '6208235e0fc9fb1a882535a7', '6208235975d20147', NULL, 2.00, NULL, 'BTC', 'USD', NULL, '', NULL, NULL, NULL, NULL, 'Completed', '2022-02-13 02:15:12', '2022-02-13 02:23:22'),
+(13, 4, NULL, '620a54e07cf6893e95753fa4', '620a54db4bec6199', NULL, 20.00, NULL, 'BTC', 'USD', NULL, '', NULL, NULL, NULL, NULL, 'Pending', '2022-02-14 18:10:56', '2022-02-14 18:10:56'),
+(14, 3, NULL, '620d2b7d17e93e7cbd72baa6', '620d2b76d347f418', NULL, 2.00, NULL, 'BTC', 'USD', NULL, '', NULL, NULL, NULL, NULL, 'Pending', '2022-02-16 21:51:09', '2022-02-16 21:51:09'),
+(15, 3, NULL, '620eea6f1f86eb31127dabc7', '620eea5c90539690', NULL, 20.00, NULL, 'BTC', 'USD', NULL, '', NULL, NULL, NULL, NULL, 'Pending', '2022-02-18 05:38:07', '2022-02-18 05:38:07'),
+(16, 3, NULL, '7626217906e6877a', '6217906e68785679', NULL, 12.00, '12', 'USD', 'USD', NULL, '', NULL, NULL, NULL, 'test', 'Completed', '2022-02-24 19:04:30', '2022-02-24 19:04:30'),
+(17, 3, NULL, '7376217907a00bf7', '6217907a00c05164', NULL, 12.00, '12', 'USD', 'USD', NULL, '', NULL, NULL, NULL, 'test', 'Completed', '2022-02-24 19:04:42', '2022-02-24 19:04:42'),
+(18, 3, NULL, '5996217908d2a542', '6217908d2a54e210', NULL, -8.00, '-8', 'USD', 'USD', NULL, '', NULL, NULL, NULL, 'test', 'Completed', '2022-02-24 19:05:01', '2022-02-24 19:05:01'),
+(19, 3, NULL, '58162179246705e5', '62179246705ef722', NULL, 1.00, '1', 'USD', 'USD', NULL, '', NULL, NULL, NULL, 'added  by admin', 'Completed', '2022-02-24 19:12:22', '2022-02-24 19:12:22'),
+(20, 5, 1, '696621794d81bcff', '621794d81bd09973', NULL, 10.00, '10', 'USD', 'USD', NULL, '', NULL, NULL, NULL, 'added  by admin', 'Completed', '2022-02-24 19:23:20', '2022-02-24 19:23:20'),
+(21, 2, 1, '6846217ee9da6ee6', '6217ee9da6ef0346', NULL, 12.00, '12', 'USD', 'USD', NULL, '', NULL, NULL, NULL, 'added  by admin', 'Completed', '2022-02-25 01:46:21', '2022-02-25 01:46:21'),
+(22, 3, 3, '6219665d6bd95500d55accef', '62196649c1000117', NULL, 5.00, NULL, 'BTC', 'USD', NULL, '', NULL, NULL, NULL, NULL, 'Pending', '2022-02-26 04:29:34', '2022-02-26 04:29:34'),
+(23, 3, 3, '62196882d6df535d23468fb0', '62196649c1000117', NULL, 5.00, NULL, 'BTC', 'USD', NULL, '', NULL, NULL, NULL, NULL, 'Pending', '2022-02-26 04:38:42', '2022-02-26 04:38:42'),
+(24, 2, 1, '72462197a0b5af5d', '62197a0b5af66367', NULL, 100.00, '100', 'USD', 'USD', NULL, '', NULL, NULL, NULL, 'funds updated', 'Completed', '2022-02-26 05:53:31', '2022-02-26 05:53:31'),
+(25, 2, 2, '621a0c489b8fa916426c11aa', '621a0c4369c48128', NULL, 2.00, NULL, 'BTC', 'USD', NULL, '', NULL, NULL, NULL, NULL, 'Pending', '2022-02-26 16:17:28', '2022-02-26 16:17:28'),
+(26, 2, 2, '621a0c48132ba43d686ef27d', '621a0c4369c48128', NULL, 2.00, NULL, 'BTC', 'USD', NULL, '', NULL, NULL, NULL, NULL, 'Pending', '2022-02-26 16:17:28', '2022-02-26 16:17:28'),
+(27, 2, 2, '621a98ce132ba43d686ef2ae', '621a98c805315572', NULL, 5.00, NULL, 'BTC', 'USD', NULL, '', NULL, NULL, NULL, NULL, 'Pending', '2022-02-27 02:17:02', '2022-02-27 02:17:02'),
+(28, 2, 2, '621a9a02ad5d4352150fc818', '621a99fe499f3965', NULL, 5.00, NULL, 'BTC', 'USD', NULL, '', NULL, NULL, NULL, NULL, 'Pending', '2022-02-27 02:22:10', '2022-02-27 02:22:10'),
+(29, 2, 2, '621aa490b0d5501f0769237a', '621aa48b30c04685', NULL, 5.00, NULL, 'BTC', 'USD', NULL, '', NULL, NULL, NULL, NULL, 'Pending', '2022-02-27 03:07:12', '2022-02-27 03:07:12'),
+(30, 2, 1, '892621aa54cc2e79', '621aa54cc2e83686', NULL, 1000.00, '1000', 'USD', 'USD', NULL, '', NULL, NULL, NULL, 'funds updated', 'Completed', '2022-02-27 03:10:20', '2022-02-27 03:10:20'),
+(31, 2, 2, '621aa720f27d3e63ba010d3f', '621aa71a98ac4706', NULL, 5.00, NULL, 'BTC', 'USD', NULL, '', NULL, NULL, NULL, NULL, 'Pending', '2022-02-27 03:18:08', '2022-02-27 03:18:08'),
+(32, 2, 2, '621b96e0cf62523fcb0bd0f8', '621b96cc40df8689', NULL, 20.00, NULL, 'BTC', 'USD', NULL, '', NULL, NULL, NULL, NULL, 'Pending', '2022-02-27 20:21:04', '2022-02-27 20:21:04'),
+(33, 3, 1, '116621df3b393fad', '621df3b393fb6690', NULL, 200.00, '200', 'USD', 'USD', NULL, '', NULL, NULL, NULL, 'funds updated', 'Completed', '2022-03-01 15:21:39', '2022-03-01 15:21:39');
 
 -- --------------------------------------------------------
 
@@ -599,6 +704,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 CREATE TABLE `orders` (
   `id` bigint UNSIGNED NOT NULL,
   `fullz_id` int NOT NULL,
+  `type` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'fullz',
   `user_id` int NOT NULL,
   `amount` decimal(8,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -609,15 +715,31 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `fullz_id`, `user_id`, `amount`, `created_at`, `updated_at`) VALUES
-(4, 35, 2, 6.00, '2022-02-11 07:07:40', '2022-02-11 07:07:40'),
-(5, 5, 2, 24.00, '2022-02-12 04:50:05', '2022-02-12 04:50:05'),
-(6, 38, 2, 9.00, '2022-02-12 04:51:44', '2022-02-12 04:51:44'),
-(7, 6, 3, 6.00, '2022-02-13 00:17:17', '2022-02-13 00:17:17'),
-(8, 12, 3, 2.00, '2022-02-13 00:18:14', '2022-02-13 00:18:14'),
-(9, 2, 3, 2.00, '2022-02-13 00:18:14', '2022-02-13 00:18:14'),
-(10, 62, 3, 2.00, '2022-02-15 00:37:22', '2022-02-15 00:37:22'),
-(11, 5, 3, 2.00, '2022-02-16 21:50:25', '2022-02-16 21:50:25');
+INSERT INTO `orders` (`id`, `fullz_id`, `type`, `user_id`, `amount`, `created_at`, `updated_at`) VALUES
+(4, 35, 'fullz', 2, 6.00, '2022-02-11 07:07:40', '2022-02-11 07:07:40'),
+(5, 5, 'fullz', 2, 24.00, '2022-02-12 04:50:05', '2022-02-12 04:50:05'),
+(6, 38, 'fullz', 2, 9.00, '2022-02-12 04:51:44', '2022-02-12 04:51:44'),
+(7, 6, 'fullz', 3, 6.00, '2022-02-13 00:17:17', '2022-02-13 00:17:17'),
+(8, 12, 'fullz', 3, 2.00, '2022-02-13 00:18:14', '2022-02-13 00:18:14'),
+(9, 2, 'fullz', 3, 2.00, '2022-02-13 00:18:14', '2022-02-13 00:18:14'),
+(10, 62, 'fullz', 3, 2.00, '2022-02-15 00:37:22', '2022-02-15 00:37:22'),
+(11, 5, 'fullz', 3, 2.00, '2022-02-16 21:50:25', '2022-02-16 21:50:25'),
+(12, 3, 'business', 3, 34.00, '2022-02-26 04:19:47', '2022-02-26 04:19:47'),
+(13, 64, 'fullz', 2, 5.00, '2022-02-26 07:02:28', '2022-02-26 07:02:28'),
+(14, 63, 'fullz', 2, 5.00, '2022-02-26 07:02:28', '2022-02-26 07:02:28'),
+(15, 61, 'fullz', 2, 5.00, '2022-02-26 07:02:28', '2022-02-26 07:02:28'),
+(16, 62, 'fullz', 2, 5.00, '2022-02-26 07:02:28', '2022-02-26 07:02:28'),
+(17, 3, 'business', 2, 34.00, '2022-02-26 07:02:57', '2022-02-26 07:02:57'),
+(18, 34, 'fullz', 2, 53.00, '2022-02-26 07:03:24', '2022-02-26 07:03:24'),
+(19, 6, 'fullz', 2, 2.00, '2022-02-27 02:22:46', '2022-02-27 02:22:46'),
+(20, 32, 'fullz', 2, 13.00, '2022-02-27 02:29:09', '2022-02-27 02:29:09'),
+(21, 31, 'fullz', 2, 11.00, '2022-02-27 02:29:27', '2022-02-27 02:29:27'),
+(22, 33, 'fullz', 2, 34.00, '2022-02-27 03:08:01', '2022-02-27 03:08:01'),
+(23, 36, 'fullz', 2, 23.00, '2022-02-27 03:08:18', '2022-02-27 03:08:18'),
+(24, 2, 'fullz', 2, 2.00, '2022-02-27 03:08:20', '2022-02-27 03:08:20'),
+(25, 2, 'business', 2, 190.00, '2022-02-27 03:10:48', '2022-02-27 03:10:48'),
+(26, 2, 'business', 3, 190.00, '2022-03-01 15:21:56', '2022-03-01 15:21:56'),
+(27, 1, 'business', 2, 5.00, '2022-03-02 01:20:14', '2022-03-02 01:20:14');
 
 -- --------------------------------------------------------
 
@@ -655,6 +777,28 @@ CREATE TABLE `personal_access_tokens` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `settings`
+--
+
+CREATE TABLE `settings` (
+  `id` bigint UNSIGNED NOT NULL,
+  `api_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `telegram_link` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `telegram_group_link` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`id`, `api_key`, `telegram_link`, `telegram_group_link`, `created_at`, `updated_at`) VALUES
+(1, 'v8fPBULSbPbBIYUzMQrmV4-FT_Ofr91umRge081-YX6cg5yso4cjAlTZak8RMtJ8', 'https://t.me/lostcorvuss', 'https://t.me/lostcorvuss', '2022-02-26 01:26:30', '2022-03-02 00:39:13');
 
 -- --------------------------------------------------------
 
@@ -700,7 +844,25 @@ INSERT INTO `transactions` (`id`, `transaction_no`, `user_id`, `type`, `source`,
 (83, '620810fddb845c39a40fc99b', 3, 'Credit', 'BTC', '2.00', '13', 'Completed', '2022-02-13 02:06:40', '2022-02-13 02:06:40'),
 (84, '6208235e0fc9fb1a882535a7', 3, 'Credit', 'BTC', '2.00', '15', 'Completed', '2022-02-13 02:23:22', '2022-02-13 02:23:22'),
 (85, '45392759', 3, 'Debit', 'Funds', '2.00', '13', 'Completed', '2022-02-15 00:37:22', '2022-02-15 00:37:22'),
-(86, '55837049', 3, 'Debit', 'Funds', '2.00', '11', 'Completed', '2022-02-16 21:50:25', '2022-02-16 21:50:25');
+(86, '55837049', 3, 'Debit', 'Funds', '2.00', '11', 'Completed', '2022-02-16 21:50:25', '2022-02-16 21:50:25'),
+(87, '696621794d81bcff', 5, 'Credit', 'USD', '10', '0', 'Completed', '2022-02-24 19:23:20', '2022-02-24 19:23:20'),
+(88, '6846217ee9da6ee6', 2, 'Credit', 'USD', '12', NULL, 'Completed', '2022-02-25 01:46:21', '2022-02-25 01:46:21'),
+(89, '21454307', 3, 'Debit', 'Funds', '34.00', NULL, 'Completed', '2022-02-26 04:19:47', '2022-02-26 04:19:47'),
+(90, '72462197a0b5af5d', 2, 'Credit', 'USD', '100', NULL, 'Completed', '2022-02-26 05:53:31', '2022-02-26 05:53:31'),
+(91, '89904536', 2, 'Debit', 'Funds', '20.00', NULL, 'Completed', '2022-02-26 07:02:28', '2022-02-26 07:02:28'),
+(92, '62923142', 2, 'Debit', 'Funds', '34.00', NULL, 'Completed', '2022-02-26 07:02:57', '2022-02-26 07:02:57'),
+(93, '28276425', 2, 'Debit', 'Funds', '53.00', NULL, 'Completed', '2022-02-26 07:03:24', '2022-02-26 07:03:24'),
+(94, '75403026', 2, 'Debit', 'Funds', '2.00', NULL, 'Completed', '2022-02-27 02:22:46', '2022-02-27 02:22:46'),
+(95, '81035459', 2, 'Debit', 'Funds', '13.00', NULL, 'Completed', '2022-02-27 02:29:09', '2022-02-27 02:29:09'),
+(96, '81743579', 2, 'Debit', 'Funds', '11.00', NULL, 'Completed', '2022-02-27 02:29:27', '2022-02-27 02:29:27'),
+(97, '14286627', 2, 'Debit', 'Funds', '34.00', NULL, 'Completed', '2022-02-27 03:08:01', '2022-02-27 03:08:01'),
+(98, '12362666', 2, 'Debit', 'Funds', '23.00', NULL, 'Completed', '2022-02-27 03:08:18', '2022-02-27 03:08:18'),
+(99, '57229147', 2, 'Debit', 'Funds', '2.00', NULL, 'Completed', '2022-02-27 03:08:20', '2022-02-27 03:08:20'),
+(100, '892621aa54cc2e79', 2, 'Credit', 'USD', '1000', NULL, 'Completed', '2022-02-27 03:10:20', '2022-02-27 03:10:20'),
+(101, '53579188', 2, 'Debit', 'Funds', '190.00', NULL, 'Completed', '2022-02-27 03:10:48', '2022-02-27 03:10:48'),
+(102, '116621df3b393fad', 3, 'Credit', 'USD', '200', NULL, 'Completed', '2022-03-01 15:21:39', '2022-03-01 15:21:39'),
+(103, '11387614', 3, 'Debit', 'Funds', '190.00', NULL, 'Completed', '2022-03-01 15:21:56', '2022-03-01 15:21:56'),
+(104, '45402465', 2, 'Debit', 'Funds', '5.00', NULL, 'Completed', '2022-03-02 01:20:14', '2022-03-02 01:20:14');
 
 -- --------------------------------------------------------
 
@@ -710,15 +872,15 @@ INSERT INTO `transactions` (`id`, `transaction_no`, `user_id`, `type`, `source`,
 
 CREATE TABLE `users` (
   `id` bigint UNSIGNED NOT NULL,
-  `first_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `last_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '2' COMMENT '1->admin,2->user',
+  `status` int NOT NULL DEFAULT '1',
   `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -727,12 +889,35 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `name`, `phone`, `user_type`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, 'admin', '0000000000', '1', 'admin@admin.com', NULL, '$2y$10$PVrLfsJaByTXPsCvtEZ8bu.qxX6Picgz5a2Z.FDkSB2e21mvxKZ26', NULL, '2022-02-07 15:11:19', '2022-02-07 15:11:19'),
-(2, NULL, NULL, 'user', '1111111111', '2', 'user@user.com', NULL, '$2y$10$uE1UsGOhNfLzVhuUUACry.i5z1hPcQM6g1XKjXyuQ4UVbyyqj.4am', NULL, '2022-02-07 16:06:58', '2022-02-12 19:45:43'),
-(3, NULL, NULL, 'digitalself30', '60476488743', '2', 'digitalbusiness30@gmail.com', NULL, '$2y$10$FHppIf/d94Z71gRlEFimBeT6V/yPP1GpJOnGmhyt0ovhHYyt521AS', NULL, '2022-02-12 20:06:45', '2022-02-12 20:06:45'),
-(4, NULL, NULL, 'karl', NULL, '2', 'karl@gmail.com', NULL, '$2y$10$OxIQrpSFtm3UUdpOIoKMj.5TY.Y6st.eDz/WbFgw3NvRNId/MAOGG', NULL, '2022-02-14 18:09:52', '2022-02-14 18:09:52'),
-(5, NULL, NULL, 'howdy', NULL, '2', 'howdy@gmail.com', NULL, '$2y$10$mKU8loZJhDsZvtsccAdxX.jrWh71omnAsOYyWnwbKgMoIFvtJEmDK', NULL, '2022-02-14 22:32:02', '2022-02-14 22:32:02');
+INSERT INTO `users` (`id`, `name`, `phone`, `user_type`, `status`, `email`, `email_verified_at`, `password`, `remember_token`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 'admin', '0000000000', '1', 1, 'admin@admin.com', NULL, '$2y$10$PVrLfsJaByTXPsCvtEZ8bu.qxX6Picgz5a2Z.FDkSB2e21mvxKZ26', NULL, NULL, '2022-02-07 15:11:19', '2022-02-07 15:11:19'),
+(2, 'user', '1111111111', '2', 1, 'user@user.com', NULL, '$2y$10$/2xImsWIU88k/N7waFGrfuZkMk./AWd8Bj6ltPV3HU8ndGi4K0zxK', 'kjXf60CorGLBOpdL2J0HCXnOyLhrEsEVLcwu33YB4ZtKqZ10PygOR2zl76O9', NULL, '2022-02-07 16:06:58', '2022-02-24 15:22:37'),
+(3, 'digitalself30', '60476488743', '2', 1, 'digitalbusiness30@gmail.com', NULL, '$2y$10$FHppIf/d94Z71gRlEFimBeT6V/yPP1GpJOnGmhyt0ovhHYyt521AS', NULL, NULL, '2022-02-12 20:06:45', '2022-02-12 20:06:45'),
+(5, 'howdy', NULL, '2', 1, 'howdy@gmail.com', NULL, '$2y$10$mKU8loZJhDsZvtsccAdxX.jrWh71omnAsOYyWnwbKgMoIFvtJEmDK', NULL, NULL, '2022-02-14 22:32:02', '2022-02-14 22:32:02');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wallets`
+--
+
+CREATE TABLE `wallets` (
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` int NOT NULL,
+  `balance` decimal(8,2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `wallets`
+--
+
+INSERT INTO `wallets` (`id`, `user_id`, `balance`, `created_at`, `updated_at`) VALUES
+(1, 2, 834.00, '2022-02-24 23:30:14', '2022-03-02 01:20:14'),
+(2, 3, 51.00, '2022-02-24 23:30:14', '2022-03-01 15:21:56'),
+(3, 4, 0.00, '2022-02-24 23:30:14', '2022-02-24 23:30:14'),
+(4, 5, 10.00, '2022-02-24 23:30:14', '2022-02-24 19:23:20');
 
 --
 -- Indexes for dumped tables
@@ -746,6 +931,12 @@ ALTER TABLE `activity_log`
   ADD KEY `subject` (`subject_type`,`subject_id`),
   ADD KEY `causer` (`causer_type`,`causer_id`),
   ADD KEY `activity_log_log_name_index` (`log_name`);
+
+--
+-- Indexes for table `business_pros`
+--
+ALTER TABLE `business_pros`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `crypto_payments`
@@ -820,6 +1011,12 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indexes for table `settings`
+--
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `transactions`
 --
 ALTER TABLE `transactions`
@@ -834,6 +1031,12 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
+-- Indexes for table `wallets`
+--
+ALTER TABLE `wallets`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -841,7 +1044,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=304;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=357;
+
+--
+-- AUTO_INCREMENT for table `business_pros`
+--
+ALTER TABLE `business_pros`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `crypto_payments`
@@ -865,7 +1074,7 @@ ALTER TABLE `fullzs`
 -- AUTO_INCREMENT for table `funds`
 --
 ALTER TABLE `funds`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -877,7 +1086,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -886,16 +1095,28 @@ ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `settings`
+--
+ALTER TABLE `settings`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `wallets`
+--
+ALTER TABLE `wallets`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -14,13 +14,22 @@
         th{
             text-transform: inherit !important;
         }
-        #user-table .custom-tr{
+        .edit-and-price-btn-container{
+            position: absolute;
+            right: 20px;
+            top: 2px;
+        }
+        .edit-and-price{
+            display: none;
+            width: 170px;
+        }
+        #user-table-ssn .custom-tr{
             background-color: #705ec8 !important;
             color: #fff !important;
             font-size: 22px !important;
             font-weight: 900 !important;
         }
-        #user-table .custom-tr th {
+        #user-table-ssn .custom-tr th {
             color: #fff !important;
         }
     </style>
@@ -52,6 +61,12 @@
             <div class="card">
                 <div class="card-header">
                     <div class="card-title">Business Pros</div>
+                    <div class="page-rightheader">
+                        <div class="btn btn-list edit-and-price-btn-container">
+                            <a class="modal-effect btn btn-primary edit-and-price" data-effect="effect-flip-horizontal" data-toggle="modal" href="#modaldemo77">Update Price</a>
+                            <a class="btn btn-primary edit-btn edit-and-price" >Edit</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="">
@@ -59,6 +74,7 @@
                             <table id="user-table" class="table table-bordered text-nowrap key-buttons">
                                 <thead>
                                 <tr class="custom-tr">
+                                    <th class="border-bottom-0"><input type="checkbox" class="checkbox" id="select-all"></th>
                                     <th class="border-bottom-0">Company Name</th>
                                     <th class="border-bottom-0">EIN</th>
                                     <th class="border-bottom-0">Creation Date</th>
@@ -284,7 +300,38 @@
         </div>
     </div>
     <!-- Modal -->
-
+    <!-- Modal -->
+    <div class="modal fade" id="modaldemo77" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Price</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="">
+                                    <div class="form-group col-md-12">
+                                        <label for="exampleInputPassword1" class="form-label">Price</label>
+                                        <input type="text" id="bulk-price" name="price" class="form-control" placeholder="Price">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary submit-form bulk-price-update">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
 @endsection
 
 @section('js')
@@ -315,8 +362,6 @@
                 placeholder:"Select State",
                 width: '100%',
             });
-
-
             var table = $('#user-table').DataTable({
                 processing: true,
                 serverSide: true,
@@ -331,6 +376,7 @@
                     'copy', 'excel', 'csv', 'pdf'
                 ],
                 columns: [
+                    { data: 'checkbox',  name: 'checkbox' , searchable: false, orderable: false, },
                     {data: 'company_name', name: 'company_name'},
                     {data: 'ein', name: 'ein'},
                     {data: 'creation_date', name: 'creation_date'},
@@ -343,6 +389,75 @@
                     {data: 'file_path', name: 'file_path'},
                     {data: 'action', name: 'action', width:'10%'},
                 ]
+            });
+
+            $("#select-all").click(function() {
+
+                var isChecked = $(this).prop('checked');
+                var array = [];
+
+                $(".data-check").prop('checked', isChecked);
+
+                if (isChecked) {
+                    $(".data-check").prop('checked', isChecked);
+                    $.each($("input[name='check_box']:checked"), function(){
+                        array.push($(this).val());
+                    });
+                    $('.edit-btn').show();
+                    $('.edit-and-price').show();
+                }
+                else {
+                    $(".data-check").prop('', isChecked);
+
+                    $.each($("input[name='check_box']:checked"), function(){
+                        array.push($(this).val());
+                    });
+                    $('.edit-btn').hide();
+                    $('.edit-and-price').hide();
+                }
+            });
+            $('#user-table tbody').on('click', '.data-check', function () {
+                var array = [];
+                $.each($("input[name='check_box']:checked"), function(){
+                    array.push($(this).val());
+                });
+                if (array.length > 0){
+                    $('.edit-and-price').show();
+                }
+                else{
+                    $('.edit-and-price').show();
+                }
+            });
+
+            $(".edit-btn").click(function() {
+
+                var array = [];
+                $.each($("input[name='check_box']:checked"), function(){
+                    array.push($(this).val());
+                });
+                window.location.href = "{{route('business.pros.edit')}}/"+array;
+            });
+
+            $(".bulk-price-update").click(function() {
+                var array = [];
+                $.each($("input[name='check_box']:checked"), function(){
+                    array.push($(this).val());
+                });
+
+                $.ajax({
+                    type: 'GET',
+                    url: "{{route('update.price.business')}}",
+                    data: {
+                        ids : array,
+                        price : $('#bulk-price').val(),
+                    },
+                    success: function (response) {
+                        window.location.href = "{{route('business.pros')}}";
+                    },
+                    error: function (data) {
+                        console.log('error');
+                    }
+                });
             });
         });
     </script>

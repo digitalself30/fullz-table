@@ -306,6 +306,9 @@ class FullzController extends Controller
 
             return DataTables::of($data)
                 ->addIndexColumn()
+                ->editColumn('checkbox', function($data) {
+                    return "<input type=\"checkbox\" value='".$data->id."' name='check_box' class=\"checkbox data-check\">";
+                })
                 ->editColumn('company_name', function($data) {
                     return $data->company_name;
                 })
@@ -340,7 +343,7 @@ class FullzController extends Controller
                 ->editColumn('action', function($data) {
                     return '<a href="'.route('business.pros.delete', $data->id).'"><li class="icons-list-item" style="line-height: initial; height: initial; margin: initial;"><svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M8 9h8v10H8z" opacity=".3"></path><path d="M15.5 4l-1-1h-5l-1 1H5v2h14V4zM6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9z"></path></svg></li></a>';
                 })
-                ->rawColumns(['file_path','action'])
+                ->rawColumns(['file_path','action', 'checkbox'])
                 ->make(true);
         }
         return view('business-pros');
@@ -394,5 +397,50 @@ class FullzController extends Controller
     public function business_pros_delete($id){
         BusinessPro::find($id)->delete();
         return back()->with('success', 'Data has been deleted');
+    }
+    public function business_pros_edit($ids){
+        // Admin
+        if(Auth::user()->user_type != 1){
+            return back();
+        }
+
+        $str_arr = explode (",", $ids);
+        $business_pros = BusinessPro::whereIn('id', $str_arr)->get();
+        return view('business-pros-edit', compact('business_pros'));
+    }
+    public function update_business(Request $request){
+        // Admin
+
+        if(Auth::user()->user_type != 1){
+            return back();
+        }
+        foreach ($request->ids AS $n => $id){
+
+            $update = BusinessPro::where('id' , $id)->first();
+            $update->company_name = $request->company_name[$n];
+            $update->ein = $request->ein[$n];
+            $update->creation_date = Carbon::parse($request->creation_date[$n])->format('Y-m-d');
+            $update->owner = $request->owner[$n];
+            $update->state = $request->state[$n];
+            $update->city = $request->city[$n];
+            $update->article_of_organization = $request->article_of_organization[$n];
+            $update->annual_report = $request->annual_report[$n];
+            $update->price = $request->price[$n];
+            $file_path  = str_replace(' ','_', $request->company_name[$n]);
+            $update->file_path = $file_path.'.zip';
+            $update->save();
+        }
+        return redirect(route('business.pros'))->with('success', 'Data has been updated');
+    }
+    public function update_price_business(Request $request){
+        $request->validate([
+            "price" =>" required|regex:/^\d+(\.\d{1,2})?$/",
+        ]);
+        foreach ($request->ids AS $id){
+            $price = BusinessPro::find($id);
+            $price->price = $request->price;
+            $price->save();
+        }
+        return response()->json('success');
     }
 }

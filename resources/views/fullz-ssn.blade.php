@@ -455,7 +455,6 @@
                     $('.edit-and-price').hide();
                 }
             });
-
             $('#user-table-ssn tbody').on('click', '.data-check', function () {
                 var array = [];
                 $.each($("input[name='check_box']:checked"), function(){
@@ -468,7 +467,6 @@
                     $('.edit-and-price').show();
                 }
             });
-
             $(".edit-btn").click(function() {
 
                 var array = [];
@@ -477,7 +475,6 @@
                 });
                 window.location.href = "{{route('edit.list')}}/"+array+"/ssn";
             });
-
             $(".bulk-price-update").click(function() {
                 var array = [];
                 $.each($("input[name='check_box']:checked"), function(){

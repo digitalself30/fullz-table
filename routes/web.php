@@ -49,8 +49,11 @@ Route::middleware(['auth'])->group(function(){
     Route::GET('/fullzn/destroy/{id?}', [FullzController::class, 'destroy'])->name('fullz.destroy');
     Route::POST('/upload/csv', [FullzController::class, 'upload_csv'])->name('upload.csv');
     Route::GET('/edit/list/{id?}/{type?}', [FullzController::class, 'edit_list'])->name('edit.list');
+    Route::GET('/edit/business/{id?}', [FullzController::class, 'business_pros_edit'])->name('business.pros.edit');
     Route::POST('/update/ssn/table', [FullzController::class, 'update_ssn_table'])->name('update.ssn.table');
+    Route::POST('/update/business/pros', [FullzController::class, 'update_business'])->name('update.business.pro');
     Route::GET('/update/price', [FullzController::class, 'update_price'])->name('update.price');
+    Route::GET('/update/price/business', [FullzController::class, 'update_price_business'])->name('update.price.business');
     Route::GET('/business/pros', [FullzController::class, 'business_pros'])->name('business.pros');
     Route::POST('/business/pros/store', [FullzController::class, 'business_pros_store'])->name('business.pros.store');
     Route::GET('/business/pros/delete/{id?}', [FullzController::class, 'business_pros_delete'])->name('business.pros.delete');

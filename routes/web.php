@@ -46,7 +46,7 @@ Route::middleware(['auth'])->group(function(){
     Route::POST('/fullzn/store', [FullzController::class, 'store'])->name('fullz.store');
     Route::GET('/fullz/edit/{id?}', [FullzController::class, 'edit'])->name('fullz.edit');
     Route::POST('/fullzn/update', [FullzController::class, 'updated'])->name('fullz.update');
-    Route::GET('/fullzn/destroy/{id?}', [FullzController::class, 'destroy'])->name('fullz.destroy');
+    Route::GET('/fullzn/destroy', [FullzController::class, 'destroy'])->name('fullz.destroy');
     Route::POST('/upload/csv', [FullzController::class, 'upload_csv'])->name('upload.csv');
     Route::GET('/edit/list/{id?}/{type?}', [FullzController::class, 'edit_list'])->name('edit.list');
     Route::GET('/edit/business/{id?}', [FullzController::class, 'business_pros_edit'])->name('business.pros.edit');

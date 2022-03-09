@@ -23,6 +23,9 @@
             display: none;
             width: 170px;
         }
+        .delete-btn{
+            display: none;
+        }
         #user-table-ssn .custom-tr{
             background-color: #705ec8 !important;
             color: #fff !important;
@@ -66,6 +69,7 @@
                         <div class="btn btn-list edit-and-price-btn-container">
                             <a class="modal-effect btn btn-primary edit-and-price" data-effect="effect-flip-horizontal" data-toggle="modal" href="#modaldemo99">Update Price</a>
                             <a class="btn btn-primary edit-btn edit-and-price" >Edit</a>
+                            <a class="btn btn-danger delete-btn" >Delete</a>
                         </div>
                     </div>
 
@@ -168,7 +172,6 @@
                                     <th class="border-bottom-0">DOB</th>
                                     <th class="border-bottom-0">Price</th>
                                     <th class="border-bottom-0">Status</th>
-                                    <th class="border-bottom-0">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -416,7 +419,6 @@
                     { data: 'dob', name: 'dob' },
                     { data: 'price', name: 'price' },
                     { data: 'status', name: 'status' },
-                    { data: 'action', name: 'action', searchable: false, orderable: false, },
                 ],
 
             });
@@ -443,6 +445,7 @@
                         array.push($(this).val());
                     });
                     $('.edit-btn').show();
+                    $('.delete-btn').show();
                     $('.edit-and-price').show();
                 }
                 else {
@@ -452,6 +455,7 @@
                         array.push($(this).val());
                     });
                     $('.edit-btn').hide();
+                    $('.delete-btn').hide();
                     $('.edit-and-price').hide();
                 }
             });
@@ -462,9 +466,12 @@
                 });
                 if (array.length > 0){
                     $('.edit-and-price').show();
+                    $('.delete-btn').show();
                 }
                 else{
                     $('.edit-and-price').show();
+                    $('.delete-btn').show();
+                    $('.delete-btn').show();
                 }
             });
             $(".edit-btn").click(function() {
@@ -475,6 +482,29 @@
                 });
                 window.location.href = "{{route('edit.list')}}/"+array+"/ssn";
             });
+            $(".delete-btn").click(function() {
+
+                var array = [];
+                $.each($("input[name='check_box']:checked"), function(){
+                    array.push($(this).val());
+                });
+
+                $.ajax({
+                    type: 'GET',
+                    url: "{{route('fullz.destroy')}}",
+                    data: {
+                        ids : array,
+                        type : "ssn",
+                    },
+                    success: function (response) {
+                        window.location.href = "{{route('fullz.ssn')}}";
+                    },
+                    error: function (data) {
+                        console.log('error');
+                    }
+                });
+            });
+
             $(".bulk-price-update").click(function() {
                 var array = [];
                 $.each($("input[name='check_box']:checked"), function(){

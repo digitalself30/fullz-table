@@ -91,10 +91,8 @@ class FullzController extends Controller
                 ->editColumn('status', function($data) {
                     return $data->status == 1 ? "Active" : "In-Active";
                 })
-                ->editColumn('action', function($data) {
-                    return '<a href="'.route('fullz.destroy', $data->id).'"><i class="fe fe-trash-2"></i></a>';
-                })
-                ->rawColumns(['checkbox','first_name','last_name','street','city','state','zip','ssn','dob','price','status','action'])
+
+                ->rawColumns(['checkbox','first_name','last_name','street','city','state','zip','ssn','dob','price','status',])
                 ->make(true);
         }
         return view('fullz-ssn');
@@ -182,10 +180,7 @@ class FullzController extends Controller
                 ->editColumn('status', function($data) {
                     return $data->status == 1 ? "Active" : "In-Active";
                 })
-                ->editColumn('action', function($data) {
-                    return '<a href="'.route('fullz.edit', $data->id).'"><i class="fe fe-trash-2"></i></a>';
-                })
-                ->rawColumns(['checkbox','first_name','last_name','date_of_birth','street','state','city','zip','price','ssn','dl','dl_issue','dl_expiry','status','action'])
+                ->rawColumns(['checkbox','first_name','last_name','date_of_birth','street','state','city','zip','price','ssn','dl','dl_issue','dl_expiry','status'])
                 ->make(true);
         }
         return view('fullz-ssn-dl');
@@ -440,6 +435,20 @@ class FullzController extends Controller
             $price = BusinessPro::find($id);
             $price->price = $request->price;
             $price->save();
+        }
+        return response()->json('success');
+    }
+    public function destroy(Request $request){
+        if($request->type == 'ssn'){
+            foreach ($request->ids AS $id){
+                Fullz::where('type', 1)->find($id)->delete();
+            }
+
+        }
+        else if($request->type == 'ssn+dl'){
+            foreach ($request->ids AS $id){
+                Fullz::where('type', 2)->find($id)->delete();
+            }
         }
         return response()->json('success');
     }

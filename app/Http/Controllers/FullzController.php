@@ -450,6 +450,11 @@ class FullzController extends Controller
                 Fullz::where('type', 2)->find($id)->delete();
             }
         }
+        else if($request->type == 'business'){
+            foreach ($request->ids AS $id){
+                BusinessPro::find($id)->delete();
+            }
+        }
         return response()->json('success');
     }
 }

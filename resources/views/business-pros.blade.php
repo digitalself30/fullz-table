@@ -32,6 +32,9 @@
         #user-table-ssn .custom-tr th {
             color: #fff !important;
         }
+        .delete-btn{
+            display: none;
+        }
     </style>
 
 @endsection
@@ -65,6 +68,7 @@
                         <div class="btn btn-list edit-and-price-btn-container">
                             <a class="modal-effect btn btn-primary edit-and-price" data-effect="effect-flip-horizontal" data-toggle="modal" href="#modaldemo77">Update Price</a>
                             <a class="btn btn-primary edit-btn edit-and-price" >Edit</a>
+                            <a class="btn btn-danger delete-btn" >Delete</a>
                         </div>
                     </div>
                 </div>
@@ -405,6 +409,7 @@
                     });
                     $('.edit-btn').show();
                     $('.edit-and-price').show();
+                    $('.delete-btn').show();
                 }
                 else {
                     $(".data-check").prop('', isChecked);
@@ -414,6 +419,7 @@
                     });
                     $('.edit-btn').hide();
                     $('.edit-and-price').hide();
+                    $('.delete-btn').hide();
                 }
             });
             $('#user-table tbody').on('click', '.data-check', function () {
@@ -423,9 +429,11 @@
                 });
                 if (array.length > 0){
                     $('.edit-and-price').show();
+                    $('.delete-btn').show();
                 }
                 else{
                     $('.edit-and-price').show();
+                    $('.delete-btn').show();
                 }
             });
 
@@ -437,7 +445,28 @@
                 });
                 window.location.href = "{{route('business.pros.edit')}}/"+array;
             });
+            $(".delete-btn").click(function() {
 
+                var array = [];
+                $.each($("input[name='check_box']:checked"), function(){
+                    array.push($(this).val());
+                });
+
+                $.ajax({
+                    type: 'GET',
+                    url: "{{route('fullz.destroy')}}",
+                    data: {
+                        ids : array,
+                        type : "business",
+                    },
+                    success: function (response) {
+                        window.location.href = "{{route('business.pros')}}";
+                    },
+                    error: function (data) {
+                        console.log('error');
+                    }
+                });
+            });
             $(".bulk-price-update").click(function() {
                 var array = [];
                 $.each($("input[name='check_box']:checked"), function(){

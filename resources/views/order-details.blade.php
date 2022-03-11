@@ -71,23 +71,25 @@
                             </thead>
                             <tbody>
                             @foreach($orders AS $i=> $order)
-                            <tr>
-                                <th scope="row">{{++$i}}</th>
-                                <td>{{$order->fullz_table->type == 1 ? "SSN": "SSN + DL"}}</td>
-                                <td>{{$order->fullz_table->first_name}}</td>
-                                <td>{{$order->fullz_table->last_name}}</td>
-                                <td>{{$order->fullz_table->street}}</td>
-                                <td>{{$order->fullz_table->city}}</td>
-                                <td>{{$order->fullz_table->state}}</td>
-                                <td>{{$order->fullz_table->zip}}</td>
-                                <td>{{$order->fullz_table->ssn}}</td>
-                                <td>{{\Carbon\Carbon::parse($order->fullz_table->dob)->format('m-d-Y')}}</td>
-                                <td>{{$order->fullz_table->dl}}</td>
-                                <td>{{$order->fullz_table->dl_state}}</td>
-                                <td>{{\Carbon\Carbon::parse($order->fullz_table->dl_issue)->format('m-d-Y')}}</td>
-                                <td>{{\Carbon\Carbon::parse($order->fullz_table->dl_expiry)->format('m-d-Y')}}</td>
-                                <td>{{$order->fullz_table->price}}</td>
-                            </tr>
+                               @if($order->type == 'fullz')
+                                <tr>
+                                    <th scope="row">{{++$i}}</th>
+                                    <td>{{$order->fullz_table->type == 1 ? "SSN": "SSN + DL"}}</td>
+                                    <td>{{$order->fullz_table->first_name}}</td>
+                                    <td>{{$order->fullz_table->last_name}}</td>
+                                    <td>{{$order->fullz_table->street}}</td>
+                                    <td>{{$order->fullz_table->city}}</td>
+                                    <td>{{$order->fullz_table->state}}</td>
+                                    <td>{{$order->fullz_table->zip}}</td>
+                                    <td>{{$order->fullz_table->ssn}}</td>
+                                    <td>{{\Carbon\Carbon::parse($order->fullz_table->dob)->format('m-d-Y')}}</td>
+                                    <td>{{$order->fullz_table->dl}}</td>
+                                    <td>{{$order->fullz_table->dl_state}}</td>
+                                    <td>{{\Carbon\Carbon::parse($order->fullz_table->dl_issue)->format('m-d-Y')}}</td>
+                                    <td>{{\Carbon\Carbon::parse($order->fullz_table->dl_expiry)->format('m-d-Y')}}</td>
+                                    <td>{{$order->fullz_table->price}}</td>
+                                </tr>
+                                @endif
                                 @endforeach
                             </tbody>
                         </table>

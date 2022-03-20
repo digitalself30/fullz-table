@@ -30,7 +30,7 @@ class BusinessProsImport implements ToModel ,WithHeadingRow, SkipsOnFailure, Ski
             'article_of_organization' => $row['articleoforganization'],
             'annual_report' => $row['annualreport'],
             'price' => $row['price'],
-            'file_path' => str_replace(' ','_', $row['company_name']).'.zip',
+            'file_path' => str_replace(' ','_', $row['companyname']).'.zip',
         ]);
     }
     public function onFailure(Failure ...$failures)

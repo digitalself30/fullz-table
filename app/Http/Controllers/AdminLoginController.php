@@ -18,7 +18,8 @@ class AdminLoginController extends Controller
             'password' => 'required',
         ]);
         $user = User::where('email', $request->email)->first('user_type');
-       if(($user->user_type == 1)){
+
+       if($user->user_type == 1 OR $user->user_type == 3){
 
            $credentials = $request->only('email', 'password');
 

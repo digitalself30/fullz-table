@@ -1,5 +1,5 @@
 		<!-- Title -->
-		<title>Fullz Store - Admin Panel</title>
+		<title>Fullz Store - {{Auth::user()->user_type == 1 ? "Admin Panel" : "Dashboard"}}</title>
 
 		<!--Favicon -->
 		<link rel="icon" href="{{URL::asset('assets/images/img/favicon.png')}}" type="image/x-icon"/>
@@ -33,6 +33,7 @@
 
         <link href="{{URL::asset('assets/plugins/notify/css/jquery.growl.css')}}" rel="stylesheet" />
         <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet" />
+
         <style>
             .form-control {
                 color: #6b6f80 !important;

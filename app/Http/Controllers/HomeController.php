@@ -29,8 +29,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->user_type != 1){
-            return redirect(route('user.fullz.ssn'));
+        if(Auth::user()->user_type != 1 AND Auth::user()->user_type != 3){
+            return redirect(route('user.fullz.ssn'))->with('error', 'You are not authorize');
         }
 
         $total_user = User::where('user_type', 2)->count();
@@ -42,22 +42,22 @@ class HomeController extends Controller
         return view('home', compact('activity_logs','transactions','total_user', 'total_sold_lines','this_month_spent','total_income'));
     }
     public function transactions(){
-        if(Auth::user()->user_type != 1){
-            return back();
+        if(Auth::user()->user_type != 1 AND Auth::user()->user_type != 3){
+            return back()->with('error', 'You are not authorize');
         }
         $transactions = Transaction::latest()->paginate(10);
         return view('transactions', compact('transactions'));
     }
     public function sold_lines(){
-        if(Auth::user()->user_type != 1){
-            return back();
+        if(Auth::user()->user_type != 1 AND Auth::user()->user_type != 3){
+            return back()->with('error', 'You are not authorize');
         }
         $orders = Order::with('fullz_table','user')->latest()->where('type','fullz')->paginate(10);
         return view('sold-lines', compact('orders'));
     }
     public function business_sold_lines(){
-        if(Auth::user()->user_type != 1){
-            return back();
+        if(Auth::user()->user_type != 1 AND Auth::user()->user_type != 3){
+            return back()->with('error', 'You are not authorize');
         }
         $orders = Order::with('business_pros','user')->latest()->where('type','business')->paginate(10);
         return view('business-sold-lines', compact('orders'));

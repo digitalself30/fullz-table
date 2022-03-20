@@ -42,14 +42,14 @@ class LoginController extends Controller
     }
     protected function redirectTo()
     {
-        if (auth()->user()->user_type == 1) {
+        if (auth()->user()->user_type == 1 OR auth()->user()->user_type == 3) {
             return '/home';
         }
         return '/fullz/ssn';
     }
     protected function authenticated(Request $request, $user)
     {
-        if($user->user_type == 1){
+        if($user->user_type == 1 OR $user->user_type == 3 ){
 
             $this->guard()->logout();
 
@@ -67,5 +67,15 @@ class LoginController extends Controller
         }
         return redirect('/fullz/ssn')->withSuccess('You have Successfully logged in');
     }
-
+    public function reload_captcha(){
+        return response()->json(['captcha'=> captcha_img()]);
+    }
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+            'captcha' => 'required|captcha'
+        ]);
+    }
 }

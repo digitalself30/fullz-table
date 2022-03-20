@@ -68,7 +68,9 @@
                         <div class="btn btn-list edit-and-price-btn-container">
                             <a class="modal-effect btn btn-primary edit-and-price" data-effect="effect-flip-horizontal" data-toggle="modal" href="#modaldemo77">Update Price</a>
                             <a class="btn btn-primary edit-btn edit-and-price" >Edit</a>
-                            <a class="btn btn-danger delete-btn" >Delete</a>
+                            @if(Auth::user()->user_type == 1)
+                                <a class="btn btn-danger delete-btn" >Delete</a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -366,6 +368,7 @@
                 placeholder:"Select State",
                 width: '100%',
             });
+            var auth = "{{Auth::user()->user_type == 1 ? "B":""}}";
             var table = $('#user-table').DataTable({
                 processing: true,
                 serverSide: true,
@@ -374,7 +377,7 @@
                 },
                 responsive: false,
                 "lengthMenu": [[10, 25, 50, 500, 1000, -1], [10, 25, 50, 500, 1000, "All"]],
-                dom: 'lBfrtip',
+                dom: 'l'+auth+'frtip',
                 ordering: true,
                 buttons: [
                     'copy', 'excel', 'csv', 'pdf'

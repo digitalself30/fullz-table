@@ -46,18 +46,20 @@
                                                         </span>
                                                     @enderror
                                                 </div>
-
-                                                <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
-                                                    <div class="col-md-6">
-                                                        {!! RecaptchaV3::field('register') !!}
-                                                        @if ($errors->has('g-recaptcha-response'))
-                                                            <span class="help-block">
-                                                                 <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
-                                                            </span>
-                                                        @endif
+                                                <div class="form-group mt-4 mb-4">
+                                                    <div class="captcha">
+                                                        <span>{!! captcha_img() !!}</span>
+                                                        <button type="button" class="btn btn-danger" class="reload" id="reload">
+                                                            ↻
+                                                        </button>
                                                     </div>
                                                 </div>
-
+                                                <div class="form-group mb-4">
+                                                    <input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" name="captcha">
+                                                </div>
+                                                    @error('captcha')
+                                                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                                    @enderror
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <button type="submit" class="btn  btn-primary btn-block px-4">Login</button>
@@ -102,3 +104,16 @@
 @endsection
 @section('js')
 @endsection
+@push('scripts')
+    <script type="text/javascript">
+        $('#reload').click(function () {
+            $.ajax({
+                type: 'GET',
+                url: '{{route('reload.captcha')}}',
+                success: function (data) {
+                    $(".captcha span").html(data.captcha);
+                }
+            });
+        });
+    </script>
+@endpush

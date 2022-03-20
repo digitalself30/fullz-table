@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use ESolution\DBEncryption\Traits\EncryptedAttribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\LogOptions;
@@ -9,8 +10,8 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class Order extends Model
 {
-    use HasFactory, LogsActivity;
-
+    use HasFactory, LogsActivity, EncryptedAttribute;
+    protected $encryptable = [];
     protected static $recordEvents = ['created', 'updated', 'deleted'];
 
     public function getActivitylogOptions(): LogOptions
@@ -20,7 +21,7 @@ class Order extends Model
             ->logAll()
             ->setDescriptionForEvent(fn(string $eventName) => "The order has been {$eventName}")
             ->logOnlyDirty()
-            ->useLogName('order');
+            ->useLogName('Order');
     }
 
     public function fullz_table(){

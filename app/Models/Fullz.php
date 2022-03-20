@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use ESolution\DBEncryption\Traits\EncryptedAttribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\LogOptions;
@@ -9,7 +10,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class Fullz extends Model
 {
-    use HasFactory,LogsActivity;
+    use HasFactory,LogsActivity, EncryptedAttribute;
 
     protected static $recordEvents = ['created', 'updated', 'deleted'];
 
@@ -29,6 +30,23 @@ class Fullz extends Model
         'price',
         'status',
         'type'
+    ];
+
+
+    protected $encryptable = [
+        'first_name',
+        'last_name',
+        'street',
+        'city',
+        'state',
+        'zip',
+        'ssn',
+        'dob',
+        'dl',
+        'dl_state',
+        'dl_issue',
+        'dl_expiry',
+        'price',
     ];
 
     public function getActivitylogOptions(): LogOptions

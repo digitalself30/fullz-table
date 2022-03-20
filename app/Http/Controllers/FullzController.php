@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\FullzSSNExport;
 use App\Imports\BusinessProsImport;
 use App\Imports\FullzSSNDLImport;
 use App\Imports\FullzSSNImport;
@@ -22,7 +21,7 @@ class FullzController extends Controller
     }
     public function fullz_ssn(Request $request){
         // Admin
-        if(Auth::user()->user_type != 1){
+        if(Auth::user()->user_type != 1 AND Auth::user()->user_type != 3){
             return back();
         }
 
@@ -49,7 +48,7 @@ class FullzController extends Controller
                 $data->orderBy('dob', $dob_order);
             }
             if($request->state){
-                $data->where('state', $request->state);
+                $data->whereEncrypted('state', $request->state);
             }
 
             $data->get();
@@ -97,10 +96,9 @@ class FullzController extends Controller
         }
         return view('fullz-ssn');
     }
-
     public function fullz_ssn_dl(Request $request){
         // Admin
-        if(Auth::user()->user_type != 1){
+        if(Auth::user()->user_type != 1 AND Auth::user()->user_type != 3){
             return back();
         }
 
@@ -126,7 +124,7 @@ class FullzController extends Controller
                 $data->orderBy('dob', $dob_order);
             }
             if($request->state){
-                $data->where('state', $request->state);
+                $data->whereEncrypted ('state', $request->state);
             }
 
             $data->get();
@@ -185,10 +183,9 @@ class FullzController extends Controller
         }
         return view('fullz-ssn-dl');
     }
-
     public function store(Request $request){
         // Admin
-        if(Auth::user()->user_type != 1){
+        if(Auth::user()->user_type != 1 AND Auth::user()->user_type != 3){
             return back();
         }
 
@@ -216,10 +213,9 @@ class FullzController extends Controller
         $fullz_add->save();
         return back()->with('success', 'Data has been updated');
     }
-
     public function upload_csv(Request $request){
         // Admin
-        if(Auth::user()->user_type != 1){
+        if(Auth::user()->user_type != 1 AND Auth::user()->user_type != 3){
             return back();
         }
         if($request->type == 1){
@@ -235,10 +231,9 @@ class FullzController extends Controller
             return redirect(route('business.pros'))->with('success', 'Data has been updated');
         }
     }
-
     public function edit_list($ids, $type){
         // Admin
-        if(Auth::user()->user_type != 1){
+        if(Auth::user()->user_type != 1 AND Auth::user()->user_type != 3){
             return back();
         }
 
@@ -254,7 +249,7 @@ class FullzController extends Controller
     }
     public function update_ssn_table(Request $request){
         // Admin
-        if(Auth::user()->user_type != 1){
+        if(Auth::user()->user_type != 1 AND Auth::user()->user_type != 3){
             return back();
         }
         foreach ($request->ids AS $n => $id){
@@ -284,6 +279,9 @@ class FullzController extends Controller
         return redirect(route('fullz.ssn'))->with('success', 'Data has been updated');
     }
     public function update_price(Request $request){
+        if(Auth::user()->user_type != 1 AND Auth::user()->user_type != 3){
+            return back()->with('error', 'You are not authorize');
+        }
         $request->validate([
             "price" =>" required|regex:/^\d+(\.\d{1,2})?$/",
         ]);
@@ -295,7 +293,9 @@ class FullzController extends Controller
         return response()->json('success');
     }
     public function business_pros(Request $request){
-
+        if(Auth::user()->user_type != 1 AND Auth::user()->user_type != 3){
+            return back()->with('error', 'You are not authorize');
+        }
         if ($request->ajax()) {
             $data = BusinessPro::latest()->get();
 
@@ -333,10 +333,12 @@ class FullzController extends Controller
                 })
                 ->editColumn('file_path', function($data) {
                     return '<a href="'.asset('storage/business-pros/'.$data->file_path).'" download><li class="icons-list-item" style="line-height: initial; height: initial; margin: initial;"><svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg></li></a>';
-
                 })
                 ->editColumn('action', function($data) {
-                    return '<a href="'.route('business.pros.delete', $data->id).'"><li class="icons-list-item" style="line-height: initial; height: initial; margin: initial;"><svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M8 9h8v10H8z" opacity=".3"></path><path d="M15.5 4l-1-1h-5l-1 1H5v2h14V4zM6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9z"></path></svg></li></a>';
+                  if (Auth::user()->user_type == 1){
+                      return '<a href="'.route('business.pros.delete', $data->id).'"><li class="icons-list-item" style="line-height: initial; height: initial; margin: initial;"><svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M8 9h8v10H8z" opacity=".3"></path><path d="M15.5 4l-1-1h-5l-1 1H5v2h14V4zM6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9z"></path></svg></li></a>';
+                  }
+                  return "";
                 })
                 ->rawColumns(['file_path','action', 'checkbox'])
                 ->make(true);
@@ -344,6 +346,9 @@ class FullzController extends Controller
         return view('business-pros');
     }
     public function business_pros_store(Request $request){
+        if(Auth::user()->user_type != 1 AND Auth::user()->user_type != 3){
+            return back()->with('error', 'You are not authorize');
+        }
         $this->validate($request,[
             'company_name' => 'required',
             'ein'  => 'required',
@@ -390,13 +395,16 @@ class FullzController extends Controller
     }
 
     public function business_pros_delete($id){
+        if(Auth::user()->user_type != 1){
+            return back()->with('error', 'You are not authorize');
+        }
         BusinessPro::find($id)->delete();
         return back()->with('success', 'Data has been deleted');
     }
     public function business_pros_edit($ids){
         // Admin
-        if(Auth::user()->user_type != 1){
-            return back();
+        if(Auth::user()->user_type != 1 AND Auth::user()->user_type != 3){
+            return back()->with('error', 'You are not authorize');
         }
 
         $str_arr = explode (",", $ids);
@@ -406,8 +414,8 @@ class FullzController extends Controller
     public function update_business(Request $request){
         // Admin
 
-        if(Auth::user()->user_type != 1){
-            return back();
+        if(Auth::user()->user_type != 1 AND Auth::user()->user_type != 3){
+            return back()->with('error', 'You are not authorize');
         }
         foreach ($request->ids AS $n => $id){
 
@@ -428,6 +436,9 @@ class FullzController extends Controller
         return redirect(route('business.pros'))->with('success', 'Data has been updated');
     }
     public function update_price_business(Request $request){
+        if(Auth::user()->user_type != 1 AND Auth::user()->user_type != 3){
+            return back()->with('error', 'You are not authorize');
+        }
         $request->validate([
             "price" =>" required|regex:/^\d+(\.\d{1,2})?$/",
         ]);
@@ -439,6 +450,9 @@ class FullzController extends Controller
         return response()->json('success');
     }
     public function destroy(Request $request){
+        if(Auth::user()->user_type != 1 ){
+            return back()->with('error', 'You are not authorize');
+        }
         if($request->type == 'ssn'){
             foreach ($request->ids AS $id){
                 Fullz::where('type', 1)->find($id)->delete();

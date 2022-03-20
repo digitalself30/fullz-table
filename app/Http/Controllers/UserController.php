@@ -9,7 +9,6 @@ use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Wallet;
 use Carbon\Carbon;
-use http\Client\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Spatie\Activitylog\Models\Activity;
@@ -60,7 +59,7 @@ class UserController extends Controller
                 $data->orderBy('dob', $dob_order);
             }
             if($request->state){
-                $data->where('state', $request->state);
+                $data->whereEncrypted('state', $request->state);
             }
             $data->get();
 
@@ -308,7 +307,9 @@ class UserController extends Controller
                 })
                 ->editColumn('action', function($data) {
                     $btn = '<a class="btn btn-primary mr-1" href="'.route('wallet', Crypt::encrypt($data->id)).'">Add Funds</a>';
-                    $btn .= '<a href="'.route('user.delete', $data->id).'" class="btn btn-danger">Delete</a>';
+                    if (Auth::user()->user_type == 1) {
+                        $btn .= '<a href="' . route('user.delete', $data->id) . '" class="btn btn-danger">Delete</a>';
+                    }
                     return $btn;
                 })
                 ->rawColumns(['status','current_balance','action'])
@@ -317,6 +318,10 @@ class UserController extends Controller
         return view('users');
     }
     public function delete($id){
+
+        if(Auth::user()->user_type !== 1){
+            return back()->with('error', 'You are not authorized');
+        }
         User::find($id)->delete();
         return back()->with('success', 'You account has been deleted');
     }

@@ -7,6 +7,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\AddFundsController;
 use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ManagerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +29,7 @@ Auth::routes();
 
 Route::GET('/admin-login', [AdminLoginController::class, 'admin_login'])->name('admin.login');
 Route::POST('/admin-login-store', [AdminLoginController::class, 'admin_login_store'])->name('admin.login.store');
+Route::GET('/reload-captcha', [LoginController::class, 'reload_captcha'])->name('reload.captcha');
 
 
 Route::middleware(['auth'])->group(function(){
@@ -85,6 +88,16 @@ Route::middleware(['auth'])->group(function(){
     Route::GET('/user/funds/history', [AddFundsController::class, 'funds_history'])->name('funds.history');
     Route::GET('/wallet/{id?}', [AddFundsController::class, 'wallet'])->name('wallet');
     Route::POST('wallet_update/{id}', [AddFundsController::class, 'wallet_update'])->name('wallet.update');
+
+
+    //Manager account level
+    Route::prefix('manager')->group(function(){
+        Route::GET('/list', [ManagerController::class, 'index'])->name('manager.index');
+        Route::POST('/store', [ManagerController::class, 'store'])->name('manager.store');
+        Route::GET('/edit/{id?}', [ManagerController::class, 'edit'])->name('manager.edit');
+        Route::POST('/update/{id?}', [ManagerController::class, 'update'])->name('manager.update');
+        Route::GET('/delete/{id?}', [ManagerController::class, 'delete'])->name('manager.delete');
+    });
 
 });
 

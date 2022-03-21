@@ -83,11 +83,19 @@
                                     <td>{{$order->fullz_table->zip}}</td>
                                     <td>{{$order->fullz_table->ssn}}</td>
                                     <td>{{\Carbon\Carbon::parse($order->fullz_table->dob)->format('m-d-Y')}}</td>
+                                    @if($order->fullz_table->type == 1)
+                                    <td>None</td>
+                                    <td>None</td>
+                                    <td>None</td>
+                                    <td>None</td>
+                                    @else
                                     <td>{{$order->fullz_table->dl}}</td>
                                     <td>{{$order->fullz_table->dl_state}}</td>
                                     <td>{{\Carbon\Carbon::parse($order->fullz_table->dl_issue)->format('m-d-Y')}}</td>
                                     <td>{{\Carbon\Carbon::parse($order->fullz_table->dl_expiry)->format('m-d-Y')}}</td>
-                                    <td>{{$order->fullz_table->price}}</td>
+                                    @endif
+
+                                    <td>${{$order->fullz_table->price}}</td>
                                 </tr>
                                 @endif
                                 @endforeach

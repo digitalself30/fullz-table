@@ -24,7 +24,7 @@
             </div>
             <div class="dropdown header-message" style="margin-top: 7px; margin-right: 5px">
                 <a href="{{$setting->telegram_link}}"  target="_blank" class="btn btn-primary" href="{{route('add.funds')}}">
-                    Buy a document
+                    Buy documents
                     <img src="{{asset('assets/images/users/id-card-.png')}}" style="width: 36px" alt="id-card">
                 </a>
             </div>

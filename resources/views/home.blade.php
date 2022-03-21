@@ -119,7 +119,7 @@
                                 <tr>
                                     <td>{{++$i}}</td>
                                     <td>{{$transaction->transaction_no}}</td>
-                                    <td>{{$transaction->user->name}}</td>
+                                    <td>{{$transaction->user->name ?? "User Deleted"}}</td>
                                     <td>{{$transaction->type}}</td>
                                     <td>{{$transaction->source}}</td>
                                     <td>${{$transaction->amount}}</td>

@@ -57,9 +57,9 @@
                                                 <div class="form-group mb-4">
                                                     <input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" name="captcha">
                                                 </div>
-                                                    @error('captcha')
-                                                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                                                    @enderror
+                                                @error('captcha')
+                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                                @enderror
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <button type="submit" class="btn  btn-primary btn-block px-4">Login</button>

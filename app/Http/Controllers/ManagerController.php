@@ -47,7 +47,9 @@ class ManagerController extends Controller
         return view('manager-index');
     }
     public function store(Request $request){
-        $this->auth();
+        if(Auth::user()->user_type == 2 OR Auth::user()->user_type == 3){
+            return back()->with('error', 'You are not authorized');
+        }
         $add = new User;
         $add->name = $request->name;
         $add->user_type = 3;

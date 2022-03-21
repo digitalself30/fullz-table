@@ -319,7 +319,7 @@ class UserController extends Controller
     }
     public function delete($id){
 
-        if(Auth::user()->user_type !== 1){
+        if(Auth::user()->user_type != 1){
             return back()->with('error', 'You are not authorized');
         }
         User::find($id)->delete();

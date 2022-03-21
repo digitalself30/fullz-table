@@ -18,20 +18,21 @@ class AdminLoginController extends Controller
             'password' => 'required',
         ]);
         $user = User::where('email', $request->email)->first('user_type');
+        if($user){
+            if($user->user_type == 1 OR $user->user_type == 3){
 
-       if($user->user_type == 1 OR $user->user_type == 3){
+                $credentials = $request->only('email', 'password');
 
-           $credentials = $request->only('email', 'password');
+                if (Auth::attempt($credentials)) {
 
-           if (Auth::attempt($credentials)) {
+                    return redirect()->intended('home')
 
-               return redirect()->intended('home')
+                        ->withSuccess('You have Successfully logged in');
 
-                   ->withSuccess('You have Successfully logged in');
-
-           }
-           return redirect("admin-login")->withSuccess('Oops! You have entered invalid credentials');
-       }
+                }
+                return redirect("admin-login")->withSuccess('Oops! You have entered invalid credentials');
+            }
+        }
         return redirect("admin-login")->withSuccess('Oops! You have entered invalid credentials');
 
     }

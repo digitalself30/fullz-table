@@ -30,7 +30,7 @@ class HomeController extends Controller
     public function index()
     {
         if(Auth::user()->user_type != 1 AND Auth::user()->user_type != 3){
-            return redirect(route('user.fullz.ssn'))->with('error', 'You are not authorize');
+            return redirect(route('user.fullz.ssn'));
         }
 
         $total_user = User::where('user_type', 2)->count();

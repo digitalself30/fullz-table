@@ -99,7 +99,7 @@ class UserController extends Controller
     }
     public function ullz_ssn_dl(Request $request){
         if ($request->ajax()) {
-            $data = Fullz::select('id','first_name','dob','state','city','price')
+            $data = Fullz::select('id','first_name','dob','state','city','price','dl_issue', 'dl_expiry')
                 ->where('status', '1')
                 ->where('type', 2)
                 ->whereNotIn('id', function($query)  {
@@ -129,10 +129,10 @@ class UserController extends Controller
                 $data->where('state', $request->state);
             }
             if($request->dl_issue_date){
-                $data->whereNOtNull('dl_issue');
+                $data->where('dl_issue', '!=', '');
             }
             if($request->dl_expiry_date){
-                $data->whereNOtNull('dl_expiry');
+                $data->where('dl_expiry', '!=', '');
             }
             $data->get();
 
@@ -157,7 +157,9 @@ class UserController extends Controller
                     return "YES";
                 })
                 ->editColumn('dl_issue', function($data) {
-                    return Carbon::parse($data->dl_issue)->format('m-d-Y') ;
+                   //return Carbon::parse($data->dl_issue)->format('m-d-Y') ;
+                   return $data->dl_issue;
+
                 })
                 ->editColumn('dl_expiry', function($data) {
                     return Carbon::parse($data->dl_expiry)->format('m-d-Y') ;

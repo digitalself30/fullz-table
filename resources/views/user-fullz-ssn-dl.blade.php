@@ -253,12 +253,13 @@
                 "lengthMenu": [ [10,25,50,500,1000, -1], [10,25,50,500,1000, "All"] ],
                 dom: 'lfrtip',
                 ordering: true,
+                "order": [[ 3, "desc" ]],
                 buttons: [
                     'copy', 'excel','csv', 'pdf'
                 ],
                 columns: [
-                    { data: 'first_name', name: 'first_name' },
-                    { data: 'dob', name: 'dob' },
+                    { data: 'first_name', name: 'first_name',orderable:false },
+                    { data: 'dob', name: 'dob',orderable:false },
                     { data: 'state', name: 'state' },
                     { data: 'city', name: 'city' },
                     {data: 'ssn', name: 'ssn'},
@@ -266,7 +267,7 @@
                     { data: 'dl_issue', name: 'dl_issue' },
                     { data: 'dl_expiry', name: 'dl_expiry' },
                     { data: 'price', name: 'price' },
-                    {data: 'action', name: 'action', width:'10%'},
+                    {data: 'action', name: 'action', width:'10%',orderable:false},
                 ]
             });
             $(".price").change(function(){

@@ -41,12 +41,12 @@ class Fullz extends Model
         'state',
         'zip',
         'ssn',
-        'dob',
+        //'dob',
         'dl',
         'dl_state',
         'dl_issue',
         'dl_expiry',
-        'price',
+        //'price',
     ];
 
     public function getActivitylogOptions(): LogOptions

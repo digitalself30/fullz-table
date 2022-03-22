@@ -11,14 +11,14 @@ class SettingsController extends Controller
 {
     public function settings(){
 
-        if (Auth::user()->user_type !== 1) {
+        if (Auth::user()->user_type != 1) {
             return back()->with('error', 'You are not authorized');
         }
         $setting = Setting::first();
         return view('settings', compact('setting'));
     }
     public function setting_store(Request $request){
-        if (Auth::user()->user_type !== 1) {
+        if (Auth::user()->user_type != 1) {
             return back()->with('error', 'You are not authorized');
         }
         $setting = Setting::first();

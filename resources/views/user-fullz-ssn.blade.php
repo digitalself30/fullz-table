@@ -223,15 +223,16 @@
                 buttons: [
                     'copy', 'excel', 'csv', 'pdf'
                 ],
+                "order": [[ 3, "desc" ]],
                 columns: [
-                    {data: 'first_name', name: 'first_name'},
-                    {data: 'dob', name: 'dob'},
+                    {data: 'first_name', name: 'first_name',orderable:false },
+                    {data: 'dob', name: 'dob',orderable:false},
                     {data: 'state', name: 'state'},
                     {data: 'city', name: 'city'},
                     {data: 'ssn', name: 'ssn'},
                     {data: 'ssn_dl', name: 'ssn_dl'},
                     {data: 'price', name: 'price'},
-                    {data: 'action', name: 'action', width:'10%'},
+                    {data: 'action', name: 'action', width:'10%', orderable:false},
                 ]
             });
             $(".price").change(function(){

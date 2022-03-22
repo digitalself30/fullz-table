@@ -268,11 +268,11 @@
                                         <div class="" style="display: flex;justify-content: space-between;">
                                             <div class="form-group col-md-4">
                                                 <label for="exampleInputPassword1" class="form-label">DL issue</label>
-                                                <input type="text" class="form-control" id="dl_issue" name="dl_issue" placeholder="Enter DL issue">
+                                                <input type="date" class="form-control" id="dl_issue" name="dl_issue" placeholder="Enter DL issue">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="exampleInputPassword1" class="form-label">DL Expiry</label>
-                                                <input type="text" class="form-control" id="dl_expiry" name="dl_expiry" placeholder="Enter DL issue">
+                                                <input type="date" class="form-control" id="dl_expiry" name="dl_expiry" placeholder="Enter DL issue">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="exampleInputPassword1" class="form-label">Price</label>

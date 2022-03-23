@@ -34,18 +34,18 @@ class Fullz extends Model
 
 
     protected $encryptable = [
-        'first_name',
+        //'first_name',
         'last_name',
-        'street',
-        'city',
-        'state',
-        'zip',
+        //'street',
+       // 'city',
+       // 'state',
+      //  'zip',
         'ssn',
         //'dob',
         'dl',
-        'dl_state',
-        'dl_issue',
-        'dl_expiry',
+        //'dl_state',
+       // 'dl_issue',
+        //'dl_expiry',
         //'price',
     ];
 

@@ -105,6 +105,7 @@ class FullzController extends Controller
         if ($request->ajax()) {
 
             $data = Fullz::where('status', '=', 1)->where('type', 2)->latest();
+
             if($request->price){
                 if($request->price == 'Lowest'){
                     $price_order = 'ASC';
@@ -124,8 +125,9 @@ class FullzController extends Controller
                 $data->orderBy('dob', $dob_order);
             }
             if($request->state){
-                $data->whereEncrypted ('state', $request->state);
+                $data->whereEncrypted('state', $request->state);
             }
+
 
             $data->get();
             return DataTables::of($data)
@@ -166,14 +168,24 @@ class FullzController extends Controller
                 ->editColumn('dl', function($data) {
                     return $data->dl;
                 })
-                ->editColumn('dl_issue', function($data) {
-                    return Carbon::parse($data->dl_issue)->format('m-d-Y') ;
-                })
                 ->editColumn('dl_state', function($data) {
                     return $data->dl_state;
                 })
+                ->editColumn('dl_issue', function($data) {
+                    if(!is_null($data->dl_issue)){
+                        return Carbon::parse($data->dl_issue)->format('m-d-Y');
+                    }
+                    else{
+                        return 'N/A';
+                    }
+                })
                 ->editColumn('dl_expiry', function($data) {
-                    return Carbon::parse($data->dl_expiry)->format('m-d-Y') ;
+                    if(!is_null($data->dl_expiry)){
+                        return Carbon::parse($data->dl_expiry)->format('m-d-Y');
+                    }
+                    else{
+                        return 'N/A';
+                    }
                 })
                 ->editColumn('status', function($data) {
                     return $data->status == 1 ? "Active" : "In-Active";
@@ -183,6 +195,7 @@ class FullzController extends Controller
         }
         return view('fullz-ssn-dl');
     }
+
     public function store(Request $request){
         // Admin
         if(Auth::user()->user_type != 1 AND Auth::user()->user_type != 3){
@@ -206,8 +219,13 @@ class FullzController extends Controller
         else{
             $fullz_add->dl = $request->dl;
             $fullz_add->dl_state  = $request->dl_state;
-            $fullz_add->dl_issue  = Carbon::parse($request->dl_issue)->format('Y-m-d');
-            $fullz_add->dl_expiry = Carbon::parse($request->dl_expiry)->format('Y-m-d');
+
+            if($request->dl_issue){
+                $fullz_add->dl_issue  = Carbon::parse($request->dl_issue)->format('Y-m-d');
+            }
+            if($request->dl_expiry){
+                $fullz_add->dl_expiry  = Carbon::parse($request->dl_expiry)->format('Y-m-d');
+            }
             $fullz_add->type = 2;
         }
         $fullz_add->save();

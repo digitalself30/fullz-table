@@ -71,9 +71,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer text-right">
-                        <button type="submit" class="btn  btn-primary">Update</button>
-                    </div>
+                    @if(Auth::user()->user_type == 3)
+                        @if($check_limit >= 100)
+                            <div class="card-footer text-right">
+                                <div class="alert alert-light-danger">Account limit has been reached please contact to the admin</div>
+                            </div>
+                            @else
+                            <div class="card-footer text-right">
+                                <button type="submit" class="btn  btn-primary">Update</button>
+                            </div>
+                            @endif
+                    @else
+                        <div class="card-footer text-right">
+                            <button type="submit" class="btn  btn-primary">Update</button>
+                        </div>
+                    @endif
                 </form>
             </div>
         </div>

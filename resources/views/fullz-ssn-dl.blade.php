@@ -395,14 +395,17 @@
             $('.price').select2({
                 placeholder:"Select Lowest/Highest",
                 width: '100%',
+                allowClear: true
             });
             $('.dob').select2({
                 placeholder:"Select Elder/Younger",
                 width: '100%',
+                allowClear: true
             });
             $('.state').select2({
                 placeholder:"Select State",
                 width: '100%',
+                allowClear: true
             });
             var auth = "{{Auth::user()->user_type == 1 ? "B":""}}";
             var table=  $('#user-table-ssn-dl').DataTable({

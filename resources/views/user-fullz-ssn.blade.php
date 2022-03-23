@@ -72,7 +72,7 @@
                            </select>
                        </div>
                        <div class="form-group col-md-4">
-                           <label for="exampleInputPassword1" class="form-label">State</label>
+                           <label for="exampleInputPassword1" class="form-label">State <span style="float: right" id="refresh"><i class="fa fa-refresh"></i></span></label>
                            <select class="users form-control select2 custom-select state" name="">
                                <option value=""></option>
                                <option value="AL">AL</option>
@@ -195,14 +195,17 @@
             $('.price').select2({
                 placeholder:"Select Lowest/Highest",
                 width: '100%',
+                allowClear: true
             });
             $('.dob').select2({
                 placeholder:"Select Elder/Younger",
                 width: '100%',
+                allowClear: true
             });
             $('.state').select2({
                 placeholder:"Select State",
                 width: '100%',
+                allowClear: true
             });
 
             var table = $('#user-table').DataTable({
@@ -242,6 +245,9 @@
                 table.draw();
             });
             $(".state").change(function(){
+                table.draw();
+            });
+            $("#refresh").click(function(){
                 table.draw();
             });
         });

@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Setting;
 use App\Models\Transaction;
 use App\Models\Wallet;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Auth;
 use DB;
@@ -122,12 +123,15 @@ class AddFundsController extends Controller
     }
 
     public function wallet($id){
+
         if(Auth::user()->user_type == 2){
             return back()->with('error', 'You are not authorize');
         }
+
         $user_id = Crypt::decrypt($id);
+        $check_limit = $this->check_limit($user_id);
         $wallet = Wallet::with('user')->where('user_id', $user_id)->first();
-        return view('wallet', compact('wallet'));
+        return view('wallet', compact('wallet', 'check_limit'));
     }
     public function wallet_update(Request $request, $id){
 
@@ -139,6 +143,13 @@ class AddFundsController extends Controller
             'update_balance' => 'required',
             'notes'  => 'required',
         ]);
+        if (Auth::user()->user_type == 3){
+            $check_limit = $this->check_limit($id);
+            $total = $check_limit + $request->update_balance;
+            if($total > 100){
+                return back()->with('error', "You couldn't exceed from the day limit");
+            }
+        }
 
         $funds = new Fund();
         $funds->user_id = $id;
@@ -175,5 +186,20 @@ class AddFundsController extends Controller
         $transaction->save();
 
         return back()->with('success', 'Balance has been added in the wallet');
+    }
+
+    public function check_limit($user_id){
+
+        $from = Carbon::now()->format('Y-m-d');
+        $to = Carbon::now()->format('Y-m-d');
+
+        $from = Carbon::parse($from)
+            ->startOfDay()
+            ->toDateTimeString();
+
+        $to = Carbon::parse($to)
+            ->endOfDay()
+            ->toDateTimeString();
+        return Fund::where('user_id', $user_id)->whereBetween('created_at', [$from, $to])->sum('amount');
     }
 }

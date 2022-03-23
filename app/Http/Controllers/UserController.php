@@ -126,12 +126,12 @@ class UserController extends Controller
                 $data->orderBy('dob', $dob_order);
             }
             if($request->state){
-                $data->where('state', $request->state);
+                $data->whereEncrypted('state', $request->state);
             }
-            if($request->dl_issue_date){
+            if($request->dl_issue_date == '1'){
                 $data->where('dl_issue', '!=', '');
             }
-            if($request->dl_expiry_date){
+            if($request->dl_expiry_date == '1'){
                 $data->where('dl_expiry', '!=', '');
             }
             $data->get();
@@ -157,12 +157,20 @@ class UserController extends Controller
                     return "YES";
                 })
                 ->editColumn('dl_issue', function($data) {
-                   //return Carbon::parse($data->dl_issue)->format('m-d-Y') ;
-                   return $data->dl_issue;
-
+                    if($data->dl_issue){
+                        return Carbon::parse($data->dl_issue)->format('m-d-Y') ;
+                    }
+                    else{
+                        return 'N/A';
+                    }
                 })
                 ->editColumn('dl_expiry', function($data) {
-                    return Carbon::parse($data->dl_expiry)->format('m-d-Y') ;
+                    if(!is_null($data->dl_expiry)){
+                        return Carbon::parse($data->dl_expiry)->format('m-d-Y') ;
+                    }
+                    else{
+                        return 'N/A';
+                    }
                 })
                 ->editColumn('price', function($data) {
                     return '$'.$data->price;

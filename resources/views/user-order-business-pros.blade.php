@@ -81,7 +81,7 @@
                                     <td>{{$order->business_pros->article_of_organization}}</td>
                                     <td>{{$order->business_pros->annual_report}}</td>
                                     <td>{{$order->business_pros->price}}</td>
-                                    <td style="text-align: center; font-size: 22px"><a href="{{route('download.business.pros', $order->id)}}"><i class="fa fa-cloud-download"></i></a></td>
+                                    <td style="text-align: center; font-size: 22px"><a href="{{route('download.business.pros', $order->id)}}" download><i class="fa fa-cloud-download"></i></a></td>
                                 </tr>
                                 @php $total += $order->business_pros->price @endphp
                             @endforeach

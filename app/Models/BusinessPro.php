@@ -5,12 +5,13 @@ namespace App\Models;
 use ESolution\DBEncryption\Traits\EncryptedAttribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class BusinessPro extends Model
 {
-    use HasFactory, LogsActivity, EncryptedAttribute;
+    use HasFactory, LogsActivity, EncryptedAttribute, SoftDeletes;
     protected $fillable =[
         'company_name',
         'ein',

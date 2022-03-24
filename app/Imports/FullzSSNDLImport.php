@@ -28,7 +28,7 @@ class FullzSSNDLImport implements ToModel ,WithHeadingRow, SkipsOnFailure, Skips
             'state' => $row['state'],
             'zip' => $row['zip'],
             'ssn' => $row['ssn'],
-            'dob' => Carbon::parse($row['dob'])->format('Y-m-d'),
+            'dob' => $row['dob'] == '' ? NULL : Carbon::parse($row['dob'])->format('Y-m-d'),
             'dl' => $row['dl'],
             'dl_state' => $row['dlstate'],
             'dl_issue' => $row['dlissue'] == '' ? NULL : Carbon::parse($row['dlissue'])->format('Y-m-d'),

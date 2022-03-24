@@ -252,7 +252,7 @@
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="exampleInputPassword1" class="form-label">Date Of Birth</label>
-                                                <input type="text" class="form-control" id="dob" name="dob" placeholder="Date Of Birth">
+                                                <input type="date" class="form-control" id="dob" name="dob" placeholder="Date Of Birth">
                                             </div>
                                         </div>
                                         <div class="" style="display: flex;justify-content: space-between;">

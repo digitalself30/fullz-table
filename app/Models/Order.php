@@ -25,7 +25,7 @@ class Order extends Model
     }
 
     public function fullz_table(){
-        return $this->hasOne(Fullz::class, 'id', 'fullz_id');
+        return $this->hasOne(Fullz::class, 'id', 'fullz_id')->withTrashed();
     }
     public function user(){
         return $this->hasOne(User::class, 'id', 'user_id');

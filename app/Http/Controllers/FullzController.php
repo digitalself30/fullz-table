@@ -81,16 +81,19 @@ class FullzController extends Controller
                     return $data->ssn;
                 })
                 ->editColumn('dob', function($data) {
-                    return Carbon::parse($data->dob)->format('m-d-Y') ;
+                    if(!is_null($data->dob)){
+                        return Carbon::parse($data->dob)->format('m-d-Y');
+                    }
+                    else{
+                        return "N\A";
+                    }
                 })
                 ->editColumn('price', function($data) {
                     return '$'.$data->price;
                 })
-
                 ->editColumn('status', function($data) {
                     return $data->status == 1 ? "Active" : "In-Active";
                 })
-
                 ->rawColumns(['checkbox','first_name','last_name','street','city','state','zip','ssn','dob','price','status',])
                 ->make(true);
         }
@@ -101,7 +104,6 @@ class FullzController extends Controller
         if(Auth::user()->user_type != 1 AND Auth::user()->user_type != 3){
             return back();
         }
-
         if ($request->ajax()) {
 
             $data = Fullz::where('status', '=', 1)->where('type', 2)->latest();
@@ -127,13 +129,10 @@ class FullzController extends Controller
             if($request->state){
                 $data->whereEncrypted('state', $request->state);
             }
-
-
             $data->get();
             return DataTables::of($data)
 
                 ->addIndexColumn()
-
                 ->editColumn('checkbox', function($data) {
                     return "<input type=\"checkbox\" value='".$data->id."' name='check_box' class=\"checkbox data-check\">";
                 })
@@ -144,7 +143,12 @@ class FullzController extends Controller
                     return $data->last_name;
                 })
                 ->editColumn('dob', function($data) {
-                    return Carbon::parse($data->dob)->format('m-d-Y') ;
+                    if(!is_null($data->dob)){
+                        return Carbon::parse($data->dob)->format('m-d-Y') ;
+                    }
+                    else{
+                        return "N\A";
+                    }
                 })
                 ->editColumn('street', function($data) {
                     return $data->street;
@@ -155,7 +159,6 @@ class FullzController extends Controller
                 ->editColumn('city', function($data) {
                     return $data->city;
                 })
-
                 ->editColumn('zip', function($data) {
                     return $data->zip;
                 })
@@ -202,6 +205,12 @@ class FullzController extends Controller
             return back();
         }
 
+        $this->validate($request,[
+            'dob' => 'date',
+            'dl_issue' => 'date',
+            'dl_expiry' => 'date',
+        ]);
+
         $fullz_add = new Fullz;
         $fullz_add->first_name = $request->first_name;
         $fullz_add->last_name = $request->last_name;
@@ -210,7 +219,12 @@ class FullzController extends Controller
         $fullz_add->state = $request->state;
         $fullz_add->zip = $request->zip;
         $fullz_add->ssn = $request->ssn;
-        $fullz_add->dob = Carbon::parse($request->dob)->format('Y-m-d');
+        if(!is_null($request->dob)){
+            $fullz_add->dob = Carbon::parse($request->dob)->format('Y-m-d');
+        }
+        else{
+            $fullz_add->dob =  NULL;
+        }
         $fullz_add->price = $request->price;
         $fullz_add->status = 1;
         if($request->table_type == 1){
@@ -231,6 +245,7 @@ class FullzController extends Controller
         $fullz_add->save();
         return back()->with('success', 'Data has been updated');
     }
+
     public function upload_csv(Request $request){
         // Admin
         if(Auth::user()->user_type != 1 AND Auth::user()->user_type != 3){

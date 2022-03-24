@@ -69,7 +69,12 @@ class UserController extends Controller
                     return $data->first_name;
                 })
                 ->editColumn('dob', function($data) {
-                    return Carbon::parse($data->dob)->format('m-d-Y') ;
+                    if(!is_null($data->dob)){
+                        return Carbon::parse($data->dob)->format('m-d-Y') ;
+                    }
+                    else{
+                        return "N\A";
+                    }
                 })
                 ->editColumn('state', function($data) {
                     return $data->state;
@@ -142,7 +147,12 @@ class UserController extends Controller
                     return $data->first_name;
                 })
                 ->editColumn('dob', function($data) {
-                    return Carbon::parse($data->dob)->format('m-d-Y') ;
+                    if(!is_null($data->dob)){
+                        return Carbon::parse($data->dob)->format('m-d-Y');
+                    }
+                    else{
+                        return "N\A";
+                    }
                 })
                 ->editColumn('state', function($data) {
                     return $data->state;
@@ -157,7 +167,7 @@ class UserController extends Controller
                     return "YES";
                 })
                 ->editColumn('dl_issue', function($data) {
-                    if($data->dl_issue){
+                    if(!is_null($data->dl_issue)){
                         return Carbon::parse($data->dl_issue)->format('m-d-Y') ;
                     }
                     else{
@@ -188,7 +198,7 @@ class UserController extends Controller
         return view('user-fullz-ssn-dl', compact('wallet'));
     }
     public function order_details(){
-        $orders = Order::with('fullz_table')->where('user_id', Auth::id())->latest()->paginate(10);
+        $orders = Order::with('fullz_table')->where('type','fullz')->where('user_id', Auth::id())->latest()->paginate(10);
         return view('order-details', compact('orders'));
     }
     public function profile(){

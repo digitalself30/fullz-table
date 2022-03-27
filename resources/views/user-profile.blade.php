@@ -18,21 +18,36 @@
     <!-- Row -->
     <div class="row">
         <div class="col-xl-3 col-lg-3 col-md-12">
-            <div class="card box-widget widget-user">
-                <div class="widget-user-image mx-auto mt-5"><img alt="User Avatar" class="rounded-circle" src="{{URL::asset('assets/images/users/profile2.png')}}"></div>
-                <div class="card-body text-center">
-                    <div class="pro-user">
-                        @if(Auth::check())
-                            <h4 class="pro-user-username text-dark mb-1 font-weight-bold">{{Auth::user()->name}}</h4>
-                            <h6 class="pro-user-desc text-muted">{{Auth::user()->email}}</h6>
-                        @endif
-{{--                        <a href="{{route('user.edit', Auth::id())}}" class="btn btn-primary  mt-3"><i class="fa fa-pencil"></i> Edit Profile</a>--}}
-
+            <div class="card">
+                <form action="{{ route('change.password') }}" method="POST">
+                    @csrf
+                    <div class="card-header">
+                        <div class="card-title">Edit Password</div>
                     </div>
-                </div>
-
+                    <div class="card-body">
+                        <div class="text-center mb-5">
+                            <div class="widget-user-image">
+                                <img alt="User Avatar" class="rounded-circle  mr-3" src="{{URL::asset('assets/images/users/profile2.png')}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Old Password</label>
+                            <input type="password" name="current_password" class="form-control"   autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">New Password</label>
+                            <input type="password" name="new_password" class="form-control" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Confirm Password</label>
+                            <input type="password" name="new_confirm_password" class="form-control" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="card-footer text-right">
+                        <button type="submit" class="btn btn-primary">Updated</button>
+                    </div>
+                </form>
             </div>
-
         </div>
         <div class="col-xl-9 col-lg-9 col-md-12">
             <div class="card">

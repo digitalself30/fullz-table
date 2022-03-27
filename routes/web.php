@@ -9,6 +9,7 @@ use App\Http\Controllers\AddFundsController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\ChangePasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,6 +99,10 @@ Route::middleware(['auth'])->group(function(){
         Route::POST('/update/{id?}', [ManagerController::class, 'update'])->name('manager.update');
         Route::GET('/delete/{id?}', [ManagerController::class, 'delete'])->name('manager.delete');
     });
+
+    //
+
+    Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
 
 });
 

@@ -39,7 +39,7 @@ class FullzController extends Controller
                 $data->orderBy('price', $price_order);
             }
             if($request->dob){
-                if($request->dob == 'Elder'){
+                if($request->dob == 'Older'){
                     $dob_order = 'ASC';
                 }
                 else{
@@ -48,7 +48,7 @@ class FullzController extends Controller
                 $data->orderBy('dob', $dob_order);
             }
             if($request->state){
-                $data->whereEncrypted('state', $request->state);
+                $data->where('state', $request->state);
             }
 
             $data->get();
@@ -118,7 +118,7 @@ class FullzController extends Controller
                 $data->orderBy('price', $price_order);
             }
             if($request->dob){
-                if($request->dob == 'Elder'){
+                if($request->dob == 'Older'){
                     $dob_order = 'ASC';
                 }
                 else{
@@ -127,7 +127,7 @@ class FullzController extends Controller
                 $data->orderBy('dob', $dob_order);
             }
             if($request->state){
-                $data->whereEncrypted('state', $request->state);
+                $data->where('state', $request->state);
             }
             $data->get();
             return DataTables::of($data)
@@ -144,7 +144,7 @@ class FullzController extends Controller
                 })
                 ->editColumn('dob', function($data) {
                     if(!is_null($data->dob)){
-                        return Carbon::parse($data->dob)->format('m-d-Y') ;
+                        return Carbon::parse($data->dob)->format('m-d-Y');
                     }
                     else{
                         return "N\A";

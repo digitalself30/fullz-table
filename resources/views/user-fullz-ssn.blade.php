@@ -67,7 +67,7 @@
                            <label for="exampleInputPassword1" class="form-label">DOB</label>
                            <select class="users form-control select2 custom-select dob" name="">
                                <option value=""></option>
-                               <option value="Elder">Elder</option>
+                               <option value="Older">Older</option>
                                <option value="Younger">Younger</option>
                            </select>
                        </div>

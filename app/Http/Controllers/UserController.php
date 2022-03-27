@@ -50,7 +50,7 @@ class UserController extends Controller
                 $data->orderBy('price', $price_order);
             }
             if($request->dob){
-                if($request->dob == 'Elder'){
+                if($request->dob == 'Older'){
                     $dob_order = 'ASC';
                 }
                 else{
@@ -59,7 +59,7 @@ class UserController extends Controller
                 $data->orderBy('dob', $dob_order);
             }
             if($request->state){
-                $data->whereEncrypted('state', $request->state);
+                $data->where('state', $request->state);
             }
             $data->get();
 
@@ -122,7 +122,7 @@ class UserController extends Controller
                 $data->orderBy('price', $price_order);
             }
             if($request->dob){
-                if($request->dob == 'Elder'){
+                if($request->dob == 'Older'){
                     $dob_order = 'ASC';
                 }
                 else{
@@ -131,7 +131,7 @@ class UserController extends Controller
                 $data->orderBy('dob', $dob_order);
             }
             if($request->state){
-                $data->whereEncrypted('state', $request->state);
+                $data->where('state', $request->state);
             }
             if($request->dl_issue_date == '1'){
                 $data->where('dl_issue', '!=', '');
@@ -271,8 +271,15 @@ class UserController extends Controller
                     'balance' => DB::raw('balance -'. Cart::subtotal())
                 ]);
         }
+
         Cart::destroy();
-        return redirect(route('order.details'))->with('success', 'You have bought successfully');
+        if($type == 'fullz'){
+            return redirect(route('order.details'))->with('success', 'You have bought successfully');
+        }
+        else{
+            return redirect(route('order.business.pros'))->with('success', 'You have bought successfully');
+        }
+
     }
     public function cart_empty(){
         Cart::destroy();

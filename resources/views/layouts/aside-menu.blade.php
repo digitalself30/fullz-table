@@ -145,7 +145,7 @@
                 </a>
                 <ul class="slide-menu ">
                     <li><a href="{{route('order.details')}}" class="slide-item">Order Details</a></li>
-                    <li><a href="{{route('order.business.pros')}}" class="slide-item">Order Business Pros</a></li>
+                    <li><a href="{{route('order.business.pros')}}" class="slide-item">Order Company Pros</a></li>
                     <li><a href="{{route('funds.history')}}" class="slide-item">Funds History</a></li>
                 </ul>
             </li>
@@ -164,7 +164,7 @@
             <li class="slide">
                 <a class="side-menu__item" href="{{$setting->telegram_link}}" target="_blank">
                     <svg class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
-                    <span class="side-menu__label">Buy a document</span>
+                    <span class="side-menu__label">Buy Documents</span>
                 </a>
             </li>
         </ul>
